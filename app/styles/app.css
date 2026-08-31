@@ -1122,7 +1122,7 @@ button.reset:hover:not(:has(> *)) {
 .editorial-page-content { min-width: 0; }
 .pagination-resource-section { box-sizing: border-box; margin-left: auto; margin-right: auto; max-width: var(--content-max); padding: clamp(2rem, 5vw, 5rem) var(--content-gutter) clamp(4rem, 8vw, 8rem); }
 .workshop-media { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
-.workshop-media-heading { align-items: end; display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.workshop-media-heading { align-items: end; display: grid; gap: 2rem; grid-template-columns: minmax(20rem, 1.2fr) minmax(0, 1fr); }
 .workshop-media-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); font-weight: 400; letter-spacing: -.05em; line-height: .98; margin: 0; max-width: 14em; }
 .workshop-media-heading > p { color: rgba(36,35,30,.62); font-size: .9rem; line-height: 1.7; margin: 0 0 .3rem; max-width: 30rem; }
 .workshop-media-grid { display: grid; gap: .8rem; grid-template-columns: 1.25fr .75fr; margin-top: 3rem; }
@@ -1136,7 +1136,7 @@ button.reset:hover:not(:has(> *)) {
 .workshop-media-credentials .workshop-media-card-1, .workshop-media-media .workshop-media-card-1 { min-height: 24rem; }
 .workshop-media-credentials .workshop-media-card-2, .workshop-media-credentials .workshop-media-card-3, .workshop-media-media .workshop-media-card-2, .workshop-media-media .workshop-media-card-3 { min-height: 11.5rem; }
 .workshop-video { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
-.workshop-video-heading { align-items: end; display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.workshop-video-heading { align-items: end; display: grid; gap: 2rem; grid-template-columns: minmax(20rem, 1.2fr) minmax(0, 1fr); }
 .workshop-video-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); font-weight: 400; letter-spacing: -.05em; line-height: .98; margin: 0; max-width: 14em; }
 .workshop-video-heading > p { color: rgba(36,35,30,.62); font-size: .9rem; line-height: 1.7; margin: 0 0 .3rem; max-width: 30rem; }
 .workshop-video-frame { background: var(--color-dark); margin-top: 3rem; min-height: 22rem; overflow: hidden; position: relative; }
