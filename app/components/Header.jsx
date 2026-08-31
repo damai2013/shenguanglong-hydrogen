@@ -11,10 +11,7 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong className="brand-lockup">
-          <span className="brand-mark">沈廣隆</span>
-          <span className="brand-name">SHEN GUANG LONG</span>
-        </strong>
+        <img className="brand-logo" src="/assets/shenguanglong-logo.png" alt="沈廣隆 SHENGUANGLONG" width="180" height="36" />
       </NavLink>
       <HeaderMenu
         menu={menu}

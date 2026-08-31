@@ -12,7 +12,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
           <footer className="footer">
             <div className="footer-inner">
               <div className="footer-brand">
-                <span className="footer-mark">沈廣隆</span>
+                <img className="footer-logo" src="/assets/shenguanglong-logo.png" alt="沈廣隆 SHENGUANGLONG" width="180" height="36" />
                 <p>Traditional blades, made with patience.<br />Since 1885 · Longquan, China</p>
               </div>
               <FooterColumn title="Product Catalog" links={[

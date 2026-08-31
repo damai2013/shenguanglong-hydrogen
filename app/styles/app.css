@@ -241,6 +241,7 @@ button.reset:hover:not(:has(> *)) {
 .brand-lockup { align-items: baseline; display: inline-flex; gap: .55rem; white-space: nowrap; }
 .brand-mark { font-family: Georgia, serif; font-size: 1.05rem; letter-spacing: .08em; }
 .brand-name { color: var(--color-muted); font-size: .58rem; letter-spacing: .16em; }
+.brand-logo { display: block; height: 36px; object-fit: contain; width: 180px; }
 
 /* --------------------------------------------------
 * routes/_index — Shen Guang Long editorial home
@@ -356,6 +357,7 @@ button.reset:hover:not(:has(> *)) {
   color: var(--color-light);
 }
 .footer-inner { display: grid; gap: 2.5rem; grid-template-columns: 1.5fr repeat(3, 1fr); margin: 0 auto; max-width: 88rem; padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 5rem) 3rem; }
+.footer-logo { background: #050505; display: block; height: 36px; margin-bottom: 1.25rem; object-fit: contain; width: 180px; }
 .footer-brand { padding-right: 2rem; }
 .footer-mark { color: var(--color-gold); font-family: Georgia, serif; font-size: 2rem; letter-spacing: .12em; }
 .footer-brand p { color: rgba(244,241,233,.58); font-size: .76rem; line-height: 1.7; margin-top: 1.2rem; }
