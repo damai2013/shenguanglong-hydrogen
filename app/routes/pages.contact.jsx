@@ -23,28 +23,28 @@ export default function Contact() {
             <div className="contact-methods contact-methods-expanded">
               <div className="contact-methods-qr">
                 <a className="contact-method contact-method-qr" href="https://wa.me/8613372508696" rel="noreferrer" target="_blank">
+                  <img src="/assets/reference/whatsapp-qr.png" alt="沈廣隆 WhatsApp 聯絡 QR Code" loading="lazy" />
                   <div>
                     <span className="contact-method-label">WhatsApp</span>
                     <strong>掃描 QR Code 聯絡</strong>
                     <small>使用手機掃描，或點擊 QR Code 開啟 WhatsApp</small>
                   </div>
-                  <img src="/assets/reference/whatsapp-qr.png" alt="沈廣隆 WhatsApp 聯絡 QR Code" loading="lazy" />
                 </a>
                 <a className="contact-method contact-method-qr" href="https://line.me/ti/p/~shenguanglong1885" rel="noreferrer" target="_blank">
+                  <img src="/assets/reference/line-qr.png" alt="沈廣隆 LINE 聯絡 QR Code" loading="lazy" />
                   <div>
                     <span className="contact-method-label">LINE</span>
                     <strong>掃描 QR Code 聯絡</strong>
                     <small>使用手機掃描，或點擊 QR Code 開啟 LINE</small>
                   </div>
-                  <img src="/assets/reference/line-qr.png" alt="沈廣隆 LINE 聯絡 QR Code" loading="lazy" />
                 </a>
                 <div className="contact-method contact-method-wechat">
+                  <img src="/assets/reference/wechat-qr.jpg" alt="沈廣隆微信聯絡 QR Code" loading="lazy" />
                   <div>
                     <span className="contact-method-label">微信</span>
                     <strong>Shen Guanglong</strong>
                     <small>請掃描 QR Code，備註「官網諮詢」</small>
                   </div>
-                  <img src="/assets/reference/wechat-qr.jpg" alt="沈廣隆微信聯絡 QR Code" loading="lazy" />
                 </div>
               </div>
               <div className="contact-methods-email">
