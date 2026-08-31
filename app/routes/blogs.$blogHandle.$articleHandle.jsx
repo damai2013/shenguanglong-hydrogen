@@ -84,14 +84,14 @@ export default function Article() {
   }).format(new Date(article.publishedAt));
 
   return (
-    <div className="article">
-      <h1>
+    <div className="article journal-article">
+      <header className="journal-article-hero"><p className="eyebrow">JOURNAL & GUIDES</p><h1>
         {title}
         <div>
           <time dateTime={article.publishedAt}>{publishedDate}</time> &middot;{' '}
           <address>{author?.name}</address>
         </div>
-      </h1>
+      </h1></header>
 
       {image && <Image data={image} sizes="90vw" loading="eager" />}
       <div

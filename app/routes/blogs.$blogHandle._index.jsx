@@ -72,8 +72,8 @@ export default function Blog() {
   const {articles} = blog;
 
   return (
-    <div className="blog">
-      <h1>{blog.title}</h1>
+    <div className="blog journal-archive">
+      <header className="journal-archive-hero"><p className="eyebrow">JOURNAL & GUIDES · SHEN GUANG LONG</p><h1>{blog.title}<em>.</em></h1><p>Notes on the dimensions, balance, history, and care of traditional blades.</p></header>
       <div className="blog-grid">
         <PaginatedResourceSection connection={articles}>
           {({node: article, index}) => (

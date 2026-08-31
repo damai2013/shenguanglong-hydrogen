@@ -6,7 +6,7 @@ import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Hydrogen | Blogs`}];
+  return [{title: `Shen Guang Long | Journal & Guides`}];
 };
 
 /**
@@ -59,18 +59,18 @@ export default function Blogs() {
   const {blogs} = useLoaderData();
 
   return (
-    <div className="blogs">
-      <h1>Blogs</h1>
-      <div className="blogs-grid">
+    <div className="blogs editorial-journal">
+      <header className="journal-hero"><p className="eyebrow">SHEN GUANG LONG · NOTES FROM THE WORKSHOP</p><h1>Journal <em>&</em><br />guides.</h1><p>Practical knowledge for choosing, practicing with, and caring for traditional blades.</p></header>
+      <div className="journal-list">
         <PaginatedResourceSection connection={blogs}>
           {({node: blog}) => (
             <Link
-              className="blog"
+              className="journal-card"
               key={blog.handle}
               prefetch="intent"
               to={`/blogs/${blog.handle}`}
             >
-              <h2>{blog.title}</h2>
+              <span className="journal-card-number">01</span><div><h2>{blog.title}</h2><p>{blog.seo?.description || 'Read our buying guides and workshop notes.'}</p></div><span aria-hidden="true">↗</span>
             </Link>
           )}
         </PaginatedResourceSection>
