@@ -76,10 +76,13 @@ export function HeaderMenu({
           item.title.toLowerCase().includes('catalog') ||
           item.title.includes('商品目录') ||
           url.endsWith('/collections/all');
-        const isCraft = item.title.includes('工藝') || item.title.includes('傳承');
-        const isMaster = item.title.includes('大師') || item.title.includes('大师');
+    const isCraft = item.title.includes('工藝') || item.title.includes('傳承');
+    const isMaster = item.title.includes('大師') || item.title.includes('大师');
+    const isGuide = item.title.includes('購買') || item.title.includes('指南');
         const baseChildren = isCatalog
           ? enrichCatalogChildren(item.items?.length ? item.items : CATALOG_SUBMENU)
+          : isGuide
+            ? item.items?.length ? item.items : GUIDE_SUBMENU
           : item.items?.length
             ? item.items
             : [];
@@ -88,8 +91,16 @@ export function HeaderMenu({
           ? [{id: 'official-verification', title: '官方核驗', url: '/pages/official-verification'}]
           : [];
         const children = [...baseChildren, ...additionalChildren].filter((child) => {
-          if (!isMaster) return true;
-          return !child.url?.includes('/pages/shen-xinpei') && !child.url?.includes('/pages/shen-zhou');
+          if (isMaster) {
+            return !child.url?.includes('/pages/shen-xinpei') && !child.url?.includes('/pages/shen-zhou');
+          }
+          if (isGuide) {
+            const childUrl = child.url
+              ? normalizeMenuUrl(child.url, {primaryDomainUrl, publicStoreDomain})
+              : '';
+            return childUrl.startsWith('/pages/before-you-order');
+          }
+          return true;
         });
         return children.length ? (
           <div className="header-menu-group" key={item.id}>
@@ -174,10 +185,17 @@ function normalizeMenuUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
     rawUrl.includes(publicStoreDomain) ||
     rawUrl.includes(primaryDomainUrl);
   const path = isInternalUrl ? new URL(rawUrl).pathname : rawUrl;
+  const normalized = path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
+  const guideAliases = {
+    '/pages/faq': '/pages/before-you-order#faq',
+    '/pages/care-storage': '/pages/before-you-order#care',
+    '/pages/care-and-storage': '/pages/before-you-order#care',
+    '/pages/shipping-legal-notice': '/pages/before-you-order#delivery',
+  };
 
   // Shopify menus can return localized paths such as /en/pages/contact.
   // Hydrogen's route files are rooted at /pages, /collections, etc.
-  return path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
+  return guideAliases[normalized] || normalized;
 }
 
 /**
@@ -423,8 +441,6 @@ const FALLBACK_HEADER_MENU = {
       url: '/pages/before-you-order',
       items: [
         {id: 'fallback-before-order', title: '購買前須知', url: '/pages/before-you-order'},
-        {id: 'fallback-faq', title: '常見問題', url: '/pages/faq'},
-        {id: 'fallback-care', title: '保養與保存', url: '/pages/care-and-storage'},
       ],
     },
     {
@@ -447,6 +463,10 @@ const FALLBACK_HEADER_MENU = {
     },
   ],
 };
+
+const GUIDE_SUBMENU = [
+  {id: 'fallback-before-order', title: '購買指南', url: '/pages/before-you-order'},
+];
 
 /**
  * @param {{

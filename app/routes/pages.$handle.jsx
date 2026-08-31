@@ -1,4 +1,4 @@
-import {Link, useLoaderData} from 'react-router';
+import {Link, redirect, useLoaderData} from 'react-router';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {WorkshopMedia, WorkshopVideo} from '~/components/WorkshopMedia';
 import {PageBannerMedia} from '~/components/PageBannerMedia';
@@ -32,6 +32,11 @@ export async function loader(args) {
 async function loadCriticalData({context, request, params}) {
   if (!params.handle) {
     throw new Error('Missing page handle');
+  }
+
+  const guideAnchor = GUIDE_REDIRECTS[params.handle];
+  if (guideAnchor) {
+    throw redirect(`/pages/before-you-order#${guideAnchor}`);
   }
 
   // Editorial pages are owned by the Hydrogen storefront. They should still
@@ -905,6 +910,14 @@ function BeforeYouOrderContent() {
 
   return (
     <div className="before-order-content">
+      <nav className="guide-jump-nav" aria-label="購買指南頁內導覽">
+        <a href="#choose">選擇作品</a>
+        <a href="#specifications">規格與狀態</a>
+        <a href="#delivery">配送與法規</a>
+        <a href="#payment">付款與訂單</a>
+        <a href="#care">保養與保存</a>
+        <a href="#faq">常見問題</a>
+      </nav>
       <section className="before-order-intro">
         <p className="section-label">A CONSIDERED PURCHASE</p>
         <h2>在點擊購買之前，<em>先把重要的事看清楚。</em></h2>
@@ -933,20 +946,31 @@ function BeforeYouOrderContent() {
         </div>
       </section>
 
-      <section className="before-order-details">
+      <section className="before-order-details" id="choose">
         <div className="before-order-heading">
-          <p className="section-label">WHAT TO CONFIRM</p>
-          <h2>商品頁上的資訊，都有實際用途。</h2>
+          <p className="section-label">CHOOSE WITH PURPOSE</p>
+          <h2>先從用途開始，選擇合適的作品。</h2>
         </div>
         <div className="before-order-detail-list">
-          <p><strong>用途與狀態</strong>請確認作品適合練習、收藏、展示還是禮贈。開刃、未開刃、展示狀態和可使用狀態不能混為一談，具體以商品頁說明為準。</p>
-          <p><strong>規格與手工差異</strong>尺寸和重量以商品頁或確認單為準。天然材料、手工紋理、色澤和細部可能存在差異，圖片不能完全代表實物。</p>
-          <p><strong>庫存與交期</strong>有庫存不等於當天發貨；訂製、補貨、裝配和檢查都可能影響交期，請以確認後的時間為準。</p>
-          <p><strong>支付與結帳</strong>購物車用於確認商品和數量，最終付款在 Shopify Checkout 完成。訂單是否成立，以結帳頁面和店鋪訂單記錄為準。</p>
+          <p><strong>先說明用途</strong>收藏、展示、練習、禮贈或訂製，會影響作品的形制、狀態、裝具與交付方式。</p>
+          <p><strong>再對照需求</strong>把預計使用者、使用頻率、尺寸偏好、預算與收貨地區一起列出，方便比較不同作品。</p>
+          <p><strong>最後核對商品頁</strong>圖片用於了解外觀，實際選擇應以商品頁的規格、庫存、狀態與確認資訊為準。</p>
         </div>
       </section>
 
-      <section className="before-order-regulations">
+      <section className="before-order-details" id="specifications">
+        <div className="before-order-heading">
+          <p className="section-label">SPECIFICATIONS &amp; STATUS</p>
+          <h2>商品頁上的資訊，都有實際用途。</h2>
+        </div>
+        <div className="before-order-detail-list">
+          <p><strong>用途與狀態</strong>請確認作品適合收藏、展示、練習或禮贈。開刃、未開刃、展示狀態和可使用狀態不能混為一談。</p>
+          <p><strong>規格與手工差異</strong>尺寸、重量、材料和配件以商品頁或確認單為準；天然材料、手工紋理與色澤可能存在差異。</p>
+          <p><strong>庫存與交期</strong>有庫存不等於當天發貨；裝配、檢查、包裝與目的地確認都可能影響交期。</p>
+        </div>
+      </section>
+
+      <section className="before-order-regulations" id="delivery">
         <div className="regulations-mark">知<br />悉</div>
         <div>
           <p className="section-label">DESTINATION &amp; REGULATIONS</p>
@@ -957,12 +981,52 @@ function BeforeYouOrderContent() {
         </div>
       </section>
 
+      <section className="before-order-details" id="payment">
+        <div className="before-order-heading">
+          <p className="section-label">PAYMENT &amp; ORDER</p>
+          <h2>先確認商品，再進入 Shopify Checkout。</h2>
+        </div>
+        <div className="before-order-detail-list">
+          <p><strong>加入購物車</strong>購物車用於確認商品、規格與數量；商品頁顯示的庫存狀態仍需在下單前再次核對。</p>
+          <p><strong>完成付款</strong>最終付款在 Shopify Checkout 完成，訂單是否成立以結帳頁面和店鋪訂單記錄為準。</p>
+          <p><strong>訂製作品</strong>訂製需要另外確認器型、尺寸、材料、裝具、刻飾、預算、交期與目的地，不能直接套用目錄價格。</p>
+        </div>
+      </section>
+
+      <section className="before-order-details" id="care">
+        <div className="before-order-heading">
+          <p className="section-label">CARE &amp; STORAGE</p>
+          <h2>收到作品後，先建立穩定的保存習慣。</h2>
+        </div>
+        <div className="before-order-detail-list">
+          <p><strong>擦乾</strong>接觸金屬表面後，以乾淨柔軟的布擦去指紋、水分與鹽分。</p>
+          <p><strong>避潮</strong>存放於乾燥、通風、避免陽光直射的位置，木作與金屬不要長時間受潮。</p>
+          <p><strong>少碰撞</strong>展示或收納時保持穩固，避免跌落、摩擦、重壓與不同金屬長時間接觸。</p>
+          <p><strong>先確認</strong>使用清潔劑、油品或特殊處理前，先核對材料與商品說明。</p>
+        </div>
+      </section>
+
+      <section className="faq-content guide-faq" id="faq">
+        <div className="faq-heading">
+          <p className="section-label">QUESTIONS, ANSWERED</p>
+          <h2>常見問題，集中在這裡回答。</h2>
+        </div>
+        <div className="faq-list">
+          {GUIDE_FAQ.map(([question, answer]) => (
+            <details key={question}>
+              <summary>{question}<span aria-hidden="true">＋</span></summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section className="before-order-final">
         <p className="section-label">READY WHEN YOU ARE</p>
         <h2>看完仍然確定，再把作品放進購物車。</h2>
         <div className="brand-story-actions">
           <Link className="button button-gold" to="/collections">瀏覽商品 <span aria-hidden="true">↗</span></Link>
-          <Link className="text-link" to="/pages/faq">查看常見問題 <span aria-hidden="true">↗</span></Link>
+          <a className="text-link" href="#faq">查看常見問題 <span aria-hidden="true">↗</span></a>
         </div>
       </section>
     </div>
@@ -1128,10 +1192,10 @@ const PAGE_INTROS = {
     ctaUrl: '/pages/contact',
   },
   'before-you-order': {
-    kicker: 'BEFORE YOU ORDER · 購買前須知',
+    kicker: 'PURCHASE GUIDE · 購買指南',
     title: '先看清楚，再做選擇',
-    lede: '傳統刀劍是一項需要理解的選擇。先確認用途、比例、表面、配送與保存方式。',
-    aside: '如果你不確定哪件作品適合練習，請在下單前聯絡工作室。',
+    lede: '從用途、規格、配送、付款到保存，把購買前需要確認的資訊集中在一頁。',
+    aside: '如果你不確定哪件作品適合，請在下單前聯絡我們。',
     ctaLabel: '提出問題',
     ctaUrl: '/pages/contact',
   },
@@ -1251,6 +1315,23 @@ const BUILT_IN_PAGE_TITLES = {
   'shipping-legal-notice': '配送與法規說明',
   'group-orders': '團體採購',
 };
+
+const GUIDE_REDIRECTS = {
+  faq: 'faq',
+  'care-storage': 'care',
+  'shipping-legal-notice': 'delivery',
+};
+
+const GUIDE_FAQ = [
+  ['如何判斷一件商品是否適合我？', '先看商品頁的用途、尺寸、重量、材料、狀態和配件說明；不確定時請在下單前聯絡我們。'],
+  ['有庫存是否代表可以馬上發貨？', '不一定。裝配、檢查、包裝和目的地確認都可能影響發貨時間，請以確認後的交期為準。'],
+  ['可以訂製尺寸、材料或刻飾嗎？', '部分需求可以討論，但需要結合用途、工藝可行性、材料與目的地逐項確認。'],
+  ['是否支持全球配送？', '不能一概而論。刀劍、金屬製品和裝具可能受到目的地法規、承運商和清關要求影響。'],
+  ['如何完成付款？', '加入購物車後，最終透過 Shopify Checkout 完成結帳和付款。'],
+  ['收到作品後應該如何保存？', '請保持乾燥，避免碰撞與長時間接觸腐蝕性物質；具體方式以商品頁的材料和表面處理說明為準。'],
+  ['發現運輸或商品問題怎麼辦？', '請保留訂單資訊、外包裝與現場照片，透過聯絡頁面盡快說明。'],
+  ['可以退換貨嗎？', '退換條件以店鋪政策和具體商品頁說明為準，訂製或個人化商品可能有不同規則。'],
+];
 
 const PAGE_BANNER_VARIANTS = {
   'about-shen-guang-long': 'workshop',

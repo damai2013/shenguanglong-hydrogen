@@ -27,9 +27,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
         ]} />
         <FooterColumn title="客戶服務" links={[
           ['聯絡諮詢', '/pages/contact'],
-          ['購買前須知', '/pages/before-you-order'],
-          ['常見問題', '/pages/faq'],
-          ['保養與保存', '/pages/care-and-storage'],
+          ['購買指南', '/pages/before-you-order'],
         ]} />
       </div>
       <p className="footer-note">© {new Date().getFullYear()} Shen Guang Long. All rights reserved.</p>
@@ -115,7 +113,14 @@ function normalizeFooterUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
     rawUrl.includes(primaryDomainUrl);
   const path = isInternalUrl ? new URL(rawUrl).pathname : rawUrl;
 
-  return path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
+  const normalized = path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
+  const guideAliases = {
+    '/pages/faq': '/pages/before-you-order#faq',
+    '/pages/care-storage': '/pages/before-you-order#care',
+    '/pages/care-and-storage': '/pages/before-you-order#care',
+    '/pages/shipping-legal-notice': '/pages/before-you-order#delivery',
+  };
+  return guideAliases[normalized] || normalized;
 }
 
 const FALLBACK_FOOTER_MENU = {
