@@ -67,6 +67,14 @@ export default function Collections() {
           ))}
         </div>
       </section>
+      <section className="catalog-paths" aria-labelledby="catalog-paths-heading">
+        <div className="section-heading"><div><p className="eyebrow">CHOOSE YOUR PATH</p><h2 id="catalog-paths-heading">从用途开始选择。</h2></div><span className="catalog-count">02 — 03</span></div>
+        <div className="catalog-path-grid">
+          <Link className="catalog-path-card" to="/collections/all"><span>01</span><div><h3>我已经知道要找什么</h3><p>直接浏览全部商品，按实际商品页确认规格与库存。</p></div><b aria-hidden="true">↗</b></Link>
+          <Link className="catalog-path-card" to="/pages/before-you-order"><span>02</span><div><h3>我想先了解购买规则</h3><p>先确认用途、状态、配送和目的地要求。</p></div><b aria-hidden="true">↗</b></Link>
+          <Link className="catalog-path-card" to="/pages/master-custom"><span>03</span><div><h3>我想讨论一件订制作品</h3><p>从用途、尺寸、材料、预算和目的地开始咨询。</p></div><b aria-hidden="true">↗</b></Link>
+        </div>
+      </section>
       <section className="catalog-all-collections" aria-labelledby="all-collections-heading">
         <div className="section-heading"><div><p className="eyebrow">THE FULL ARCHIVE</p><h2 id="all-collections-heading">All collections</h2></div></div>
       <PaginatedResourceSection
