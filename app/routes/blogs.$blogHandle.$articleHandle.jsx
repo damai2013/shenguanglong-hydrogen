@@ -1,12 +1,13 @@
 import {useLoaderData} from 'react-router';
 import {Image} from '@shopify/hydrogen';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+import {PageBannerMedia} from '~/components/PageBannerMedia';
 
 /**
  * @type {Route.MetaFunction}
  */
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.article.title ?? ''} article`}];
+  return [{title: `沈廣隆｜${data?.article.title ?? '文章'}`}];
 };
 
 /**
@@ -68,7 +69,7 @@ async function loadCriticalData({context, request, params}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -77,7 +78,7 @@ export default function Article() {
   const {article} = useLoaderData();
   const {title, image, contentHtml, author} = article;
 
-  const publishedDate = new Intl.DateTimeFormat('en-US', {
+  const publishedDate = new Intl.DateTimeFormat('zh-Hant-TW', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -85,7 +86,7 @@ export default function Article() {
 
   return (
     <div className="article journal-article">
-      <header className="journal-article-hero"><p className="eyebrow">JOURNAL & GUIDES</p><h1>
+      <header className="journal-article-hero"><PageBannerMedia variant="craft" /><p className="eyebrow">JOURNAL & GUIDES</p><h1>
         {title}
         <div>
           <time dateTime={article.publishedAt}>{publishedDate}</time> &middot;{' '}

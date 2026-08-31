@@ -19,7 +19,7 @@ import {redirectIfHandleIsLocalized} from '~/lib/redirect';
  */
 export const meta = ({data}) => {
   return [
-    {title: `Hydrogen | ${data?.product.title ?? ''}`},
+    {title: `沈廣隆｜${data?.product.title ?? '商品詳情'}`},
     {
       rel: 'canonical',
       href: `/products/${data?.product.handle}`,
@@ -121,17 +121,13 @@ export default function Product() {
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
-        <br />
         <ProductForm
           productOptions={productOptions}
           selectedVariant={selectedVariant}
         />
-        <br />
-        <br />
         <div className="product-description"><p className="description-label">作品介紹</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
         <div className="product-notes"><div><span>產地</span><strong>中國龍泉</strong></div><div><span>工藝</span><strong>手工完成</strong></div><div><span>交付</span><strong>請參閱購買指南</strong></div></div>
         <ProductDetailSections />
-        <br />
         </div>
       </div>
       <ProductRecommendations products={recommendations} />
@@ -189,15 +185,15 @@ function ProductDetailSections() {
         <div className="product-detail-copy">
           <p>請以當前商品頁顯示的尺寸、重量、材料、配件、庫存和狀態為準。不同商品的用途與手感不同，圖片不能代替規格資訊。</p>
           <p>如果當前頁面沒有列出你需要的規格，請在結帳前聯絡我們確認，不要僅憑圖片判斷是否適合。</p>
-          <Link className="product-detail-cta" to="/pages/contact">諮詢商品規格 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link product-detail-cta" to="/pages/contact">諮詢商品規格 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
       <details>
-        <summary>配送、目的地与合规 <span aria-hidden="true">＋</span></summary>
+        <summary>配送、目的地與合規 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
           <p>現貨、補貨和訂製作品的交期可能不同。刀劍類商品的運輸、進口和持有要求會因目的地而不同。</p>
           <p>請在付款前確認目的地規則、運輸方式和交付條件；需要確認時，請提供國家／地區和商品連結。</p>
-          <Link className="product-detail-cta" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link product-detail-cta" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
       <details>
@@ -210,8 +206,8 @@ function ProductDetailSections() {
       <details>
         <summary>評論與使用回饋 <span aria-hidden="true">＋</span></summary>
         <div className="product-review-empty">
-          <span className="review-mark">00</span>
-          <div><strong>暫無已發布評論</strong><p>目前不展示未經確認的評分或評論。真實購買回饋接入後，會在這裡顯示。</p></div>
+          <span className="review-mark">↗</span>
+          <div><strong>評論已展示於商品圖片下方</strong><p>有已發布的 Judge.me 評論時，這裡會優先顯示；尚未取得評論時，先以清楚標示的測試內容展示版面。</p></div>
         </div>
       </details>
     </div>
@@ -230,24 +226,94 @@ function ProductGallery({product, selectedVariant}) {
         <ProductImage image={activeImage} />
         {images.length > 1 ? (
           <div className="gallery-controls">
-            <button type="button" onClick={() => setActiveIndex((activeIndex - 1 + images.length) % images.length)} aria-label="Previous product image">←</button>
+            <button type="button" onClick={() => setActiveIndex((activeIndex - 1 + images.length) % images.length)} aria-label="上一張商品圖片">←</button>
             <span>{String(activeIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
-            <button type="button" onClick={() => setActiveIndex((activeIndex + 1) % images.length)} aria-label="Next product image">→</button>
+            <button type="button" onClick={() => setActiveIndex((activeIndex + 1) % images.length)} aria-label="下一張商品圖片">→</button>
           </div>
         ) : null}
       </div>
       {images.length > 1 ? (
-        <div className="gallery-thumbnails" aria-label="Product images">
+        <div className="gallery-thumbnails" aria-label="商品圖片">
           {images.map((image, index) => (
-            <button className={index === activeIndex ? 'is-active' : ''} key={image.id} type="button" onClick={() => setActiveIndex(index)} aria-label={`View product image ${index + 1}`} aria-pressed={index === activeIndex}>
+            <button className={index === activeIndex ? 'is-active' : ''} key={image.id} type="button" onClick={() => setActiveIndex(index)} aria-label={`查看商品圖片 ${index + 1}`} aria-pressed={index === activeIndex}>
               <img src={image.url} alt={image.altText || ''} loading="lazy" />
             </button>
           ))}
         </div>
       ) : null}
       <p className="gallery-caption">每件作品均以手工完成。紋理、包漿與平衡感的差異，正是作品獨有的性格。</p>
+      <ProductReviews product={product} />
     </div>
   );
+}
+
+function ProductReviews({product}) {
+  const judgeMeWidget = product?.metafields?.find(
+    (metafield) => metafield?.namespace === 'judgeme' && metafield?.key === 'widget',
+  )?.value;
+
+  if (judgeMeWidget?.trim()) {
+    return (
+      <section className="product-reviews product-reviews-judgeme" aria-labelledby="product-reviews-heading">
+        <div className="product-reviews-heading">
+          <div>
+            <p className="section-label">JUDGE.ME REVIEWS</p>
+            <h2 id="product-reviews-heading">作品評論。</h2>
+          </div>
+        </div>
+        <div className="judgeme-widget-shell" dangerouslySetInnerHTML={{__html: judgeMeWidget}} />
+      </section>
+    );
+  }
+
+  const reviews = getDemoReviews(product);
+
+  return (
+    <section className="product-reviews" aria-labelledby="product-reviews-heading">
+      <div className="product-reviews-heading">
+        <div>
+          <p className="section-label">CUSTOMER VOICES · 測試資料</p>
+          <h2 id="product-reviews-heading">作品評論。</h2>
+        </div>
+        <div className="product-review-summary">
+          <strong>5.0</strong>
+          <span className="product-review-stars" aria-label="測試評分 5 分">★★★★★</span>
+          <small>{reviews.length} 則測試評論</small>
+        </div>
+      </div>
+      <p className="product-reviews-notice">
+        目前尚未接入已發布的 Judge.me 評論，以下測試內容用於展示評論版面。完成評論來源連接後，這裡會優先顯示實際評論。
+      </p>
+      <div className="product-reviews-list">
+        {reviews.map((review) => (
+          <article className="product-review-card" key={`${review.author}-${review.date}`}>
+            <div className="product-review-card-top">
+              <h3>{review.title}</h3>
+              <span className="product-review-card-meta">{review.author} · {review.date}</span>
+            </div>
+            <span className="product-review-stars" aria-label={`測試評分 ${review.rating} 分`}>{'★'.repeat(review.rating)}</span>
+            <p>{review.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function getDemoReviews(product) {
+  // The current Storefront API context has no Judge.me review adapter, so demo data
+  // remains visibly labeled until a server-side reviews source is connected.
+  const isSword = /刀|劍|劍鞘|唐/.test(product?.title || '');
+
+  return isSword
+    ? [
+        {rating: 5, title: '細節與平衡感很出色', text: '測試評論：這段文字用來展示商品評論的評分、摘要與閱讀節奏。', author: '測試顧客 A', date: '2026.08'},
+        {rating: 5, title: '收到後先仔細確認規格', text: '測試評論：接入 Judge.me 後，這裡會替換為已發布的實際購買回饋。', author: '測試顧客 B', date: '2026.07'},
+      ]
+    : [
+        {rating: 5, title: '材質與手感令人印象深刻', text: '測試評論：用來展示不同商品都能保持一致的評論版式。', author: '測試顧客 A', date: '2026.08'},
+        {rating: 5, title: '包裝與作品說明清楚', text: '測試評論：接入 Judge.me 後，這裡會替換為已發布的實際購買回饋。', author: '測試顧客 B', date: '2026.07'},
+      ];
 }
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
@@ -332,6 +398,11 @@ const PRODUCT_FRAGMENT = `#graphql
     seo {
       description
       title
+    }
+    metafields(identifiers: [{namespace: "judgeme", key: "widget"}]) {
+      namespace
+      key
+      value
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}

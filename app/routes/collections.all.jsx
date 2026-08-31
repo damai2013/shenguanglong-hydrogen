@@ -2,6 +2,7 @@ import {useLoaderData} from 'react-router';
 import {getPaginationVariables} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {ProductItem} from '~/components/ProductItem';
+import {PageBannerMedia} from '~/components/PageBannerMedia';
 
 /**
  * @type {Route.MetaFunction}
@@ -49,7 +50,7 @@ async function loadCriticalData({context, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -59,7 +60,7 @@ export default function Collection() {
 
   return (
     <div className="collection catalog-listing">
-      <div className="listing-intro"><p className="eyebrow">SHEN GUANG LONG · 始於 1885</p><h1>全部<em>作品</em>。</h1><p>探索來自龍泉工作室的傳統刀劍、練習器械與工藝器物。</p></div>
+      <div className="listing-intro"><PageBannerMedia variant="workshop" /><p className="eyebrow">SHEN GUANG LONG · 始於 1885</p><h1>全部<em>作品</em>。</h1><p>探索來自龍泉工作室的傳統刀劍、練習器械與工藝器物。</p></div>
       <div className="listing-bar"><span>工作室作品檔案</span><span>向下探索 ↓</span></div>
       <PaginatedResourceSection
         connection={products}

@@ -1,6 +1,6 @@
 import {Link, useFetcher} from 'react-router';
 import {Image, Money} from '@shopify/hydrogen';
-import React, {useRef, useEffect} from 'react';
+import {useRef, useEffect} from 'react';
 import {
   getEmptyPredictiveSearchResult,
   urlWithTrackingParams,
@@ -10,7 +10,7 @@ import {useAside} from './Aside';
 /**
  * Component that renders predictive search results
  * @param {SearchResultsPredictiveProps}
- * @return {React.ReactNode}
+ * @return {import('react').ReactNode}
  */
 export function SearchResultsPredictive({children}) {
   const aside = useAside();
@@ -59,7 +59,7 @@ function SearchResultsPredictiveArticles({term, articles, closeSearch}) {
 
   return (
     <div className="predictive-search-result" key="articles">
-      <h5>Articles</h5>
+      <h5>文章</h5>
       <ul>
         {articles.map((article) => {
           const articleUrl = urlWithTrackingParams({
@@ -99,7 +99,7 @@ function SearchResultsPredictiveCollections({term, collections, closeSearch}) {
 
   return (
     <div className="predictive-search-result" key="collections">
-      <h5>Collections</h5>
+      <h5>作品分類</h5>
       <ul>
         {collections.map((collection) => {
           const collectionUrl = urlWithTrackingParams({
@@ -139,7 +139,7 @@ function SearchResultsPredictivePages({term, pages, closeSearch}) {
 
   return (
     <div className="predictive-search-result" key="pages">
-      <h5>Pages</h5>
+      <h5>頁面</h5>
       <ul>
         {pages.map((page) => {
           const pageUrl = urlWithTrackingParams({
@@ -171,7 +171,7 @@ function SearchResultsPredictiveProducts({term, products, closeSearch}) {
 
   return (
     <div className="predictive-search-result" key="products">
-      <h5>Products</h5>
+      <h5>商品</h5>
       <ul>
         {products.map((product) => {
           const productUrl = urlWithTrackingParams({
@@ -237,7 +237,7 @@ function SearchResultsPredictiveEmpty({term}) {
 
   return (
     <p>
-      No results found for <q>{term.current}</q>
+      找不到「<q>{term.current}</q>」的結果
     </p>
   );
 }

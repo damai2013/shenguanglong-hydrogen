@@ -4,7 +4,7 @@ import {Link, useLoaderData} from 'react-router';
  * @type {Route.MetaFunction}
  */
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.policy.title ?? ''}`}];
+  return [{title: `沈廣隆｜${data?.policy.title ?? '店鋪政策'}`}];
 };
 
 /**
@@ -48,7 +48,7 @@ export default function Policy() {
       <br />
       <br />
       <div>
-        <Link to="/policies">← Back to Policies</Link>
+        <Link to="/policies">← 返回店鋪政策</Link>
       </div>
       <br />
       <h1>{policy.title}</h1>

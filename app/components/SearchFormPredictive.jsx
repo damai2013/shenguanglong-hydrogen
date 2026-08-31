@@ -1,5 +1,5 @@
 import {useFetcher, useNavigate} from 'react-router';
-import React, {useRef, useEffect} from 'react';
+import {useRef, useEffect} from 'react';
 import {useAside} from './Aside';
 
 export const SEARCH_ENDPOINT = '/search';
@@ -61,11 +61,11 @@ export function SearchFormPredictive({
 
 /**
  * @typedef {(args: {
- *   fetchResults: (event: React.ChangeEvent<HTMLInputElement>) => void;
+ *   fetchResults: (event: import('react').ChangeEvent<HTMLInputElement>) => void;
  *   goToSearch: () => void;
- *   inputRef: React.MutableRefObject<HTMLInputElement | null>;
+ *   inputRef: import('react').MutableRefObject<HTMLInputElement | null>;
  *   fetcher: Fetcher<PredictiveSearchReturn>;
- * }) => React.ReactNode} SearchFormPredictiveChildren
+ * }) => import('react').ReactNode} SearchFormPredictiveChildren
  */
 /**
  * @typedef {Omit<FormProps, 'children'> & {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Pagination} from '@shopify/hydrogen';
 
 /**
@@ -19,13 +18,13 @@ export function PaginatedResourceSection({
         );
 
         return (
-          <div>
+          <div className="pagination-resource-section">
             <PreviousLink>
               {isLoading ? (
-                'Loading...'
+                '載入中⋯'
               ) : (
                 <span>
-                  <span aria-hidden="true">↑</span> Load previous
+                  <span aria-hidden="true">↑</span> 載入較早結果
                 </span>
               )}
             </PreviousLink>
@@ -42,10 +41,10 @@ export function PaginatedResourceSection({
             )}
             <NextLink>
               {isLoading ? (
-                'Loading...'
+                '載入中⋯'
               ) : (
                 <span>
-                  Load more <span aria-hidden="true">↓</span>
+                  載入更多 <span aria-hidden="true">↓</span>
                 </span>
               )}
             </NextLink>

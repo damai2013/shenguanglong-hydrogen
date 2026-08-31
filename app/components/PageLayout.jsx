@@ -10,6 +10,7 @@ import {
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
 import {ConsultationFloat} from '~/components/ConsultationFloat';
+import {AnnouncementBar} from '~/components/AnnouncementBar';
 
 /**
  * @param {PageLayoutProps}
@@ -21,6 +22,7 @@ export function PageLayout({
   header,
   isLoggedIn,
   publicStoreDomain,
+  localization,
 }) {
   return (
     <Aside.Provider>
@@ -29,12 +31,14 @@ export function PageLayout({
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
       <ConsultationFloat />
       <div className="site-shell">
+        <AnnouncementBar />
         {header && (
           <Header
             header={header}
             cart={cart}
             isLoggedIn={isLoggedIn}
             publicStoreDomain={publicStoreDomain}
+            localization={localization}
           />
         )}
         <main>{children}</main>
@@ -84,7 +88,7 @@ function SearchAside() {
                 list={queriesDatalistId}
               />
               &nbsp;
-              <button onClick={goToSearch}>搜尋</button>
+              <button className="button button-gold search-submit-button" onClick={goToSearch}>搜尋 <span aria-hidden="true">↗</span></button>
             </>
           )}
         </SearchFormPredictive>
@@ -176,6 +180,7 @@ function MobileMenuAside({header, publicStoreDomain}) {
  * @property {HeaderQuery} header
  * @property {Promise<boolean>} isLoggedIn
  * @property {string} publicStoreDomain
+ * @property {{country: string, language: string}} localization
  * @property {React.ReactNode} [children]
  */
 

@@ -26,11 +26,13 @@ export function AddToCartButton({
             value={JSON.stringify(analytics)}
           />
           <button
+            className="button button-gold button-submit"
             type="submit"
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
           >
             {children}
+            <span aria-hidden="true">↗</span>
           </button>
         </>
       )}

@@ -36,6 +36,11 @@ export async function createHydrogenRouterContext(
     AppSession.init(request, [env.SESSION_SECRET]),
   ]);
 
+  const localization = {
+    language: session.get('localizationLanguage') || 'EN',
+    country: session.get('localizationCountry') || 'US',
+  };
+
   const hydrogenContext = createHydrogenContext(
     {
       env,
@@ -43,8 +48,7 @@ export async function createHydrogenRouterContext(
       cache,
       waitUntil,
       session,
-      // Or detect from URL path based on locale subpath, cookies, or any other strategy
-      i18n: {language: 'EN', country: 'US'},
+      i18n: localization,
       cart: {
         queryFragment: CART_QUERY_FRAGMENT,
       },

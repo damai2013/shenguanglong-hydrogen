@@ -2,12 +2,13 @@ import {Link, useLoaderData} from 'react-router';
 import {Image, getPaginationVariables} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+import {PageBannerMedia} from '~/components/PageBannerMedia';
 
 /**
  * @type {Route.MetaFunction}
  */
 export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.blog.title ?? ''} blog`}];
+  return [{title: `沈廣隆｜${data?.blog.title ?? '文章'}`}];
 };
 
 /**
@@ -62,7 +63,7 @@ async function loadCriticalData({context, request, params}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -73,7 +74,7 @@ export default function Blog() {
 
   return (
     <div className="blog journal-archive">
-      <header className="journal-archive-hero"><p className="eyebrow">JOURNAL & GUIDES · SHEN GUANG LONG</p><h1>{blog.title}<em>.</em></h1><p>Notes on the dimensions, balance, history, and care of traditional blades.</p></header>
+      <header className="journal-archive-hero"><PageBannerMedia variant="workshop" /><p className="eyebrow">JOURNAL &amp; GUIDES · SHEN GUANG LONG</p><h1>{blog.title}<em>.</em></h1><p>整理傳統刀劍的尺寸、平衡、歷史與保養筆記。</p></header>
       <div className="blog-grid">
         <PaginatedResourceSection connection={articles}>
           {({node: article, index}) => (

@@ -50,10 +50,9 @@ function CartCheckoutActions({checkoutUrl}) {
 
   return (
     <div>
-      <a href={checkoutUrl} target="_self">
-        <p>前往結帳 &rarr;</p>
+      <a className="button button-gold" href={checkoutUrl} target="_self">
+        前往結帳 <span aria-hidden="true">↗</span>
       </a>
-      <br />
     </div>
   );
 }
@@ -89,7 +88,7 @@ function CartDiscounts({
             >
               <code>{codes?.join(', ')}</code>
               &nbsp;
-              <button type="submit" aria-label="移除折扣">
+              <button className="text-link cart-compact-action" type="submit" aria-label="移除折扣">
                 移除
               </button>
             </div>
@@ -110,7 +109,7 @@ function CartDiscounts({
             placeholder="折扣碼"
           />
           &nbsp;
-          <button type="submit" aria-label="套用折扣碼">
+          <button className="text-link cart-compact-action" type="submit" aria-label="套用折扣碼">
             套用
           </button>
         </div>
@@ -235,6 +234,7 @@ function CartGiftCard({giftCardCodes, giftCardHeadingId, giftCardInputId}) {
           />
           &nbsp;
           <button
+            className="text-link cart-compact-action"
             type="submit"
             disabled={giftCardAddFetcher.state !== 'idle'}
             aria-label="套用禮品卡碼"
@@ -292,6 +292,7 @@ function RemoveGiftCardForm({
       {children}
       &nbsp;
       <button
+        className="text-link cart-compact-action"
         type="submit"
         aria-label={`移除末四碼為 ${lastCharacters} 的禮品卡`}
         onClick={onRemoveClick}

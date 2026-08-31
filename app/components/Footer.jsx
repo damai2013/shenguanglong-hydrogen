@@ -6,46 +6,45 @@ import {Await, NavLink} from 'react-router';
  */
 export function Footer({footer: footerPromise, header, publicStoreDomain}) {
   return (
-    <Suspense>
-      <Await resolve={footerPromise}>
-        {(footer) => (
-          <footer className="footer">
-            <div className="footer-inner">
-              <div className="footer-brand">
-                <img className="footer-logo" src="/assets/shenguanglong-logo.png" alt="沈廣隆 SHENGUANGLONG" width="180" height="36" />
-                <p>以耐心打造傳統刀劍。<br />始於 1885 · 中國龍泉</p>
-              </div>
-              <FooterColumn title="商品目錄" links={[
-                ['全部作品', '/collections/all'],
-                ['太極劍', '/collections/tai-chi-swords'],
-                ['中國傳統刀劍', '/collections/traditional-chinese-saber'],
-                ['唐刀', '/collections/tang-dao'],
-              ]} />
-              <FooterColumn title="關於沈廣隆" links={[
-                ['品牌故事', '/pages/about-shen-guang-long'],
-                ['工藝與傳承', '/pages/craftsmanship'],
-                ['資料與媒體', '/pages/media-and-credentials'],
-                ['文章與指南', '/blogs'],
-              ]} />
-              <FooterColumn title="客戶服務" links={[
-                ['聯絡諮詢', '/pages/contact'],
-                ['購買前須知', '/pages/before-you-order'],
-                ['常見問題', '/pages/faq'],
-                ['保養與保存', '/pages/care-and-storage'],
-              ]} />
-            </div>
-            {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )}
-            <p className="footer-note">© {new Date().getFullYear()} Shen Guang Long. All rights reserved.</p>
-          </footer>
-        )}
-      </Await>
-    </Suspense>
+    <footer className="footer">
+      <div className="footer-inner">
+        <div className="footer-brand">
+          <img className="footer-logo" src="/assets/shenguanglong-logo.png" alt="沈廣隆 SHENGUANGLONG" width="180" height="36" />
+          <p>以耐心打造傳統刀劍。<br />始於 1885 · 中國龍泉</p>
+        </div>
+        <FooterColumn title="商品目錄" links={[
+          ['全部作品', '/collections/all'],
+          ['中國刀', '/collections/chinese-dao'],
+          ['中國劍', '/collections/chinese-jian'],
+          ['太極與練習器械', '/collections/tai-chi-practice'],
+        ]} />
+        <FooterColumn title="關於沈廣隆" links={[
+          ['品牌故事', '/pages/about-shen-guang-long'],
+          ['工藝與傳承', '/pages/craftsmanship'],
+          ['資質與媒體報導', '/pages/credentials-media'],
+          ['官方核驗', '/pages/official-verification'],
+          ['文章與指南', '/blogs'],
+        ]} />
+        <FooterColumn title="客戶服務" links={[
+          ['聯絡諮詢', '/pages/contact'],
+          ['購買前須知', '/pages/before-you-order'],
+          ['常見問題', '/pages/faq'],
+          ['保養與保存', '/pages/care-and-storage'],
+        ]} />
+      </div>
+      <p className="footer-note">© {new Date().getFullYear()} Shen Guang Long. All rights reserved.</p>
+      <Suspense fallback={null}>
+        <Await resolve={footerPromise}>
+          {(footer) => footer?.menu && header.shop.primaryDomain?.url ? (
+            <FooterMenu
+              menu={footer.menu}
+              primaryDomainUrl={header.shop.primaryDomain.url}
+              publicStoreDomain={publicStoreDomain}
+            />
+          ) : null}
+        </Await>
+      </Suspense>
+    </footer>
   );
 }
 
@@ -67,7 +66,7 @@ function FooterColumn({title, links}) {
  */
 function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
   return (
-    <nav className="footer-menu" role="navigation">
+    <nav aria-label="頁腳輔助連結" className="footer-menu" role="navigation">
       {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
         if (!item.url) return null;
         // if the url is internal, we strip the domain
@@ -76,9 +75,10 @@ function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
           publicStoreDomain,
         });
         const isExternal = !url.startsWith('/');
+        const label = translateFooterTitle(item.title);
         return isExternal ? (
           <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
-            {item.title}
+            {label}
           </a>
         ) : (
           <NavLink
@@ -88,12 +88,24 @@ function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
             style={activeLinkStyle}
             to={url}
           >
-            {item.title}
+            {label}
           </NavLink>
         );
       })}
     </nav>
   );
+}
+
+function translateFooterTitle(title) {
+  const labels = {
+    Search: '搜尋',
+    'Your Privacy Choices': '隱私選項',
+    'Privacy Policy': '隱私政策',
+    'Refund Policy': '退款政策',
+    'Shipping Policy': '配送政策',
+    'Terms of Service': '服務條款',
+  };
+  return labels[title] || title;
 }
 
 function normalizeFooterUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {

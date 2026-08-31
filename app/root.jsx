@@ -86,6 +86,7 @@ export async function loader(args) {
       country: args.context.storefront.i18n.country,
       language: args.context.storefront.i18n.language,
     },
+    localization: args.context.storefront.i18n,
   };
 }
 
@@ -102,6 +103,8 @@ async function loadCriticalData({context}) {
       cache: storefront.CacheLong(),
       variables: {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
+        country: storefront.i18n.country,
+        language: storefront.i18n.language,
       },
     }),
     // Add other queries here, so that they are loaded in parallel
@@ -125,6 +128,8 @@ function loadDeferredData({context}) {
       cache: storefront.CacheLong(),
       variables: {
         footerMenuHandle: 'footer', // Adjust to your footer menu handle
+        country: storefront.i18n.country,
+        language: storefront.i18n.language,
       },
     })
     .catch((error) => {
@@ -146,7 +151,7 @@ export function Layout({children}) {
   const nonce = useNonce();
 
   return (
-    <html lang="en">
+    <html lang="zh-Hant">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />

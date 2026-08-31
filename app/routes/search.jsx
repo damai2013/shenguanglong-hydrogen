@@ -8,7 +8,7 @@ import {getEmptyPredictiveSearchResult} from '~/lib/search';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Hydrogen | Search`}];
+  return [{title: '沈廣隆｜搜尋'}];
 };
 
 /**
@@ -39,19 +39,19 @@ export default function SearchPage() {
 
   return (
     <div className="search">
-      <h1>Search</h1>
+      <h1>搜尋</h1>
       <SearchForm>
         {({inputRef}) => (
           <>
             <input
               defaultValue={term}
               name="q"
-              placeholder="Search…"
+              placeholder="搜尋商品或文章⋯"
               ref={inputRef}
               type="search"
             />
             &nbsp;
-            <button type="submit">Search</button>
+            <button className="button button-gold" type="submit">搜尋 <span aria-hidden="true">↗</span></button>
           </>
         )}
       </SearchForm>

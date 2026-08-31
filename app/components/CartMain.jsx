@@ -96,8 +96,8 @@ function CartEmpty({hidden = false}) {
         購物車目前是空的，先去看看我們的作品吧。
       </p>
       <br />
-      <Link to="/collections" onClick={close} prefetch="viewport">
-        繼續購物 →
+      <Link className="text-link" to="/collections" onClick={close} prefetch="viewport">
+        繼續購物 <span aria-hidden="true">↗</span>
       </Link>
     </div>
   );

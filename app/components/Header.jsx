@@ -1,12 +1,18 @@
 import {Suspense} from 'react';
-import {Await, NavLink, useAsyncValue} from 'react-router';
+import {Await, NavLink, useAsyncValue, useLocation} from 'react-router';
 import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 
 /**
  * @param {HeaderProps}
  */
-export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
+export function Header({
+  header,
+  isLoggedIn,
+  cart,
+  publicStoreDomain,
+  localization,
+}) {
   const {menu} = header;
   return (
     <header className="header">
@@ -19,7 +25,11 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
       />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      <HeaderCtas
+        isLoggedIn={isLoggedIn}
+        cart={cart}
+        localization={localization}
+      />
     </header>
   );
 }
@@ -66,7 +76,21 @@ export function HeaderMenu({
           item.title.toLowerCase().includes('catalog') ||
           item.title.includes('商品目录') ||
           url.endsWith('/collections/all');
-        const children = item.items?.length ? item.items : isCatalog ? CATALOG_SUBMENU : [];
+        const isCraft = item.title.includes('工藝') || item.title.includes('傳承');
+        const isMaster = item.title.includes('大師') || item.title.includes('大师');
+        const baseChildren = isCatalog
+          ? enrichCatalogChildren(item.items?.length ? item.items : CATALOG_SUBMENU)
+          : item.items?.length
+            ? item.items
+            : [];
+        const hasVerificationLink = baseChildren.some((child) => child.url?.includes('/official-verification'));
+        const additionalChildren = isCraft && !hasVerificationLink
+          ? [{id: 'official-verification', title: '官方核驗', url: '/pages/official-verification'}]
+          : [];
+        const children = [...baseChildren, ...additionalChildren].filter((child) => {
+          if (!isMaster) return true;
+          return !child.url?.includes('/pages/shen-xinpei') && !child.url?.includes('/pages/shen-zhou');
+        });
         return children.length ? (
           <div className="header-menu-group" key={item.id}>
             <NavLink
@@ -79,20 +103,12 @@ export function HeaderMenu({
             >
               {item.title} <span aria-hidden="true">⌄</span>
             </NavLink>
-            <div className="header-submenu">
-              {children.map((child) => {
-                if (!child.url) return null;
-                const childUrl = normalizeMenuUrl(child.url, {
-                  primaryDomainUrl,
-                  publicStoreDomain,
-                });
-                return (
-                  <NavLink key={child.id} onClick={close} prefetch="intent" to={childUrl}>
-                    {child.title}
-                  </NavLink>
-                );
-              })}
-            </div>
+            <HeaderSubmenu
+              items={children}
+              close={close}
+              primaryDomainUrl={primaryDomainUrl}
+              publicStoreDomain={publicStoreDomain}
+            />
           </div>
         ) : (
           <NavLink
@@ -112,6 +128,46 @@ export function HeaderMenu({
   );
 }
 
+function HeaderSubmenu({items, close, primaryDomainUrl, publicStoreDomain, nested = false}) {
+  return (
+    <div className={`header-submenu${nested ? ' header-submenu-nested' : ''}`}>
+      {items.map((child) => {
+        if (!child.url) return null;
+        const childUrl = normalizeMenuUrl(child.url, {
+          primaryDomainUrl,
+          publicStoreDomain,
+        });
+        const hasChildren = child.items?.length;
+        return hasChildren ? (
+          <div className="header-submenu-group" key={child.id}>
+            <NavLink
+              aria-haspopup="menu"
+              className="header-submenu-link"
+              onClick={close}
+              prefetch="intent"
+              to={childUrl}
+            >
+              <span>{child.title}</span>
+              <span aria-hidden="true">›</span>
+            </NavLink>
+            <HeaderSubmenu
+              close={close}
+              items={child.items}
+              nested
+              primaryDomainUrl={primaryDomainUrl}
+              publicStoreDomain={publicStoreDomain}
+            />
+          </div>
+        ) : (
+          <NavLink key={child.id} onClick={close} prefetch="intent" to={childUrl}>
+            {child.title}
+          </NavLink>
+        );
+      })}
+    </div>
+  );
+}
+
 function normalizeMenuUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
   const isInternalUrl =
     rawUrl.includes('myshopify.com') ||
@@ -125,11 +181,12 @@ function normalizeMenuUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
 }
 
 /**
- * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
+ * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'> & {localization: Localization}}
  */
-function HeaderCtas({isLoggedIn, cart}) {
+function HeaderCtas({isLoggedIn, cart, localization}) {
   return (
     <nav className="header-ctas" role="navigation">
+      <HeaderLocalization localization={localization} />
       <HeaderMenuMobileToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
         <Suspense fallback="登入">
@@ -143,6 +200,78 @@ function HeaderCtas({isLoggedIn, cart}) {
     </nav>
   );
 }
+
+function HeaderLocalization({localization}) {
+  const location = useLocation();
+  const redirectTo = `${location.pathname}${location.search}${location.hash}`;
+  const currentCountry = localization?.country || 'US';
+  const currentLanguage = localization?.language || 'EN';
+  const countryLabel = COUNTRY_OPTIONS.find((item) => item.code === currentCountry)?.short || currentCountry;
+  const languageLabel = LANGUAGE_OPTIONS.find((item) => item.code === currentLanguage)?.short || currentLanguage;
+
+  return (
+    <div className="header-localization" aria-label="地區與語言">
+      <details className="header-localization-menu">
+        <summary aria-label={`選擇地區，目前為 ${countryLabel}`}>
+          <span className="header-localization-icon" aria-hidden="true">◎</span>
+          <span>{countryLabel}</span>
+        </summary>
+        <form method="post" action="/localization">
+          <input type="hidden" name="language" value={currentLanguage} />
+          <input type="hidden" name="redirectTo" value={redirectTo} />
+          <p className="header-localization-title">地區／貨幣</p>
+          {COUNTRY_OPTIONS.map((item) => (
+            <button
+              className={item.code === currentCountry ? 'is-active' : ''}
+              key={item.code}
+              name="country"
+              type="submit"
+              value={item.code}
+            >
+              <span>{item.label}</span>
+              <small>{item.currency}</small>
+            </button>
+          ))}
+        </form>
+      </details>
+      <details className="header-localization-menu">
+        <summary aria-label={`選擇語言，目前為 ${languageLabel}`}>
+          <span className="header-localization-icon header-localization-icon-language" aria-hidden="true">文</span>
+          <span>{languageLabel}</span>
+        </summary>
+        <form method="post" action="/localization">
+          <input type="hidden" name="country" value={currentCountry} />
+          <input type="hidden" name="redirectTo" value={redirectTo} />
+          <p className="header-localization-title">網站語言</p>
+          {LANGUAGE_OPTIONS.map((item) => (
+            <button
+              className={item.code === currentLanguage ? 'is-active' : ''}
+              key={item.code}
+              name="language"
+              type="submit"
+              value={item.code}
+            >
+              {item.label}
+            </button>
+          ))}
+        </form>
+      </details>
+    </div>
+  );
+}
+
+const COUNTRY_OPTIONS = [
+  {code: 'US', label: '美國', short: 'US', currency: 'USD'},
+  {code: 'TW', label: '台灣', short: 'TW', currency: 'TWD'},
+  {code: 'JP', label: '日本', short: 'JP', currency: 'JPY'},
+  {code: 'CN', label: '中國大陸', short: 'CN', currency: 'CNY'},
+];
+
+const LANGUAGE_OPTIONS = [
+  {code: 'ZH_TW', label: '繁體中文', short: '繁中'},
+  {code: 'EN', label: 'English', short: 'EN'},
+  {code: 'JA', label: '日本語', short: '日本語'},
+];
 
 function HeaderMenuMobileToggle() {
   const {open} = useAside();
@@ -210,19 +339,42 @@ function CartBanner() {
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
+const CHINESE_DAO_SUBMENU = [
+  {id: 'catalog-tang-dao', title: '唐刀', url: '/collections/tang-dao'},
+  {id: 'catalog-yanling-dao', title: '雁翎刀', url: '/collections/chinese-dao#dao-forms'},
+  {id: 'catalog-miao-dao', title: '苗刀', url: '/collections/chinese-dao#dao-forms'},
+  {id: 'catalog-xiuchun-dao', title: '繡春刀', url: '/collections/chinese-dao#dao-forms'},
+  {id: 'catalog-ming-dao', title: '明刀', url: '/collections/chinese-dao#dao-forms'},
+  {id: 'catalog-huanshou-dao', title: '環首刀', url: '/collections/chinese-dao#dao-forms'},
+];
+
+const CHINESE_JIAN_SUBMENU = [
+  {id: 'catalog-han-jian', title: '漢劍', url: '/collections/chinese-jian#jian-forms'},
+  {id: 'catalog-tang-jian', title: '唐劍', url: '/collections/chinese-jian#jian-forms'},
+  {id: 'catalog-qing-jian', title: '清劍', url: '/collections/chinese-jian#jian-forms'},
+  {id: 'catalog-huanshou-jian', title: '環首劍', url: '/collections/chinese-jian#jian-forms'},
+];
+
 const CATALOG_SUBMENU = [
   {id: 'catalog-practice', title: '太極與練習器械', url: '/collections/tai-chi-practice'},
-  {id: 'catalog-tai-chi-sword', title: '太極劍', url: '/collections/tai-chi-swords'},
-  {id: 'catalog-tai-chi-saber', title: '太極刀', url: '/collections/tai-chi-sabers'},
-  {id: 'catalog-tang-sword', title: '唐劍', url: '/collections/tang-jian'},
-  {id: 'catalog-han-sword', title: '漢劍', url: '/collections/han-jian'},
-  {id: 'catalog-chinese-sword', title: '中國劍', url: '/collections/chinese-jian'},
-  {id: 'catalog-chinese-saber', title: '中國刀', url: '/collections/chinese-dao'},
-  {id: 'catalog-tang-dao', title: '唐刀', url: '/collections/tang-dao'},
-  {id: 'catalog-yanling-dao', title: '雁翎刀', url: '/collections/yanling-dao'},
-  {id: 'catalog-xiuchun-dao', title: '繡春刀', url: '/collections/xiuchun-dao'},
+  {id: 'catalog-chinese-sword', title: '中國劍', url: '/collections/chinese-jian', items: CHINESE_JIAN_SUBMENU},
+  {id: 'catalog-chinese-saber', title: '中國刀', url: '/collections/chinese-dao', items: CHINESE_DAO_SUBMENU},
   {id: 'catalog-new', title: '新品', url: '/collections/new-2025'},
+  {id: 'catalog-accessories', title: '文化商品與配件', url: '/collections/cultural-goods-accessories'},
 ];
+
+function enrichCatalogChildren(items) {
+  return items.map((child) => {
+    const fallback = CATALOG_SUBMENU.find((item) =>
+      item.title === child.title ||
+      (item.title === '中國劍' && child.title === '中国剑') ||
+      (item.title === '中國刀' && child.title === '中国刀'),
+    );
+    return fallback && !child.items?.length
+      ? {...child, items: fallback.items}
+      : child;
+  });
+}
 
 const FALLBACK_HEADER_MENU = {
   id: 'gid://shopify/Menu/199655587896',
@@ -315,7 +467,10 @@ function activeLinkStyle({isActive, isPending}) {
  * @property {Promise<CartApiQueryFragment|null>} cart
  * @property {Promise<boolean>} isLoggedIn
  * @property {string} publicStoreDomain
+ * @property {Localization} localization
  */
+
+/** @typedef {{country: string, language: string}} Localization */
 
 /** @typedef {import('@shopify/hydrogen').CartViewPayload} CartViewPayload */
 /** @typedef {import('storefrontapi.generated').HeaderQuery} HeaderQuery */

@@ -28,7 +28,7 @@ function SearchResultsArticles({term, articles}) {
 
   return (
     <div className="search-result">
-      <h2>Articles</h2>
+      <h2>文章</h2>
       <div>
         {articles?.nodes?.map((article) => {
           const articleUrl = urlWithTrackingParams({
@@ -61,7 +61,7 @@ function SearchResultsPages({term, pages}) {
 
   return (
     <div className="search-result">
-      <h2>Pages</h2>
+      <h2>頁面</h2>
       <div>
         {pages?.nodes?.map((page) => {
           const pageUrl = urlWithTrackingParams({
@@ -94,7 +94,7 @@ function SearchResultsProducts({term, products}) {
 
   return (
     <div className="search-result">
-      <h2>Products</h2>
+      <h2>商品</h2>
       <Pagination connection={products}>
         {({nodes, isLoading, NextLink, PreviousLink}) => {
           const ItemsMarkup = nodes.map((product) => {
@@ -126,7 +126,7 @@ function SearchResultsProducts({term, products}) {
             <div>
               <div>
                 <PreviousLink>
-                  {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
+                  {isLoading ? '載入中⋯' : <span>↑ 載入較早結果</span>}
                 </PreviousLink>
               </div>
               <div>
@@ -135,7 +135,7 @@ function SearchResultsProducts({term, products}) {
               </div>
               <div>
                 <NextLink>
-                  {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+                  {isLoading ? '載入中⋯' : <span>載入更多 ↓</span>}
                 </NextLink>
               </div>
             </div>
@@ -148,7 +148,7 @@ function SearchResultsProducts({term, products}) {
 }
 
 function SearchResultsEmpty() {
-  return <p>No results, try a different search.</p>;
+  return <p>找不到結果，請換一個關鍵字再試。</p>;
 }
 
 /** @typedef {RegularSearchReturn['result']['items']} SearchItems */

@@ -1,6 +1,7 @@
 import {Link, useLoaderData} from 'react-router';
 import {getPaginationVariables} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
+import {PageBannerMedia} from '~/components/PageBannerMedia';
 
 /**
  * @type {Route.MetaFunction}
@@ -58,7 +59,7 @@ export default function Blogs() {
 
   return (
     <div className="blogs editorial-journal">
-      <header className="journal-hero"><p className="eyebrow">SHEN GUANG LONG · 工作室筆記</p><h1>文章 <em>&amp;</em><br />指南。</h1><p>整理傳統刀劍的選擇、練習、配送與保養知識。</p></header>
+      <header className="journal-hero"><PageBannerMedia variant="media" /><p className="eyebrow">SHEN GUANG LONG · 工作室筆記</p><h1>文章 <em>&amp;</em><br />指南。</h1><p>整理傳統刀劍的選擇、練習、配送與保養知識。</p></header>
       <div className="journal-list">
         <section className="journal-topics" aria-labelledby="journal-topics-heading">
           <div className="journal-section-heading">
@@ -98,9 +99,9 @@ export default function Blogs() {
         ) : (
           <section className="journal-published journal-empty" aria-labelledby="journal-published-heading">
             <div className="journal-section-heading">
-              <p className="section-label">後台文章列表</p>
-              <h2 id="journal-published-heading">你的新文章會出現在這裡。</h2>
-              <p>之後只要在 Shopify 後台新增並發布 Blog 文章，這個列表頁會自動讀取並顯示，不需要修改前端程式。</p>
+              <p className="section-label">工作室文章</p>
+              <h2 id="journal-published-heading">工作室筆記正在陸續整理。</h2>
+              <p>這裡會分享龍泉刀劍工藝、作品選擇、保存方式與訂製經驗；已有文章時，會按時間出現在下方。</p>
             </div>
           </section>
         )}

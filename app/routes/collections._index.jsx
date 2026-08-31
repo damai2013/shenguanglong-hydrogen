@@ -1,6 +1,7 @@
 import {useLoaderData, Link} from 'react-router';
 import {getPaginationVariables, Image} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
+import {PageBannerMedia} from '~/components/PageBannerMedia';
 
 /**
  * @param {Route.LoaderArgs} args
@@ -41,7 +42,7 @@ async function loadCriticalData({context, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -52,10 +53,11 @@ export default function Collections() {
   return (
     <div className="collections catalog-landing">
       <section className="catalog-intro">
+        <PageBannerMedia variant="craft" />
         <p className="eyebrow">作品選集 · 中國龍泉</p>
         <h1>為練習與<em>傳承</em><br />而作的器物。</h1>
         <p className="catalog-lede">由匠人親手完成的傳統劍、刀與練習器械，為實際使用者的手感與用途而選。</p>
-        <Link className="button button-dark" to="/collections/all">查看全部作品 <span aria-hidden="true">↗</span></Link>
+        <Link className="button button-gold" to="/collections/all">查看全部作品 <span aria-hidden="true">↗</span></Link>
       </section>
       <section className="catalog-featured" aria-labelledby="catalog-featured-heading">
         <div className="section-heading"><div><p className="eyebrow">依用途選擇</p><h2 id="catalog-featured-heading">找到適合你的<em>刀劍</em>。</h2></div><span className="catalog-count">01 — 06</span></div>
@@ -97,9 +99,9 @@ export default function Collections() {
 const FEATURED_CATEGORIES = [
   {handle: 'tai-chi-swords', title: '太極劍', subtitle: '適合動作、平衡與日常練習。'},
   {handle: 'tai-chi-sabers', title: '太極刀', subtitle: '為徒手套路而設的靈活刀形。'},
-  {handle: 'chinese-jian', title: '中國劍', subtitle: '承襲直身劍的形制與脈絡。'},
-  {handle: 'chinese-dao', title: '中國刀', subtitle: '力量、結構與單刃之美。'},
-  {handle: 'tang-dao', title: '唐刀', subtitle: '延續唐代傳統的長弧形制。'},
+  {handle: 'chinese-jian', title: '中國劍', subtitle: '收錄漢劍、唐劍、清劍與環首劍等傳統劍形作品。'},
+  {handle: 'chinese-dao', title: '中國刀', subtitle: '收錄唐刀、雁翎刀、苗刀、繡春刀、明刀與環首刀等傳統刀形作品。'},
+  {handle: 'tang-dao', title: '唐刀', subtitle: '以唐代刀形為脈絡，呈現長弧刀身與佩用結構的作品。'},
   {handle: 'new-2025', title: '新品', subtitle: '工作室近期完成的作品。'},
 ];
 
