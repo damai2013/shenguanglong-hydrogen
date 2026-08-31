@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useLoaderData} from 'react-router';
+import {Link, useLoaderData} from 'react-router';
 import {
   getSelectedProductOptions,
   Analytics,
@@ -11,6 +11,7 @@ import {
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
+import {ProductItem} from '~/components/ProductItem';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 /**
@@ -52,12 +53,9 @@ async function loadCriticalData({context, params, request}) {
     throw new Error('Expected product handle to be defined');
   }
 
-  const [{product}] = await Promise.all([
-    storefront.query(PRODUCT_QUERY, {
-      variables: {handle, selectedOptions: getSelectedProductOptions(request)},
-    }),
-    // Add other queries here, so that they are loaded in parallel
-  ]);
+  const {product} = await storefront.query(PRODUCT_QUERY, {
+    variables: {handle, selectedOptions: getSelectedProductOptions(request)},
+  });
 
   if (!product?.id) {
     throw new Response(null, {status: 404});
@@ -66,8 +64,13 @@ async function loadCriticalData({context, params, request}) {
   // The API handle might be localized, so redirect to the localized handle
   redirectIfHandleIsLocalized(request, {handle, data: product});
 
+  const {productRecommendations} = await storefront.query(RECOMMENDATIONS_QUERY, {
+    variables: {productId: product.id},
+  });
+
   return {
     product,
+    recommendations: productRecommendations || [],
   };
 }
 
@@ -86,7 +89,7 @@ function loadDeferredData({context, params}) {
 
 export default function Product() {
   /** @type {LoaderReturnData} */
-  const {product} = useLoaderData();
+  const {product, recommendations} = useLoaderData();
 
   // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
@@ -108,8 +111,9 @@ export default function Product() {
 
   return (
     <div className="product product-detail-page">
-      <ProductGallery product={product} selectedVariant={selectedVariant} />
-      <div className="product-main">
+      <div className="product-buy-grid">
+        <ProductGallery product={product} selectedVariant={selectedVariant} />
+        <div className="product-main">
         <p className="eyebrow">TRADITIONAL BLADE</p>
         <h1>{title}</h1>
         <ProductPrice
@@ -127,7 +131,9 @@ export default function Product() {
         <div className="product-notes"><div><span>Origin</span><strong>Longquan, China</strong></div><div><span>Finishing</span><strong>Hand finished</strong></div><div><span>Dispatch</span><strong>See buying guide</strong></div></div>
         <ProductDetailSections />
         <br />
+        </div>
       </div>
+      <ProductRecommendations products={recommendations} />
       <Analytics.ProductView
         data={{
           products: [
@@ -144,6 +150,26 @@ export default function Product() {
         }}
       />
     </div>
+  );
+}
+
+function ProductRecommendations({products}) {
+  if (!products?.length) {
+    return (
+      <section className="product-recommendations product-recommendations-empty">
+        <div><p className="section-label">CONTINUE EXPLORING</p><h2>从商品目录继续寻找适合你的作品。</h2></div>
+        <Link className="text-link" to="/collections">浏览全部商品 <span aria-hidden="true">↗</span></Link>
+      </section>
+    );
+  }
+
+  return (
+    <section className="product-recommendations">
+      <div className="product-recommendations-heading"><p className="section-label">CONTINUE EXPLORING</p><h2>你可能也会喜欢。</h2></div>
+      <div className="product-recommendations-grid">
+        {products.slice(0, 4).map((recommendedProduct) => <ProductItem key={recommendedProduct.id} product={recommendedProduct} loading="lazy" />)}
+      </div>
+    </section>
   );
 }
 
@@ -306,6 +332,30 @@ const PRODUCT_QUERY = `#graphql
     }
   }
   ${PRODUCT_FRAGMENT}
+`;
+
+const RECOMMENDATIONS_QUERY = `#graphql
+  query ProductRecommendations($productId: ID!, $country: CountryCode, $language: LanguageCode)
+  @inContext(country: $country, language: $language) {
+    productRecommendations(productId: $productId) {
+      id
+      title
+      handle
+      featuredImage {
+        id
+        url
+        altText
+        width
+        height
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
 `;
 
 /** @typedef {import('./+types/products.$handle').Route} Route */
