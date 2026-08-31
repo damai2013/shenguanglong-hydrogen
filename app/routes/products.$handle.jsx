@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {useLoaderData} from 'react-router';
 import {
   getSelectedProductOptions,
@@ -107,7 +108,7 @@ export default function Product() {
 
   return (
     <div className="product product-detail-page">
-      <div className="product-gallery"><p className="eyebrow">SHEN GUANG LONG · LONGQUAN</p><ProductImage image={selectedVariant?.image} /><p className="gallery-caption">Each piece is finished by hand. Variations in grain, patina, and balance are part of its character.</p></div>
+      <ProductGallery product={product} selectedVariant={selectedVariant} />
       <div className="product-main">
         <p className="eyebrow">TRADITIONAL BLADE</p>
         <h1>{title}</h1>
@@ -141,6 +142,38 @@ export default function Product() {
           ],
         }}
       />
+    </div>
+  );
+}
+
+function ProductGallery({product, selectedVariant}) {
+  const images = [selectedVariant?.image, ...(product.images?.nodes || [])].filter(Boolean).filter((image, index, allImages) => allImages.findIndex((item) => item.id === image.id) === index);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = images[activeIndex] || selectedVariant?.image;
+
+  return (
+    <div className="product-gallery">
+      <p className="eyebrow">SHEN GUANG LONG · LONGQUAN</p>
+      <div className="gallery-main">
+        <ProductImage image={activeImage} />
+        {images.length > 1 ? (
+          <div className="gallery-controls">
+            <button type="button" onClick={() => setActiveIndex((activeIndex - 1 + images.length) % images.length)} aria-label="Previous product image">←</button>
+            <span>{String(activeIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
+            <button type="button" onClick={() => setActiveIndex((activeIndex + 1) % images.length)} aria-label="Next product image">→</button>
+          </div>
+        ) : null}
+      </div>
+      {images.length > 1 ? (
+        <div className="gallery-thumbnails" aria-label="Product images">
+          {images.map((image, index) => (
+            <button className={index === activeIndex ? 'is-active' : ''} key={image.id} type="button" onClick={() => setActiveIndex(index)} aria-label={`View product image ${index + 1}`} aria-pressed={index === activeIndex}>
+              <img src={image.url} alt={image.altText || ''} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      ) : null}
+      <p className="gallery-caption">Each piece is finished by hand. Variations in grain, patina, and balance are part of its character.</p>
     </div>
   );
 }
@@ -207,6 +240,15 @@ const PRODUCT_FRAGMENT = `#graphql
             }
           }
         }
+      }
+    }
+    images(first: 12) {
+      nodes {
+        id
+        url
+        altText
+        width
+        height
       }
     }
     selectedOrFirstAvailableVariant(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
