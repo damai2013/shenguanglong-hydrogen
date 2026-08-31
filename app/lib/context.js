@@ -37,7 +37,7 @@ export async function createHydrogenRouterContext(
   ]);
 
   const localization = {
-    language: session.get('localizationLanguage') || 'EN',
+    language: session.get('localizationLanguage') || 'ZH_TW',
     country: session.get('localizationCountry') || 'US',
   };
 

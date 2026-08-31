@@ -205,7 +205,7 @@ function HeaderLocalization({localization}) {
   const location = useLocation();
   const redirectTo = `${location.pathname}${location.search}${location.hash}`;
   const currentCountry = localization?.country || 'US';
-  const currentLanguage = localization?.language || 'EN';
+  const currentLanguage = localization?.language || 'ZH_TW';
   const countryLabel = COUNTRY_OPTIONS.find((item) => item.code === currentCountry)?.short || currentCountry;
   const languageLabel = LANGUAGE_OPTIONS.find((item) => item.code === currentLanguage)?.short || currentLanguage;
 
