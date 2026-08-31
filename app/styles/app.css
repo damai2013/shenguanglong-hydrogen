@@ -337,7 +337,7 @@ button.reset:hover:not(:has(> *)) {
 .hero-art img { border-radius: 0; height: 100%; object-fit: cover; opacity: .82; width: 100%; }
 .hero-art .page-banner-media { z-index: 0; }
 .hero-art .page-banner-media-home { inset: 0; }
-.hero-art .page-banner-media-home video { object-position: 65% center; }
+.hero-art .page-banner-media-home video { object-position: 65% center; transform: scale(1.13); }
 .hero-art .page-banner-media:after { background: linear-gradient(90deg, rgba(29,29,25,.72) 0%, rgba(29,29,25,.3) 28%, transparent 46%), linear-gradient(0deg, rgba(0,0,0,.42), transparent 46%); }
 .hero-art-placeholder { background: radial-gradient(ellipse at 48% 48%, #65553b 0, #292821 35%, #10100e 75%); height: 100%; min-height: 560px; position: relative; }
 .hero-art-placeholder:before { border: 1px solid rgba(196, 158, 91, .45); content: ''; height: 62%; left: 42%; position: absolute; top: 19%; transform: rotate(16deg); width: 5%; }
