@@ -282,7 +282,7 @@ const FALLBACK_HEADER_MENU = {
       tags: [],
       title: 'Journal / Guide',
       type: 'HTTP',
-      url: '/blogs/journal',
+      url: '/blogs',
       items: [],
     },
     {

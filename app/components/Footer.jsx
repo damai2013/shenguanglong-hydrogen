@@ -25,7 +25,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                 ['Our Story', '/pages/about-shen-guang-long'],
                 ['Craftsmanship', '/pages/craftsmanship'],
                 ['Credentials & Media', '/pages/media-and-credentials'],
-                ['Journal / Guide', '/blogs/journal'],
+                ['Journal / Guide', '/blogs'],
               ]} />
               <FooterColumn title="Customer Service" links={[
                 ['Contact Us', '/pages/contact'],
@@ -71,12 +71,10 @@ function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
       {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
         if (!item.url) return null;
         // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
+        const url = normalizeFooterUrl(item.url, {
+          primaryDomainUrl,
+          publicStoreDomain,
+        });
         const isExternal = !url.startsWith('/');
         return isExternal ? (
           <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
@@ -96,6 +94,16 @@ function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
       })}
     </nav>
   );
+}
+
+function normalizeFooterUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
+  const isInternalUrl =
+    rawUrl.includes('myshopify.com') ||
+    rawUrl.includes(publicStoreDomain) ||
+    rawUrl.includes(primaryDomainUrl);
+  const path = isInternalUrl ? new URL(rawUrl).pathname : rawUrl;
+
+  return path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
 }
 
 const FALLBACK_FOOTER_MENU = {
