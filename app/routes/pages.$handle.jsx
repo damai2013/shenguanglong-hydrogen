@@ -746,20 +746,44 @@ function CraftsmanshipContent() {
 }
 
 function MasterCustomContent({collections, products}) {
-  const process = [
-    ['01', '先說用途', '告訴我們作品的使用或展示場景、目的地，以及你最在意的部分。'],
-    ['02', '確認方向', '圍繞器型、尺寸、材料、裝具、刻飾和預算範圍，整理可行方向。'],
-    ['03', '確認規格', '在報價前明確規格、交期、付款節點、配送方式及購買前須知。'],
-    ['04', '製作與交付', '確認方案後進入製作，完成檢查並按約定方式交付。'],
-  ];
-
   return (
     <div className="master-custom-content">
+      <MasterChoiceSection />
       <section className="custom-intro">
-        <p className="section-label">A CONVERSATION BEFORE A COMMISSION</p>
-        <h2>訂製不是從一張圖片開始，<em>而是從一次清楚的溝通開始。</em></h2>
-        <p>每一件訂製作品都需要先了解用途、尺寸、材料、裝具、預算和目的地。我們會先判斷需求是否適合，再討論可以實現的方向。</p>
-        <Link className="button button-gold" to="/pages/contact">開始諮詢 <span aria-hidden="true">↗</span></Link>
+        <p className="section-label">WHAT IS A MASTER COMMISSION</p>
+        <h2>大師訂製，是把你的用途與需求，<em>變成一件可以確認、可以製作的作品。</em></h2>
+        <p>它不是直接購買現成商品，也不是單純複製一張圖片。你可以先說明使用、練習、收藏、展示或禮贈目的，再由工作室與你共同討論器型、尺寸、材料、裝具與細節，形成清楚的訂製方案。</p>
+        <div className="custom-advantages">
+          <article><strong>01 · 更適合你的用途</strong><p>從實際使用場景出發，討論長度、重量、握持方式與展示需求。</p></article>
+          <article><strong>02 · 先確認再製作</strong><p>報價與開工前，先確認規格、價格、交期、付款節點與配送安排。</p></article>
+          <article><strong>03 · 延續工藝方向</strong><p>以龍泉刀劍的傳統形制與工作室工藝作為參考，再按需求判斷可行方案。</p></article>
+        </div>
+        <div id="master-custom-contact" className="custom-direct-contact">
+          <div>
+            <p className="section-label">DIRECT CONTACT</p>
+            <h3>不必離開本頁，直接開始諮詢。</h3>
+            <p>掃描下方 QR Code，或直接寄信說明作品類型、用途、尺寸方向、預算與收貨地區。</p>
+          </div>
+          <div className="custom-contact-qr-grid">
+            <a href="https://wa.me/8613372508696" rel="noreferrer" target="_blank"><img src="/assets/reference/whatsapp-qr.png" alt="WhatsApp 聯絡 QR Code" loading="lazy" /><span>WhatsApp</span></a>
+            <a href="https://line.me/ti/p/~shenguanglong1885" rel="noreferrer" target="_blank"><img src="/assets/reference/line-qr.png" alt="LINE 聯絡 QR Code" loading="lazy" /><span>LINE</span></a>
+            <div><img src="/assets/reference/wechat-qr.jpg" alt="微信聯絡 QR Code" loading="lazy" /><span>微信</span></div>
+          </div>
+          <div className="custom-contact-emails">
+            <a href="mailto:sales@shen1885.com"><span>商品諮詢</span>sales@shen1885.com</a>
+            <a href="mailto:service@shen1885.com"><span>客服服務</span>service@shen1885.com</a>
+          </div>
+          <div className="custom-contact-brief">
+            <p className="section-label">YOUR FIRST MESSAGE</p>
+            <h4>聯絡時，請盡量提供：</h4>
+            <ol>
+              <li>作品類型與使用、收藏或展示用途</li>
+              <li>尺寸、風格、材料與刻飾方向</li>
+              <li>預算範圍與希望完成時間</li>
+              <li>收貨國家或地區</li>
+            </ol>
+          </div>
+        </div>
       </section>
       <WorkshopMedia
         label="COMMISSION CONTEXT"
@@ -768,63 +792,63 @@ function MasterCustomContent({collections, products}) {
       />
       <MasterCustomProducts collections={collections} products={products} />
 
-      <section className="custom-scope">
+      <section className="custom-next-step">
         <div className="custom-section-heading">
-          <p className="section-label">WHAT WE CAN DISCUSS</p>
-          <h2>先把範圍講清楚，方案才有意義。</h2>
+          <p className="section-label">READY TO DISCUSS</p>
+          <h2>準備好你的需求，<em>從一次清楚的諮詢開始。</em></h2>
         </div>
-        <div className="custom-scope-grid">
-          <article><span>01</span><h3>器型與尺寸</h3><p>討論整體比例、長度、重量和握持方式，具體以最終規格確認單為準。</p></article>
-          <article><span>02</span><h3>材料與裝具</h3><p>根據用途與風格討論劍身、刀身、劍鞘和裝具等組成部分。</p></article>
-          <article><span>03</span><h3>刻飾與細節</h3><p>討論紋樣、文字和裝飾位置；是否能夠製作，需要結合工藝與授權判斷。</p></article>
-          <article><span>04</span><h3>收藏與展示</h3><p>歷史作品可作為形制、裝具與氣質的參考；實際方案會按照你的用途與需求重新討論。</p></article>
+        <div className="custom-next-step-copy">
+          <p>請提供作品類型、用途、尺寸方向、預算與收貨地區。我們會先回覆可行方向，再確認是否進入報價與製作流程。</p>
+          <Link className="button button-gold" to="/pages/contact">提交訂製需求 <span aria-hidden="true">↗</span></Link>
         </div>
-      </section>
-
-      <section className="custom-process">
-        <div className="custom-section-heading">
-          <p className="section-label">THE PROCESS</p>
-          <h2>四個階段，把想法變成可確認的方案。</h2>
-        </div>
-        <div className="custom-process-list">
-          {process.map(([number, title, text]) => (
-            <article key={number}>
-              <span>{number}</span>
-              <div><h3>{title}</h3><p>{text}</p></div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="custom-brief">
-        <div className="brief-mark">定<br />制</div>
-        <div>
-          <p className="section-label">YOUR FIRST MESSAGE</p>
-          <h2>諮詢時，準備這六項資訊就夠了。</h2>
-          <ol>
-            <li>希望製作或了解的作品類型</li>
-            <li>使用、練習、收藏或展示場景</li>
-            <li>期望尺寸、風格與材料方向</li>
-            <li>是否需要刻飾或個人化細節</li>
-            <li>預算範圍與希望完成時間</li>
-            <li>收貨國家或地區</li>
-          </ol>
-        </div>
-      </section>
-
-      <section className="custom-notes">
-        <div className="custom-section-heading">
-          <p className="section-label">IMPORTANT NOTES</p>
-          <h2>訂製作品，需要比普通商品更多的確認。</h2>
-        </div>
-        <div className="custom-note-list">
-          <p><strong>價格與交期</strong>規格確認後，我們會按作品內容、製作工序與目的地單獨報價並安排時間。</p>
-          <p><strong>可行性</strong>不同尺寸、材料、紋樣與歷史作品方向，需要結合工藝條件逐項討論。</p>
-          <p><strong>配送與法規</strong>目的地、承運商、稅費與當地要求會影響交付，請在諮詢時一併提供收貨地區。</p>
-        </div>
-        <Link className="text-link" to="/pages/before-you-order">先閱讀購買前須知 <span aria-hidden="true">↗</span></Link>
       </section>
     </div>
+  );
+}
+
+function MasterChoiceSection() {
+  const masters = [
+    {
+      generation: '第四代 · 沈新培',
+      name: '沈新培',
+      image: '/assets/reference/master-shen-xinpei.jpg',
+      imageAlt: '沈新培肖像',
+      description: '長期參與龍泉寶劍的鍛打、成形、研磨與裝配，從傳統工作台理解作品的結構與尺度。',
+      href: '/pages/shen-xinpei',
+    },
+    {
+      generation: '第五代 · 沈州',
+      name: '沈州',
+      image: '/assets/reference/master-shen-zhou.jpg',
+      imageAlt: '沈州在工作室展示劍器',
+      description: '承接家族製劍技藝與工作室傳承，在傳統形制、實用需求與當代製作之間持續整理方向。',
+      href: '/pages/shen-zhou',
+    },
+  ];
+
+  return (
+    <section className="master-choice" aria-labelledby="master-choice-heading">
+      <div className="custom-section-heading master-choice-heading">
+        <p className="section-label">CHOOSE YOUR MASTER</p>
+        <div>
+          <h2 id="master-choice-heading">先了解大師方向，<em>再討論你的作品。</em></h2>
+          <p>不同的大師與工作方向，會帶來不同的作品語言。先從人物與作品脈絡開始，再選擇適合你的訂製方向。</p>
+        </div>
+      </div>
+      <div className="master-choice-grid">
+        {masters.map((master) => (
+          <article className="master-choice-card" key={master.name}>
+            <img src={master.image} alt={master.imageAlt} loading="eager" />
+            <div className="master-choice-card-body">
+              <p className="section-label">{master.generation}</p>
+              <h3>{master.name}</h3>
+              <p>{master.description}</p>
+              <Link className="button button-gold" to={master.href}>查看{master.name}介紹 <span aria-hidden="true">↗</span></Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -838,7 +862,7 @@ function MasterCustomProducts({collections, products = []}) {
       image: '/assets/reference/master-shen-xinpei.jpg',
       imageAlt: '沈新培肖像',
       collection: collections?.xinpei,
-      description: '這裡整理沈新培相關的已上架作品，讓你先了解大師的作品方向。',
+      description: '以下展示商品資料中標註為沈新培相關的代表作品，僅作為器型、裝具與工藝方向參考；訂製可行性需另行確認。',
     },
     {
       key: 'zhou',
@@ -848,7 +872,7 @@ function MasterCustomProducts({collections, products = []}) {
       image: '/assets/reference/master-shen-zhou.jpg',
       imageAlt: '沈州在工作室展示劍器',
       collection: collections?.zhou,
-      description: '這裡整理沈州相關的已上架作品，讓你先了解大師的作品方向。',
+      description: '以下展示商品資料中標註為沈州相關的代表作品，僅作為器型、裝具與工藝方向參考；訂製可行性需另行確認。',
     },
   ];
 
@@ -863,12 +887,19 @@ function MasterCustomProducts({collections, products = []}) {
         {masters.map((master) => {
           const titleMatchedProducts = products.filter((product) => product.title.includes(master.name));
           const collectionProducts = master.collection?.products?.nodes ?? [];
-          const displayedProducts = [
+          const allMatchedProducts = [
             ...titleMatchedProducts,
             ...collectionProducts.filter(
               (product) => !titleMatchedProducts.some((matched) => matched.id === product.id),
             ),
           ];
+          const displayedProducts = [...allMatchedProducts]
+            .sort(
+              (a, b) =>
+                Number(b.priceRange?.minVariantPrice?.amount ?? 0) -
+                Number(a.priceRange?.minVariantPrice?.amount ?? 0),
+            )
+            .slice(0, 4);
           return (
             <section className="master-custom-products-group" key={master.key} aria-labelledby={`${master.key}-works-heading`}>
               <div className="master-custom-products-group-heading">
@@ -892,6 +923,9 @@ function MasterCustomProducts({collections, products = []}) {
                   <p>如果你有特定作品方向，歡迎先提交需求，我們會按用途與規格回覆。</p>
                 </div>
               )}
+              {allMatchedProducts.length > displayedProducts.length ? (
+                <p className="master-custom-products-more">頁面先展示價格較高的 4 件代表作品，其餘作品請查看完整分類。</p>
+              ) : null}
             </section>
           );
         })}
@@ -1185,7 +1219,7 @@ const PAGE_INTROS = {
   },
   'master-custom': {
     kicker: 'BY COMMISSION · 大師訂製',
-    title: '讓作品從你的用途開始',
+    title: '你的需求，由大師訂製成一件作品',
     lede: '從沈廣隆傳承的工作室方向開始討論，再讓用途、尺寸、材料與目的地共同決定細節。',
     aside: '訂製作品需要先討論用途、材料、尺寸、時間與目的地。',
     ctaLabel: '開始諮詢',
