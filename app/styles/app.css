@@ -834,6 +834,8 @@ button.reset:hover:not(:has(> *)) {
 .product-detail-copy { color: rgba(36,35,30,.65); font-size: .86rem; line-height: 1.7; padding: 0 1.5rem 1rem 0; }
 .product-detail-copy p { margin: 0 0 .75rem; }
 .product-detail-copy p:last-child { margin-bottom: 0; }
+.product-detail-cta { color: var(--color-ink); display: inline-flex; font-size: .78rem; letter-spacing: .06em; margin-top: .35rem; text-decoration: underline; text-underline-offset: .25rem; }
+.product-detail-cta:hover { color: var(--color-gold); }
 .product-review-empty { align-items: center; background: rgba(36,35,30,.04); display: flex; gap: 1.2rem; margin: 0 0 1rem; padding: 1rem; }
 .review-mark { color: var(--color-gold); font-family: Georgia, serif; font-size: 1.4rem; }
 .product-review-empty strong { font-size: .92rem; font-weight: 500; }

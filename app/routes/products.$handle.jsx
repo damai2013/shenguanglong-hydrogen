@@ -80,7 +80,7 @@ async function loadCriticalData({context, params, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context, params}) {
+function loadDeferredData() {
   // Put any API calls that is not critical to be available on first page render
   // For example: product reviews, product recommendations, social feeds.
 
@@ -108,6 +108,7 @@ export default function Product() {
   });
 
   const {title, descriptionHtml} = product;
+  const customerDescriptionHtml = removeInternalDescriptionNote(descriptionHtml);
 
   return (
     <div className="product product-detail-page">
@@ -127,7 +128,7 @@ export default function Product() {
         />
         <br />
         <br />
-        <div className="product-description"><p className="description-label">THE PIECE</p><div dangerouslySetInnerHTML={{__html: descriptionHtml}} /></div>
+        <div className="product-description"><p className="description-label">THE PIECE</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
         <div className="product-notes"><div><span>Origin</span><strong>Longquan, China</strong></div><div><span>Finishing</span><strong>Hand finished</strong></div><div><span>Dispatch</span><strong>See buying guide</strong></div></div>
         <ProductDetailSections />
         <br />
@@ -150,6 +151,13 @@ export default function Product() {
         }}
       />
     </div>
+  );
+}
+
+function removeInternalDescriptionNote(descriptionHtml = '') {
+  return descriptionHtml.replace(
+    /<p>\s*This draft item is prepared for catalog review before publication\.\s*<\/p>/gi,
+    '',
   );
 }
 
@@ -180,7 +188,16 @@ function ProductDetailSections() {
         <summary>规格与购买说明 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
           <p>请以当前商品页显示的尺寸、重量、材料、配件、库存和状态为准。不同商品的用途与手感不同，图片不能代替规格信息。</p>
-          <p>现货、补货和订制作品的交期可能不同；如需确认目的地、适用状态或交付时间，请在结账前联系我们。</p>
+          <p>如果当前页面没有列出你需要的规格，请在结账前联系我们确认，不要仅凭图片判断是否适合。</p>
+          <Link className="product-detail-cta" to="/pages/contact">咨询商品规格 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </details>
+      <details>
+        <summary>配送、目的地与合规 <span aria-hidden="true">＋</span></summary>
+        <div className="product-detail-copy">
+          <p>现货、补货和订制作品的交期可能不同。刀剑类商品的运输、进口和持有要求会因目的地而不同。</p>
+          <p>请在付款前确认目的地规则、运输方式和交付条件；需要确认时，请提供国家/地区和商品链接。</p>
+          <Link className="product-detail-cta" to="/pages/before-you-order">查看购买前须知 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
       <details>
@@ -194,7 +211,7 @@ function ProductDetailSections() {
         <summary>评论与使用反馈 <span aria-hidden="true">＋</span></summary>
         <div className="product-review-empty">
           <span className="review-mark">00</span>
-          <div><strong>暂无已发布评论</strong><p>真实评论功能接入后，会在这里显示经过店铺确认的购买反馈。</p></div>
+          <div><strong>暂无已发布评论</strong><p>目前不展示未经确认的评分或评论。真实购买反馈接入后，会在这里显示。</p></div>
         </div>
       </details>
     </div>
