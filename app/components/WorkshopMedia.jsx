@@ -1,4 +1,21 @@
 const MEDIA = {
+  home: [
+    {
+      src: '/assets/reference/home-workshop-01.jpg',
+      alt: '沈廣隆工作室內的製作場景',
+      caption: '工作台 · 製作現場',
+    },
+    {
+      src: '/assets/reference/home-workshop-02.png',
+      alt: '龍泉刀劍鍛打時的火花',
+      caption: '鍛打 · 火與材料',
+    },
+    {
+      src: '/assets/reference/home-master-shen-zhou.png',
+      alt: '沈州展示傳統刀劍作品',
+      caption: '人物 · 作品方向',
+    },
+  ],
   workshop: [
     {
       src: '/assets/reference/workshop-01.jpg',
@@ -76,7 +93,7 @@ export function WorkshopMedia({kind = 'workshop', label = 'WORKSHOP NOTES', titl
   );
 }
 
-export function WorkshopVideo({label = 'MOVING IMAGE', title = '讓工藝在影像裡動起來。', intro}) {
+export function WorkshopVideo({label = 'MOVING IMAGE', title = '讓工藝在影像裡動起來。', intro, poster = '/assets/reference/workshop-01.jpg'}) {
   return (
     <section className="workshop-video" aria-label={title}>
       <div className="workshop-video-heading">
@@ -87,7 +104,7 @@ export function WorkshopVideo({label = 'MOVING IMAGE', title = '讓工藝在影�
         {intro ? <p>{intro}</p> : null}
       </div>
       <div className="workshop-video-frame">
-        <video controls muted loop playsInline preload="metadata" poster="/assets/reference/workshop-01.jpg">
+        <video controls muted loop playsInline preload="metadata" poster={poster}>
           <source src="/assets/reference/workshop-demo.mp4" type="video/mp4" />
           你的瀏覽器不支援影片播放。
         </video>
