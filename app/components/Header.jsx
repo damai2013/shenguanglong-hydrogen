@@ -58,12 +58,10 @@ export function HeaderMenu({
         if (!item.url) return null;
 
         // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
+        const url = normalizeMenuUrl(item.url, {
+          primaryDomainUrl,
+          publicStoreDomain,
+        });
         const isCatalog =
           item.title.toLowerCase().includes('catalog') ||
           item.title.includes('商品目录') ||
@@ -84,12 +82,10 @@ export function HeaderMenu({
             <div className="header-submenu">
               {children.map((child) => {
                 if (!child.url) return null;
-                const childUrl =
-                  child.url.includes('myshopify.com') ||
-                  child.url.includes(publicStoreDomain) ||
-                  child.url.includes(primaryDomainUrl)
-                    ? new URL(child.url).pathname
-                    : child.url;
+                const childUrl = normalizeMenuUrl(child.url, {
+                  primaryDomainUrl,
+                  publicStoreDomain,
+                });
                 return (
                   <NavLink key={child.id} onClick={close} prefetch="intent" to={childUrl}>
                     {child.title}
@@ -114,6 +110,18 @@ export function HeaderMenu({
       })}
     </nav>
   );
+}
+
+function normalizeMenuUrl(rawUrl, {primaryDomainUrl, publicStoreDomain}) {
+  const isInternalUrl =
+    rawUrl.includes('myshopify.com') ||
+    rawUrl.includes(publicStoreDomain) ||
+    rawUrl.includes(primaryDomainUrl);
+  const path = isInternalUrl ? new URL(rawUrl).pathname : rawUrl;
+
+  // Shopify menus can return localized paths such as /en/pages/contact.
+  // Hydrogen's route files are rooted at /pages, /collections, etc.
+  return path.replace(/^\/[a-z]{2}(?:-[a-z]{2})?(?=\/|$)/i, '') || '/';
 }
 
 /**
