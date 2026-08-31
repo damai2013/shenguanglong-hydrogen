@@ -273,7 +273,7 @@ function CredentialsMediaContent() {
         title="從節目畫面，回到工藝本身。"
         intro="節目與專題提供品牌文化的公開背景；商品規格、證書與當前可售狀態，請回到對應商品頁查看。"
       />
-      <section className="brand-story-today"><p className="section-label">SOURCES</p><h2>從品牌故事，繼續了解作品。</h2><p>想了解品牌資質、人物履歷與傳承細節，可以繼續閱讀下方公開資料；現售作品則請回到商品頁查看圖片、規格、庫存與交付資訊。</p><div className="brand-story-actions"><a className="button button-gold" href="https://shen1885.com/pages/media-and-credentials" target="_blank" rel="noreferrer">品牌資質與媒體報導 ↗</a><a className="text-link" href="https://shen1885.com/blogs/news-and-guides/shenguanglong-six-generation-history" target="_blank" rel="noreferrer">傳承文章 ↗</a></div></section>
+      <section className="brand-story-today"><p className="section-label">SOURCES</p><h2>從品牌故事，繼續了解作品。</h2><p>想了解品牌資質、人物履歷與傳承細節，可以繼續閱讀下方公開資料；現售作品則請回到商品頁查看圖片、規格、庫存與交付資訊。</p><div className="brand-story-actions"><Link className="button button-gold" to="/pages/credentials-media">品牌資質與媒體報導 ↗</Link><Link className="text-link" to="/blogs">文章與指南 ↗</Link></div></section>
     </div>
   );
 }
