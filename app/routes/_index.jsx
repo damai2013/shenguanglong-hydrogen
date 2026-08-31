@@ -129,10 +129,10 @@ function Hero({collection}) {
 
 function CraftPillars() {
   return (
-    <section className="craft-pillars" aria-label="工藝原則">
-      <div><span>01</span><strong>手工完成</strong><small>每一件作品都留下匠人的手感。</small></div>
-      <div><span>02</span><strong>經久耐用</strong><small>為長久使用選擇合適的材料。</small></div>
-      <div><span>03</span><strong>承襲傳統</strong><small>從古老形制出發，回應今日需要。</small></div>
+    <section className="craft-pillars" aria-label="品牌傳承要點">
+      <div><span>01</span><strong>百年傳承</strong><small>始於 1885 年，五代延續龍泉製劍家學。</small></div>
+      <div><span>02</span><strong>五代經營</strong><small>從家族製劍到今日工坊，工藝與劍鋪經營持續至今。</small></div>
+      <div><span>03</span><strong>中華老字號</strong><small>2010 年獲認定，品牌歷史與傳承節點有公開資料可核對。</small></div>
     </section>
   );
 }
