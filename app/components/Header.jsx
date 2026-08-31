@@ -50,6 +50,9 @@ export function HeaderMenu({
 }) {
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
+  const sourceItems = (menu || FALLBACK_HEADER_MENU).items;
+  const hasBlogLink = sourceItems.some((item) => item.url?.includes('/blogs'));
+  const menuItems = hasBlogLink ? sourceItems : [...sourceItems, BLOG_MENU_ITEM];
 
   return (
     <nav className={className} aria-label={viewport === 'mobile' ? '行動版主選單' : '主選單'} role="navigation">
@@ -64,7 +67,7 @@ export function HeaderMenu({
           首頁
         </NavLink>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+      {menuItems.map((item) => {
         if (!item.url) return null;
 
         // if the url is internal, we strip the domain
@@ -77,8 +80,9 @@ export function HeaderMenu({
           item.title.includes('商品目录') ||
           url.endsWith('/collections/all');
     const isCraft = item.title.includes('工藝') || item.title.includes('傳承');
-    const isMaster = item.title.includes('大師') || item.title.includes('大师');
-    const isGuide = item.title.includes('購買') || item.title.includes('指南');
+        const isMaster = item.title.includes('大師') || item.title.includes('大师');
+        const isGuide = item.title.includes('購買') || item.title.includes('指南');
+        const itemTitle = url === '/blogs' ? '博客' : item.title;
         const baseChildren = isCatalog
           ? enrichCatalogChildren(item.items?.length ? item.items : CATALOG_SUBMENU)
           : isGuide
@@ -112,7 +116,7 @@ export function HeaderMenu({
               style={activeLinkStyle}
               to={url}
             >
-              {item.title} <span aria-hidden="true">⌄</span>
+              {itemTitle} <span aria-hidden="true">⌄</span>
             </NavLink>
             <HeaderSubmenu
               items={children}
@@ -131,7 +135,7 @@ export function HeaderMenu({
             style={activeLinkStyle}
             to={url}
           >
-            {item.title}
+            {itemTitle}
           </NavLink>
         );
       })}
@@ -467,6 +471,16 @@ const FALLBACK_HEADER_MENU = {
 const GUIDE_SUBMENU = [
   {id: 'fallback-before-order', title: '購買指南', url: '/pages/before-you-order'},
 ];
+
+const BLOG_MENU_ITEM = {
+  id: 'fallback-blog',
+  resourceId: null,
+  tags: [],
+  title: '博客',
+  type: 'HTTP',
+  url: '/blogs',
+  items: [],
+};
 
 /**
  * @param {{
