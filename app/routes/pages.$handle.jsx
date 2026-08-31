@@ -100,6 +100,12 @@ export default function Page() {
             <BeforeYouOrderContent />
           ) : page.handle === 'faq' ? (
             <FaqContent />
+          ) : page.handle === 'longquan-swordmaking' ? (
+            <LongquanSwordmakingContent />
+          ) : page.handle === 'craftsmanship-materials' ? (
+            <CraftsmanshipMaterialsContent />
+          ) : page.handle === 'credentials-media' ? (
+            <CredentialsMediaContent />
           ) : (
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
@@ -110,6 +116,109 @@ export default function Page() {
           <Link className="text-link" to={intro.ctaUrl}>{intro.ctaLabel} <span aria-hidden="true">↗</span></Link>
         </aside>
       </div>
+    </div>
+  );
+}
+
+function LongquanSwordmakingContent() {
+  const steps = [
+    ['01', '從材料開始', '先按照用途、尺寸與結構選擇合適材料，讓作品的方向在製作前就清楚。'],
+    ['02', '鍛打與成形', '透過反覆鍛打、整形與校正，使刀劍逐步形成穩定的比例與線條。'],
+    ['03', '熱處理與研磨', '熱處理影響作品的狀態，研磨則整理表面、刃線與細節；兩者都需要逐步檢查。'],
+    ['04', '裝配與交付', '劍身、刀身、裝具與鞘具完成配合後，再核對外觀、規格與隨件說明。'],
+  ];
+
+  return (
+    <div className="craftsmanship-content">
+      <section className="craftsmanship-intro">
+        <p className="section-label">LONGQUAN · THE WORKSHOP</p>
+        <h2>龍泉刀劍，<em>從火與手開始。</em></h2>
+        <p>龍泉刀劍工藝不只是一道工序，而是一套從材料判斷、形制安排到成品檢查的工作方法。沈廣隆的作品以傳統刀劍形制為基礎，回到清楚的用途、比例與使用感。</p>
+        <p>本頁介紹工藝脈絡與閱讀商品頁的方法；每件現售作品的尺寸、重量、材料與狀態，仍以對應商品頁為準。</p>
+      </section>
+      <section className="craftsmanship-flow">
+        <div className="craftsmanship-section-heading">
+          <p className="section-label">FROM FIRE TO FORM</p>
+          <h2>一件作品如何逐步完成。</h2>
+        </div>
+        <div className="craft-step-grid">
+          {steps.map(([number, title, text]) => (
+            <article className="craft-step" key={number}>
+              <span>{number}</span><h3>{title}</h3><p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="craftsmanship-inspection">
+        <div className="inspection-mark">龍<br />泉</div>
+        <div>
+          <p className="section-label">HOW TO READ A PIECE</p>
+          <h2>工藝最後要回到作品本身。</h2>
+          <div className="inspection-points">
+            <p><strong>形制</strong><br />先理解它是為練習、收藏、展示還是禮贈而作。</p>
+            <p><strong>材料</strong><br />天然材料與手工表面可能有紋理、色澤和細部差異。</p>
+            <p><strong>規格</strong><br />尺寸、重量、配件與交期請以商品頁和最終確認為準。</p>
+          </div>
+        </div>
+      </section>
+      <section className="craftsmanship-next">
+        <p className="section-label">CONTINUE EXPLORING</p>
+        <h2>從工藝理解作品，再進入購買與諮詢。</h2>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/collections">瀏覽作品 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CraftsmanshipMaterialsContent() {
+  return (
+    <div className="craftsmanship-content">
+      <section className="craftsmanship-intro">
+        <p className="section-label">MATERIALS · PROPORTION · USE</p>
+        <h2>材質不是裝飾，<em>而是作品的性格。</em></h2>
+        <p>刀劍的手感、光澤、重量與保存方式，都與材料和表面處理有關。選擇時應先從用途出發，再看商品頁提供的實際規格。</p>
+      </section>
+      <section className="craftsmanship-flow">
+        <div className="craftsmanship-section-heading"><p className="section-label">MATERIAL LANGUAGE</p><h2>從四個方向理解材質。</h2></div>
+        <div className="craft-step-grid">
+          <article className="craft-step"><span>01</span><h3>刀劍本體</h3><p>不同鋼材與處理方式會影響重量、彈性、表面狀態與使用邊界，不能只看外觀判斷。</p></article>
+          <article className="craft-step"><span>02</span><h3>木作與鞘具</h3><p>木材、包覆與鞘具需要配合刀劍本體，也需要避免潮濕、碰撞和長時間日曬。</p></article>
+          <article className="craft-step"><span>03</span><h3>裝具與握持</h3><p>護手、柄、鐔與其他裝具會影響比例和握持感，具體配置以商品頁或訂製確認單為準。</p></article>
+          <article className="craft-step"><span>04</span><h3>手工差異</h3><p>天然材料與手工表面不會完全相同；差異應被如實理解，而不是被當成瑕疵或承諾。</p></article>
+        </div>
+      </section>
+      <section className="craftsmanship-boundary">
+        <div className="craftsmanship-section-heading"><p className="section-label">PRODUCT PAGE FIRST</p><h2>每件作品，都有自己的材料說明。</h2></div>
+        <div className="boundary-copy">
+          <p>網站上的工藝介紹用來建立理解框架，不代替某一件商品的規格。購買前請核對尺寸、重量、材料、配件、庫存、交期與保存方式。</p>
+          <p>如果你需要特定材料、尺寸或裝具，請在付款前聯絡我們確認，不要只根據圖片推測。</p>
+          <Link className="text-link" to="/pages/contact">諮詢作品規格 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CredentialsMediaContent() {
+  const records = [
+    ['01', '中華老字號', '公開品牌資料將沈廣隆列入中華老字號相關記錄；正式證書與认定文件可在資料核驗後補充。'],
+    ['02', '非遺與保護基地', '龍泉寶劍鍛製技藝及其傳承記錄，是理解沈廣隆工藝背景的重要公開資料。'],
+    ['03', '傳承人資質', '公開資料聚焦第四代沈新培與第五代沈州的工藝與傳承經歷，不延伸書寫尚未參與工作的下一代。'],
+  ];
+  const media = ['《我有傳家寶》', '《手藝人》', '《傳承》', '龍泉鑄劍文化專題', '《中國面孔》', '《百家姓》'];
+
+  return (
+    <div className="brand-story-content">
+      <section className="brand-story-opening">
+        <div className="brand-story-number">1885</div>
+        <div><p className="section-label">PUBLIC RECORDS</p><h2>資質與報導，<em>以可核對為先。</em></h2><p>本頁整理沈廣隆品牌背景、工藝傳承與公開媒體記錄。它們用來說明品牌脈絡，不代表每一件現售商品都具有相同的資質或歷史背景。</p></div>
+      </section>
+      <section className="brand-story-lineage"><div className="brand-story-section-heading"><p className="section-label">CREDENTIALS</p><h2>品牌資料索引。</h2></div><div className="generation-grid">{records.map(([number,title,text]) => <article className="generation-card" key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+      <section className="brand-story-principles"><div><p className="section-label">MEDIA RECORDS</p><h2>曾公開記錄的節目與專題。</h2></div><div className="principle-list">{media.map((title, index) => <div key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>圍繞龍泉刀劍、傳統技藝或沈氏傳承進行公開記錄。</p></div>)}</div></section>
+      <section className="brand-story-today"><p className="section-label">SOURCE STATUS</p><h2>資料會持續整理與核驗。</h2><p>證書影像、節目連結與出版資料將在完成來源核對後逐步補充。未經確認的年份、人物身份與榮譽，不作為現售商品的承諾。</p><div className="brand-story-actions"><Link className="button button-gold" to="/pages/contact">提交資料諮詢 <span aria-hidden="true">↗</span></Link><Link className="text-link" to="/pages/about-shen-guang-long">查看品牌故事 <span aria-hidden="true">↗</span></Link></div></section>
     </div>
   );
 }
@@ -203,14 +312,14 @@ function BrandStoryContent() {
 
 function CraftsmanshipContent() {
   const steps = [
-    ['01', '选材', '先确认材料、尺寸与用途，再决定一件作品应该从哪里开始。'],
-    ['02', '锻造', '通过反复锻打让材料逐渐形成需要的形态，也让匠人认识它的状态。'],
-    ['03', '整形', '校正比例、线条与重心，让作品从“成形”走向可使用的结构。'],
-    ['04', '热处理', '根据实际材料和工艺要求完成热处理，并检查形态与状态。'],
-    ['05', '打磨', '逐步处理表面、刃线与细节，使手感、光泽和轮廓保持统一。'],
-    ['06', '刻饰', '装饰服务于整体气质与识别，不用装饰掩盖材料或工艺本身。'],
-    ['07', '装配', '将剑身、装具、剑鞘及相关部件组合，重新检查比例和配合。'],
-    ['08', '检查', '在交付前核对外观、结构、规格和随件说明，确认它与商品页一致。'],
+    ['01', '選材', '先確認材料、尺寸與用途，再決定一件作品應該從哪裡開始。'],
+    ['02', '鍛造', '透過反覆鍛打讓材料逐漸形成需要的形態，也讓匠人理解它的狀態。'],
+    ['03', '整形', '校正比例、線條與重心，讓作品從「成形」走向可使用的結構。'],
+    ['04', '熱處理', '根據實際材料和工藝要求完成熱處理，並檢查形態與狀態。'],
+    ['05', '打磨', '逐步處理表面、刃線與細節，使手感、光澤和輪廓保持統一。'],
+    ['06', '刻飾', '裝飾服務於整體氣質與識別，不用裝飾掩蓋材料或工藝本身。'],
+    ['07', '裝配', '將劍身、裝具、劍鞘及相關部件組合，重新檢查比例和配合。'],
+    ['08', '檢查', '在交付前核對外觀、結構、規格和隨件說明，確認它與商品頁一致。'],
   ];
 
   return (
@@ -539,6 +648,30 @@ const PAGE_INTROS = {
     ctaLabel: 'Contact us',
     ctaUrl: '/pages/contact',
   },
+  'longquan-swordmaking': {
+    kicker: 'LONGQUAN · THE WORKSHOP',
+    title: '龍泉刀劍工藝',
+    lede: '從材料、形制到交付，理解一件傳統刀劍作品如何逐步完成。',
+    aside: '先理解工藝，再按商品頁的實際規格選擇作品。',
+    ctaLabel: '瀏覽作品',
+    ctaUrl: '/collections',
+  },
+  'craftsmanship-materials': {
+    kicker: 'MATERIALS · PROPORTION · USE',
+    title: '工藝與材質',
+    lede: '材質、比例與用途共同決定一件作品的性格與保存方式。',
+    aside: '需要確認特定材質或尺寸時，請在付款前直接諮詢。',
+    ctaLabel: '聯絡諮詢',
+    ctaUrl: '/pages/contact',
+  },
+  'credentials-media': {
+    kicker: 'PUBLIC RECORDS · MEDIA',
+    title: '資質與媒體報導',
+    lede: '整理品牌資質、傳承記錄與公開節目資料，以可核對為先。',
+    aside: '公開資料持續整理，未核驗內容不作為商品承諾。',
+    ctaLabel: '提交資料',
+    ctaUrl: '/pages/contact',
+  },
   'care-and-storage': {
     kicker: 'CARE & STORAGE',
     title: 'Keep the piece in its element',
@@ -571,6 +704,9 @@ const BUILT_IN_PAGE_TITLES = {
   'master-custom': '大師訂製',
   'before-you-order': '購買前須知',
   faq: '常見問題',
+  'longquan-swordmaking': '龍泉刀劍工藝',
+  'craftsmanship-materials': '工藝與材質',
+  'credentials-media': '資質與媒體報導',
 };
 
 const PAGE_QUERY = `#graphql

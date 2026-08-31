@@ -806,6 +806,16 @@ button.reset:hover:not(:has(> *)) {
 .collection-detail-intro h1 { max-width: none; }
 .collection-detail-intro .collection-description { color: rgba(36,35,30,.65); font-size: 1.05rem; line-height: 1.65; margin: 1.75rem 0 0; max-width: 40rem; }
 .collection-detail .listing-bar { margin: 0 var(--content-gutter); }
+.master-collection-profile { background: #24231e; color: var(--color-light); display: grid; gap: clamp(2rem, 7vw, 7rem); grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); margin: 0 var(--content-gutter); padding: clamp(3rem, 7vw, 7rem); }
+.master-collection-profile-mark { color: var(--color-gold); font-family: serif; font-size: clamp(3rem, 7vw, 7rem); line-height: .9; }
+.master-collection-profile h2 { font-size: clamp(2.2rem, 4.6vw, 4.6rem); font-weight: 400; letter-spacing: -.06em; line-height: .96; margin: 0 0 1.5rem; max-width: 13ch; }
+.master-collection-profile > div:last-child > p:not(.section-label):not(.master-collection-profile-note) { color: rgba(244,241,233,.7); line-height: 1.8; max-width: 42rem; }
+.master-collection-profile-grid { border-top: 1px solid rgba(244,241,233,.22); display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr); margin: 2rem 0; }
+.master-collection-profile-grid article { border-top: 1px solid rgba(244,241,233,.22); margin-top: -1px; padding-top: 1rem; }
+.master-collection-profile-grid h3 { font-size: 1rem; font-weight: 500; margin: 0 0 .6rem; }
+.master-collection-profile-grid p { color: rgba(244,241,233,.62); font-size: .85rem; line-height: 1.65; margin: 0; }
+.master-collection-profile-note { border-left: 2px solid var(--color-gold); color: rgba(244,241,233,.62); font-size: .82rem; line-height: 1.6; margin: 1.5rem 0; padding-left: 1rem; }
+.master-collection-profile .text-link { color: var(--color-light); }
 .product-detail-page { background: #e9e5da; padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem); }
 .product-gallery { align-self: start; }
 .product-gallery .product-image { background: #f4f1e9; margin-top: 1.5rem; }
@@ -1096,6 +1106,9 @@ button.reset:hover:not(:has(> *)) {
   .catalog-path-card, .catalog-path-card:first-child { border-left: 0; border-top: 1px solid rgba(244,241,233,.22); min-height: auto; padding: 1.2rem 0; }
   .listing-bar { gap: .8rem; flex-direction: column; }
   .product-detail-page { display: block; }
+  .master-collection-profile { display: block; margin-left: 0; margin-right: 0; padding: 3rem 1.5rem; }
+  .master-collection-profile-mark { margin-bottom: 2.5rem; }
+  .master-collection-profile-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 45em) {
   .journal-topic-grid { display: block; }

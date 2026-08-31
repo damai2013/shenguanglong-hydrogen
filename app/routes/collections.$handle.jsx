@@ -1,4 +1,4 @@
-import {redirect, useLoaderData} from 'react-router';
+import {Link, redirect, useLoaderData} from 'react-router';
 import {getPaginationVariables, Analytics} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
@@ -67,7 +67,7 @@ async function loadCriticalData({context, params, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -79,6 +79,9 @@ export default function Collection() {
     <div className="collection collection-detail">
       <div className="collection-detail-intro"><p className="eyebrow">作品分類 · 沈廣隆</p><h1>{collection.title}<em>。</em></h1><p className="collection-description">{collection.description || '來自龍泉工作室的傳統刀劍精選作品。'}</p></div>
       <div className="listing-bar"><span>精選作品</span><span>龍泉手工製作 ↓</span></div>
+      {MASTER_COLLECTIONS[collection.handle] && (
+        <MasterCollectionProfile profile={MASTER_COLLECTIONS[collection.handle]} />
+      )}
       <PaginatedResourceSection
         connection={collection.products}
         resourcesClassName="products-grid"
@@ -102,6 +105,54 @@ export default function Collection() {
     </div>
   );
 }
+
+function MasterCollectionProfile({profile}) {
+  return (
+    <section className="master-collection-profile">
+      <div className="master-collection-profile-mark">{profile.mark}</div>
+      <div>
+        <p className="section-label">MASTER WORKS · {profile.generation}</p>
+        <h2>{profile.title}</h2>
+        <p>{profile.intro}</p>
+        <div className="master-collection-profile-grid">
+          {profile.points.map(([title, text]) => (
+            <article key={title}>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+        <p className="master-collection-profile-note">以上為人物與工藝背景介紹；實際可售作品、規格、庫存與交期，以本頁商品和聯絡確認為準。</p>
+        <Link className="text-link" to="/pages/master-custom">查看大師訂製流程 <span aria-hidden="true">↗</span></Link>
+      </div>
+    </section>
+  );
+}
+
+const MASTER_COLLECTIONS = {
+  'shen-xinpei-master-custom': {
+    mark: '新培',
+    generation: '第四代 · 沈新培',
+    title: '沈新培大師作品與訂製方向',
+    intro: '沈新培承接家族龍泉刀劍工藝，將傳統形制、實用尺度與當代製作延續到工作室。這個系列用來介紹其工藝脈絡與大師作品方向。',
+    points: [
+      ['傳統根基', '從龍泉刀劍的形制、材料與手工流程出發，重視作品的結構與使用邊界。'],
+      ['作品方向', '可作為收藏、展示與禮贈方向的參考；具體作品是否可訂製，需要逐項確認。'],
+      ['訂製方式', '如需討論尺寸、材料、裝具或刻飾，請先提供用途、目的地與預算範圍。'],
+    ],
+  },
+  'shen-zhou-master-custom': {
+    mark: '沈州',
+    generation: '第五代 · 沈州',
+    title: '沈州大師作品與訂製方向',
+    intro: '沈州自年輕時跟隨家族學習龍泉劍鍛製技藝，承接第五代工作室的製作與傳承。這個系列聚焦當代實用與審美之間的平衡。',
+    points: [
+      ['實用與美觀', '作品方向重視實際使用、比例、平衡與外觀之間的關係，不以裝飾取代規格說明。'],
+      ['工藝探索', '部分作品涉及材料、熱處理、表面與裝具的不同處理方式，實際可行性需逐項確認。'],
+      ['訂製方式', '請先說明用途、尺寸、材料偏好、預算、完成時間與收貨地區，再進入報價討論。'],
+    ],
+  },
+};
 
 const PRODUCT_ITEM_FRAGMENT = `#graphql
   fragment MoneyProductItem on MoneyV2 {
