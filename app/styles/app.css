@@ -359,8 +359,9 @@ button.reset:hover:not(:has(> *)) {
 }
 .header-menu-item { color: var(--color-light) !important; font-size: .74rem; letter-spacing: .02em; }
 .header-menu-group { position: relative; }
+.header-menu-group::after { content: ''; height: .55rem; left: 0; position: absolute; right: 0; top: 100%; }
 .header-menu-group > .header-menu-item span { color: var(--color-gold); font-size: .7rem; }
-.header-submenu { background: var(--color-light); border: 1px solid var(--color-line); box-shadow: 0 12px 28px rgba(20,19,16,.12); display: none; flex-direction: column; gap: .8rem; left: -.8rem; min-width: 13rem; padding: 1rem .9rem; position: absolute; top: 1.5rem; z-index: 5; }
+.header-submenu { background: var(--color-light); border: 1px solid var(--color-line); box-shadow: 0 12px 28px rgba(20,19,16,.12); display: none; flex-direction: column; gap: .8rem; left: -.8rem; min-width: 13rem; padding: 1rem .9rem; position: absolute; top: calc(100% + .55rem); z-index: 5; }
 .header-menu-group:hover .header-submenu, .header-menu-group:focus-within .header-submenu { display: flex; }
 .header-submenu a { color: var(--color-ink) !important; font-size: .72rem; line-height: 1.3; }
 
