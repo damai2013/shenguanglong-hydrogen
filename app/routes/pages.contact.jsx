@@ -48,14 +48,14 @@ export default function Contact() {
                 </div>
               </div>
               <div className="contact-methods-email">
-                <a className="contact-method" href="mailto:sales@shenguanglong1885.com">
+                <a className="contact-method" href="mailto:sales@shen1885.com">
                   <span className="contact-method-label">商品諮詢郵箱</span>
-                  <strong>sales@shenguanglong1885.com</strong>
+                  <strong>sales@shen1885.com</strong>
                   <small>適合商品、報價與配送諮詢</small>
                 </a>
-                <a className="contact-method" href="mailto:service@shenguanglong1885.com">
+                <a className="contact-method" href="mailto:service@shen1885.com">
                   <span className="contact-method-label">客服郵箱</span>
-                  <strong>service@shenguanglong1885.com</strong>
+                  <strong>service@shen1885.com</strong>
                   <small>適合售後與一般服務問題</small>
                 </a>
               </div>

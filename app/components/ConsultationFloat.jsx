@@ -24,7 +24,7 @@ export function ConsultationFloat() {
           </div>
           <p>如果你對規格、用途、配送或訂製有疑問，可以直接聯絡我們。</p>
           <div className="consultation-float-actions">
-            <a className="text-link" href="mailto:service@shenguanglong1885.com">發送電子郵件 <span aria-hidden="true">↗</span></a>
+            <a className="text-link" href="mailto:service@shen1885.com">發送電子郵件 <span aria-hidden="true">↗</span></a>
             <Link className="text-link" to="/pages/contact" onClick={() => setOpen(false)}>
               查看完整聯絡方式
               <span aria-hidden="true">↗</span>

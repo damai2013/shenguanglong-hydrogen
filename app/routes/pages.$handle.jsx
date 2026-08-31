@@ -288,7 +288,7 @@ function OfficialVerificationContent() {
     ['01', '品牌名稱', '沈廣隆劍鋪'],
     ['02', '所在地', '中國浙江省龍泉市'],
     ['03', '傳承起點', '1885 年，沈朝慶開始專業鑄劍'],
-    ['04', '核驗聯絡', 'service@shenguanglong1885.com'],
+    ['04', '核驗聯絡', 'service@shen1885.com'],
   ];
   const socialAccounts = [
     ['TikTok', 'ShenGuangLong1885'],
@@ -335,7 +335,7 @@ function OfficialVerificationContent() {
           <div><span>品牌中文名</span><strong>沈廣隆劍鋪</strong><p>中文資料中也會使用「沈廣隆」或簡體字「沈广隆」作為品牌簡稱。</p></div>
           <div><span>英文名稱</span><strong>Shen Guanglong</strong><p>英文名稱依品牌對外使用的拼寫呈現；不同平台可能採用不同格式。</p></div>
           <div><span>品牌網站</span><a href="https://shen1885.com/" target="_blank" rel="noreferrer">shen1885.com ↗</a><p>品牌網站用於發布品牌、人物與作品資料；商品頁另列每件作品的規格、庫存與交付資訊。</p></div>
-          <div><span>核驗聯絡</span><a href="mailto:service@shenguanglong1885.com">service@shenguanglong1885.com</a><p>如需核對名稱、年份、作品或合作資料，請附上具體頁面與問題。</p></div>
+          <div><span>核驗聯絡</span><a href="mailto:service@shen1885.com">service@shen1885.com</a><p>如需核對名稱、年份、作品或合作資料，請附上具體頁面與問題。</p></div>
         </div>
       </section>
 
