@@ -125,6 +125,7 @@ export default function Product() {
         <br />
         <div className="product-description"><p className="description-label">THE PIECE</p><div dangerouslySetInnerHTML={{__html: descriptionHtml}} /></div>
         <div className="product-notes"><div><span>Origin</span><strong>Longquan, China</strong></div><div><span>Finishing</span><strong>Hand finished</strong></div><div><span>Dispatch</span><strong>See buying guide</strong></div></div>
+        <ProductDetailSections />
         <br />
       </div>
       <Analytics.ProductView
@@ -142,6 +143,34 @@ export default function Product() {
           ],
         }}
       />
+    </div>
+  );
+}
+
+function ProductDetailSections() {
+  return (
+    <div className="product-detail-sections">
+      <details open>
+        <summary>规格与购买说明 <span aria-hidden="true">＋</span></summary>
+        <div className="product-detail-copy">
+          <p>请以当前商品页显示的尺寸、重量、材料、配件、库存和状态为准。不同商品的用途与手感不同，图片不能代替规格信息。</p>
+          <p>现货、补货和订制作品的交期可能不同；如需确认目的地、适用状态或交付时间，请在结账前联系我们。</p>
+        </div>
+      </details>
+      <details>
+        <summary>保养与保存 <span aria-hidden="true">＋</span></summary>
+        <div className="product-detail-copy">
+          <p>请保持干燥，避免碰撞、潮湿和长时间接触腐蚀性物质。天然材料与手工表面需要按照具体商品的说明进行保存。</p>
+          <p>如果你不确定某种护理方式是否适合这件作品，请先提供订单信息和商品照片，再向我们咨询。</p>
+        </div>
+      </details>
+      <details>
+        <summary>评论与使用反馈 <span aria-hidden="true">＋</span></summary>
+        <div className="product-review-empty">
+          <span className="review-mark">00</span>
+          <div><strong>暂无已发布评论</strong><p>真实评论功能接入后，会在这里显示经过店铺确认的购买反馈。</p></div>
+        </div>
+      </details>
     </div>
   );
 }

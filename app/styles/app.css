@@ -797,6 +797,19 @@ button.reset:hover:not(:has(> *)) {
 .product-notes div { display: flex; justify-content: space-between; gap: 1rem; }
 .product-notes span { color: rgba(36,35,30,.55); }
 .product-notes strong { font-weight: 400; }
+.product-detail-sections { border-top: 1px solid var(--color-line); margin-top: 2.5rem; }
+.product-detail-sections details { border-bottom: 1px solid var(--color-line); }
+.product-detail-sections summary { align-items: center; cursor: pointer; display: flex; font-size: .92rem; justify-content: space-between; list-style: none; padding: 1.1rem 0; }
+.product-detail-sections summary::-webkit-details-marker { display: none; }
+.product-detail-sections summary span { color: var(--color-gold); font-size: 1.25rem; transition: transform .2s ease; }
+.product-detail-sections details[open] summary span { transform: rotate(45deg); }
+.product-detail-copy { color: rgba(36,35,30,.65); font-size: .86rem; line-height: 1.7; padding: 0 1.5rem 1rem 0; }
+.product-detail-copy p { margin: 0 0 .75rem; }
+.product-detail-copy p:last-child { margin-bottom: 0; }
+.product-review-empty { align-items: center; background: rgba(36,35,30,.04); display: flex; gap: 1.2rem; margin: 0 0 1rem; padding: 1rem; }
+.review-mark { color: var(--color-gold); font-family: Georgia, serif; font-size: 1.4rem; }
+.product-review-empty strong { font-size: .92rem; font-weight: 500; }
+.product-review-empty p { color: rgba(36,35,30,.58); font-size: .82rem; margin: .3rem 0 0; }
 .editorial-page-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 9vw, 9rem); position: relative; }
 .editorial-page-hero:after { border: 1px solid rgba(180,138,69,.35); color: rgba(180,138,69,.28); content: '傳'; font-family: Georgia, serif; font-size: clamp(12rem, 27vw, 24rem); line-height: .8; position: absolute; right: 10vw; top: 17%; transform: rotate(12deg); }
 .editorial-page-hero > * { position: relative; z-index: 1; }
