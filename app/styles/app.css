@@ -532,6 +532,8 @@ button.reset:hover:not(:has(> *)) {
   min-width: fit-content;
   white-space: nowrap;
 }
+.header-ctas > a, .header-ctas > button:not(.header-menu-mobile-toggle) { color: var(--color-light); font-size: .74rem; letter-spacing: .02em; min-height: 2rem; }
+.header-ctas > button.reset:not(:has(> *)) { line-height: 1; }
 .header-menu-mobile-toggle h3 { font-size: 1rem; font-weight: 400; line-height: 1; margin: 0; }
 @media (min-width: 64em) {
   .header-ctas > .header-menu-mobile-toggle { display: none; }
