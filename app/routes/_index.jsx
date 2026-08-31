@@ -8,7 +8,14 @@ import {MockShopNotice} from '~/components/MockShopNotice';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [
+    {title: 'Shen Guang Long | Traditional Blades & Craft'},
+    {
+      name: 'description',
+      content:
+        'Traditional blades, ceremonial pieces, and enduring craft from Shen Guang Long.',
+    },
+  ];
 };
 
 /**
@@ -65,11 +72,55 @@ export default function Homepage() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
   return (
-    <div className="home">
+    <div className="home-page">
       {data.isShopLinked ? null : <MockShopNotice />}
-      <FeaturedCollection collection={data.featuredCollection} />
+      <Hero collection={data.featuredCollection} />
+      <CraftPillars />
       <RecommendedProducts products={data.recommendedProducts} />
+      <CraftStory />
     </div>
+  );
+}
+
+function Hero({collection}) {
+  const image = collection?.image;
+
+  return (
+    <section className="home-hero">
+      <div className="hero-copy">
+        <p className="eyebrow">EST. 2013 · SHEN GUANG LONG</p>
+        <h1>Blades with<br /><em>a living soul.</em></h1>
+        <p className="hero-intro">
+          Traditional Chinese blades and objects of quiet strength, shaped by
+          hand and made to be kept.
+        </p>
+        <div className="hero-actions">
+          <Link className="button button-gold" to={collection ? `/collections/${collection.handle}` : '/collections'}>
+            Explore the collection <span>↗</span>
+          </Link>
+          <Link className="text-link" to="/collections/all">View all pieces</Link>
+        </div>
+      </div>
+      <div className="hero-art" aria-label={image?.altText || 'Traditional blade craftsmanship'}>
+        {image ? (
+          <Image data={image} sizes="(min-width: 60em) 55vw, 100vw" alt={image.altText || 'Shen Guang Long collection'} />
+        ) : (
+          <div className="hero-art-placeholder"><span>光</span></div>
+        )}
+        <div className="hero-stamp">沈<br />广<br />隆</div>
+        <p className="hero-caption">A study in steel<br />and stillness</p>
+      </div>
+    </section>
+  );
+}
+
+function CraftPillars() {
+  return (
+    <section className="craft-pillars" aria-label="Our craft principles">
+      <div><span>01</span><strong>Hand finished</strong><small>Each piece carries the maker's touch.</small></div>
+      <div><span>02</span><strong>Built to endure</strong><small>Materials chosen for a lifetime of use.</small></div>
+      <div><span>03</span><strong>Rooted in tradition</strong><small>Old forms, considered for today.</small></div>
+    </section>
   );
 }
 
@@ -111,7 +162,10 @@ function RecommendedProducts({products}) {
       className="recommended-products"
       aria-labelledby="recommended-products"
     >
-      <h2 id="recommended-products">Recommended Products</h2>
+      <div className="section-heading">
+        <div><p className="eyebrow">THE COLLECTION</p><h2 id="recommended-products">Selected pieces</h2></div>
+        <Link className="text-link" to="/collections/all">Browse all <span>↗</span></Link>
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
@@ -125,7 +179,20 @@ function RecommendedProducts({products}) {
           )}
         </Await>
       </Suspense>
-      <br />
+    </section>
+  );
+}
+
+function CraftStory() {
+  return (
+    <section className="craft-story">
+      <div className="story-mark">形<br />神<br />兼<br />备</div>
+      <div>
+        <p className="eyebrow">THE SHEN GUANG LONG WAY</p>
+        <h2>Not made for a moment.<br /><em>Made for a lifetime.</em></h2>
+        <p>We believe an object becomes meaningful through time: the weight in the hand, the marks of use, the stories it gathers. Our work begins with respect for the old ways and ends with something unmistakably yours.</p>
+        <Link className="text-link" to="/pages/about">Discover our story <span>↗</span></Link>
+      </div>
     </section>
   );
 }
