@@ -81,6 +81,8 @@ export default function Page() {
             <CraftsmanshipContent />
           ) : page.handle === 'master-custom' ? (
             <MasterCustomContent />
+          ) : page.handle === 'before-you-order' ? (
+            <BeforeYouOrderContent />
           ) : (
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
@@ -327,6 +329,75 @@ function MasterCustomContent() {
           <p><strong>配送与法规</strong>目的地、承运商、税费和当地法规可能影响交付，咨询阶段需要提前说明。</p>
         </div>
         <Link className="text-link" to="/pages/before-you-order">先阅读购买前须知 <span aria-hidden="true">↗</span></Link>
+      </section>
+    </div>
+  );
+}
+
+function BeforeYouOrderContent() {
+  const checks = [
+    ['01', '先确认用途', '练习、收藏、展示或礼赠，不同用途对应不同的规格、装具和注意事项。'],
+    ['02', '再看商品规格', '请阅读尺寸、重量、材料、配件、状态和库存信息，不要只依据主图判断。'],
+    ['03', '确认交期与配送', '现货和订制的交期不同；目的地、承运商、税费与当地规则需要单独确认。'],
+    ['04', '最后再进入结账', '确认商品、数量、收货信息和适用政策后，再通过 Shopify Checkout 完成付款。'],
+  ];
+
+  return (
+    <div className="before-order-content">
+      <section className="before-order-intro">
+        <p className="section-label">A CONSIDERED PURCHASE</p>
+        <h2>在点击购买之前，<em>先把重要的事看清楚。</em></h2>
+        <p>传统刀剑及相关作品不是普通的冲动型商品。请先确认用途、规格、目的地与当地要求；如果仍有疑问，欢迎在结账前联系我们。</p>
+        <Link className="button button-gold" to="/pages/contact">咨询作品 <span aria-hidden="true">↗</span></Link>
+      </section>
+
+      <section className="before-order-checklist">
+        <div className="before-order-heading">
+          <p className="section-label">BEFORE CHECKOUT</p>
+          <h2>四项检查，帮助你做出合适的选择。</h2>
+        </div>
+        <div className="before-order-check-grid">
+          {checks.map(([number, title, text]) => (
+            <article key={number}>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="before-order-details">
+        <div className="before-order-heading">
+          <p className="section-label">WHAT TO CONFIRM</p>
+          <h2>商品页上的信息，都有实际用途。</h2>
+        </div>
+        <div className="before-order-detail-list">
+          <p><strong>用途与状态</strong>请确认作品适合练习、收藏、展示还是礼赠。开刃、未开刃、展示状态和可使用状态不能混为一谈，具体以商品页说明为准。</p>
+          <p><strong>规格与手工差异</strong>尺寸和重量以商品页或确认单为准。天然材料、手工纹理、色泽和细部可能存在差异，图片不能完全代表实物。</p>
+          <p><strong>库存与交期</strong>有库存不等于当天发货；订制、补货、装配和检查都可能影响交期，请以确认后的时间为准。</p>
+          <p><strong>支付与结账</strong>购物车用于确认商品和数量，最终付款在 Shopify Checkout 完成。订单是否成立，以结账页面和店铺订单记录为准。</p>
+        </div>
+      </section>
+
+      <section className="before-order-regulations">
+        <div className="regulations-mark">知<br />悉</div>
+        <div>
+          <p className="section-label">DESTINATION &amp; REGULATIONS</p>
+          <h2>配送能否完成，取决于目的地和具体商品。</h2>
+          <p>不同国家或地区可能对刀剑、金属制品、木制装具、长度、锋利状态、进口申报和承运方式有不同要求。我们不会用“全球配送”一句话替代目的地确认。</p>
+          <p>下单前请提供收货国家或地区；如有需要，也请向当地海关、承运商或相关机构确认。税费、清关、退运和当地限制可能由收货方承担。</p>
+          <Link className="text-link" to="/pages/contact">提交目的地咨询 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+
+      <section className="before-order-final">
+        <p className="section-label">READY WHEN YOU ARE</p>
+        <h2>看完仍然确定，再把作品放进购物车。</h2>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/collections">浏览商品 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" to="/pages/faq">查看常见问题 <span aria-hidden="true">↗</span></Link>
+        </div>
       </section>
     </div>
   );
