@@ -204,12 +204,12 @@ function RecommendedProducts({products}) {
 function CraftStory() {
   return (
     <section className="craft-story">
-      <div className="story-mark">形<br />神<br />兼<br />备</div>
+      <div className="story-mark">先<br />看<br />清<br />楚</div>
       <div>
-        <p className="eyebrow">沈廣隆之道</p>
-        <h2>買得明白，<br /><em>才能保存得久。</em></h2>
-        <p>從品牌傳承、作品規格到配送與保存，我們把下單前需要知道的資訊逐項列清楚。先了解，再選擇適合自己的作品。</p>
-        <div className="hero-actions"><Link className="button button-gold" to="/pages/before-you-order">查看購買指南 <span>↗</span></Link><Link className="text-link" to="/pages/contact">聯絡諮詢</Link></div>
+        <p className="eyebrow">購買前須知</p>
+        <h2>先確認用途與條件，<br /><em>再選適合的作品。</em></h2>
+        <p>不同作品的形制、尺寸、材料、開刃狀態、庫存與配送要求各不相同。購買前請先查看商品頁與購買指南；若仍不確定，請把商品連結和收貨地區發給我們。</p>
+        <div className="hero-actions"><Link className="button button-gold" to="/pages/before-you-order">查看購買指南 <span>↗</span></Link><Link className="text-link" to="/pages/contact">提交商品諮詢</Link></div>
       </div>
     </section>
   );
