@@ -83,6 +83,8 @@ export default function Page() {
             <MasterCustomContent />
           ) : page.handle === 'before-you-order' ? (
             <BeforeYouOrderContent />
+          ) : page.handle === 'faq' ? (
+            <FaqContent />
           ) : (
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
@@ -397,6 +399,84 @@ function BeforeYouOrderContent() {
         <div className="brand-story-actions">
           <Link className="button button-gold" to="/collections">浏览商品 <span aria-hidden="true">↗</span></Link>
           <Link className="text-link" to="/pages/faq">查看常见问题 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FaqContent() {
+  const groups = [
+    {
+      label: 'PRODUCTS',
+      title: '关于商品',
+      items: [
+        ['如何判断一件商品是否适合我？', '先看商品页的用途、尺寸、重量、材料、状态和配件说明。不同作品的手感与适用场景不同；如果你仍不确定，请在下单前联系我们。'],
+        ['商品图片是否完全代表实物？', '商品图片用于展示整体外观，但天然材料、手工纹理、色泽和细节可能存在差异。具体规格以商品页和确认信息为准。'],
+        ['历史作品是否可以直接购买或复制？', '不一定。历史订制、收藏、礼仪或展览作品可能只用于展示品牌和工艺方向，不代表当前有库存或可以复制。'],
+      ],
+    },
+    {
+      label: 'AVAILABILITY & CUSTOM',
+      title: '库存与订制',
+      items: [
+        ['有库存是否代表可以马上发货？', '不一定。装配、检查、包装和目的地确认都可能影响发货时间。请以商品页或确认后的交期为准。'],
+        ['可以订制尺寸、材料或刻饰吗？', '部分需求可以讨论，但需要结合用途、工艺可行性、材料和目的地确认。请通过大师订制页面提交完整需求。'],
+        ['订制价格和交期如何确定？', '订制需要先确认器型、尺寸、材料、装具、刻饰、预算与目的地，再单独报价和确认交期，不能直接套用目录商品价格。'],
+      ],
+    },
+    {
+      label: 'PAYMENT & DELIVERY',
+      title: '支付与配送',
+      items: [
+        ['如何完成付款？', '商品加入购物车后，最终通过 Shopify Checkout 完成结账和付款。订单是否成立，以结账页面和店铺订单记录为准。'],
+        ['是否支持全球配送？', '不能一概而论。刀剑、金属制品和相关装具可能受到目的地法规、承运商和清关要求影响，请先提供收货国家或地区确认。'],
+        ['税费和清关由谁负责？', '税费、清关、退运和当地限制可能由收货方承担，具体取决于目的地、承运商和当地规则。下单前请先确认。'],
+      ],
+    },
+    {
+      label: 'CARE & AFTER SALES',
+      title: '保养与售后',
+      items: [
+        ['收到作品后应该如何保存？', '请先阅读对应商品的保养说明，避免潮湿、碰撞、长时间接触腐蚀性物质或不适当的使用环境。不同材料的护理方式可能不同。'],
+        ['发现问题应该怎么办？', '请保留订单信息、外包装和现场照片，尽快通过联系页面说明问题。我们会根据商品状态、运输情况和订单约定进一步确认。'],
+        ['可以退换货吗？', '退换条件以店铺政策和具体商品页面说明为准。订制、个性化或特殊状态商品可能有不同规则，请在付款前确认。'],
+      ],
+    },
+  ];
+
+  return (
+    <div className="faq-content">
+      <section className="faq-intro">
+        <p className="section-label">QUESTIONS, ANSWERED</p>
+        <h2>先把问题问清楚，<em>再选择下一步。</em></h2>
+        <p>这里整理购买前最常见的问题。如果答案涉及具体商品、目的地或订制规格，请以商品页、店铺政策和最终确认信息为准。</p>
+        <Link className="button button-gold" to="/pages/contact">还有问题？联系我们 <span aria-hidden="true">↗</span></Link>
+      </section>
+
+      {groups.map((group) => (
+        <section className="faq-group" key={group.label}>
+          <div className="faq-heading">
+            <p className="section-label">{group.label}</p>
+            <h2>{group.title}</h2>
+          </div>
+          <div className="faq-list">
+            {group.items.map(([question, answer]) => (
+              <details key={question}>
+                <summary>{question}<span aria-hidden="true">＋</span></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section className="faq-final">
+        <p className="section-label">NEED A SPECIFIC ANSWER?</p>
+        <h2>带上商品名称、目的地和你的用途，我们会更快帮你判断。</h2>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/pages/contact">提交咨询 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" to="/pages/before-you-order">购买前须知 <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
     </div>

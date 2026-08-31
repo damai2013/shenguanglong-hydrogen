@@ -918,6 +918,23 @@ button.reset:hover:not(:has(> *)) {
 .before-order-regulations p:not(.section-label) { color: rgba(244,241,233,.68); max-width: 41rem; }
 .before-order-regulations .text-link { color: var(--color-light); display: inline-flex; margin-top: 1rem; }
 .before-order-final h2 { max-width: 12ch; }
+.faq-content { display: grid; gap: clamp(4rem, 9vw, 8rem); }
+.faq-intro { border-bottom: 1px solid var(--color-line); padding-bottom: clamp(3rem, 7vw, 7rem); }
+.faq-intro h2 { max-width: 11ch; }
+.faq-intro > p:not(.section-label) { font-size: 1.08rem; margin-bottom: 2rem; max-width: 39rem; }
+.faq-group { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.faq-heading { display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.faq-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); max-width: 14ch; }
+.faq-list { border-top: 1px solid var(--color-line); margin-top: 3rem; }
+.faq-list details { border-bottom: 1px solid var(--color-line); }
+.faq-list summary { align-items: center; cursor: pointer; display: flex; font-size: 1.15rem; gap: 1rem; justify-content: space-between; list-style: none; padding: 1.25rem 0; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary span { color: var(--color-gold); font-size: 1.35rem; font-weight: 300; transition: transform .2s ease; }
+.faq-list details[open] summary span { transform: rotate(45deg); }
+.faq-list details p { color: rgba(36,35,30,.68); font-size: .95rem; line-height: 1.75; margin: -.25rem 3rem 1.4rem 0; max-width: 43rem; }
+.faq-final { background: var(--color-dark); color: var(--color-light); margin: 0 calc(clamp(1.5rem, 5vw, 5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem); }
+.faq-final h2 { max-width: 14ch; }
+.faq-final .text-link { color: var(--color-light); }
 @media (max-width: 45em) {
   .before-order-heading { display: block; }
   .before-order-heading h2 { max-width: none; }
@@ -926,6 +943,11 @@ button.reset:hover:not(:has(> *)) {
   .before-order-check-grid h3 { margin-top: 1.5rem; }
   .before-order-regulations { display: block; margin-left: -1.5rem; margin-right: -1.5rem; }
   .regulations-mark { margin-bottom: 2.5rem; }
+  .faq-heading { display: block; }
+  .faq-heading h2 { max-width: none; }
+  .faq-list summary { font-size: 1rem; }
+  .faq-list details p { margin-right: 0; }
+  .faq-final { margin-left: -1.5rem; margin-right: -1.5rem; }
 }
 @media (max-width: 45em) {
   .craftsmanship-section-heading { display: block; }
