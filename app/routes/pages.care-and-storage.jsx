@@ -28,11 +28,6 @@ export default function CareAndStorage() {
             <Link className="text-link" to="/pages/before-you-order">查看购买前须知 <span aria-hidden="true">↗</span></Link>
           </section>
         </main>
-        <aside className="editorial-page-aside">
-          <span className="aside-index">CARE NOTES</span>
-          <p>具体护理方法，以当前商品页和随货说明为准。</p>
-          <Link className="text-link" to="/pages/contact">咨询具体作品 <span aria-hidden="true">↗</span></Link>
-        </aside>
       </div>
     </div>
   );

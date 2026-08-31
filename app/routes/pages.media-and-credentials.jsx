@@ -27,11 +27,6 @@ export default function MediaAndCredentials() {
             <Link className="text-link" to="/pages/about-shen-guang-long">查看品牌故事 <span aria-hidden="true">↗</span></Link>
           </section>
         </main>
-        <aside className="editorial-page-aside">
-          <span className="aside-index">SOURCE FIRST</span>
-          <p>每一项公开信息，都应当经得起追溯和核对。</p>
-          <Link className="text-link" to="/pages/contact">提交资料咨询 <span aria-hidden="true">↗</span></Link>
-        </aside>
       </div>
     </div>
   );

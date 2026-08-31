@@ -110,11 +110,6 @@ export default function Page() {
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
         </main>
-        <aside className="editorial-page-aside">
-          <span className="aside-index">SHEN GUANG LONG</span>
-          <p>{intro.aside}</p>
-          <Link className="text-link" to={intro.ctaUrl}>{intro.ctaLabel} <span aria-hidden="true">↗</span></Link>
-        </aside>
       </div>
     </div>
   );

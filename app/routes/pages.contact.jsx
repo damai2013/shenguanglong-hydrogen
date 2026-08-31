@@ -50,11 +50,6 @@ export default function Contact() {
             </div>
           </section>
         </main>
-        <aside className="editorial-page-aside">
-          <span className="aside-index">START HERE</span>
-          <p>对于刀剑类作品，请在咨询时主动说明目的地和实际用途。</p>
-          <a className="text-link" href="mailto:service@shenguanglong1885.com">发送邮件 <span aria-hidden="true">↗</span></a>
-        </aside>
       </div>
     </div>
   );
