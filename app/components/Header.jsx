@@ -11,7 +11,10 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        <strong className="brand-lockup">
+          <span className="brand-mark">沈廣隆</span>
+          <span className="brand-name">SHEN GUANG LONG</span>
+        </strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -64,7 +67,37 @@ export function HeaderMenu({
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
-        return (
+        const children = item.items ?? [];
+        return children.length ? (
+          <div className="header-menu-group" key={item.id}>
+            <NavLink
+              className="header-menu-item"
+              end
+              onClick={close}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={url}
+            >
+              {item.title} <span aria-hidden="true">⌄</span>
+            </NavLink>
+            <div className="header-submenu">
+              {children.map((child) => {
+                if (!child.url) return null;
+                const childUrl =
+                  child.url.includes('myshopify.com') ||
+                  child.url.includes(publicStoreDomain) ||
+                  child.url.includes(primaryDomainUrl)
+                    ? new URL(child.url).pathname
+                    : child.url;
+                return (
+                  <NavLink key={child.id} onClick={close} prefetch="intent" to={childUrl}>
+                    {child.title}
+                  </NavLink>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
           <NavLink
             className="header-menu-item"
             end
@@ -175,36 +208,70 @@ const FALLBACK_HEADER_MENU = {
       id: 'gid://shopify/MenuItem/461609500728',
       resourceId: null,
       tags: [],
-      title: 'Collections',
+      title: 'Product Catalog',
       type: 'HTTP',
       url: '/collections',
-      items: [],
+      items: [
+        {id: 'fallback-wushu-jian', title: 'Wushu Tai Chi Sword', url: '/collections/wushu-tai-chi-sword'},
+        {id: 'fallback-wushu-dao', title: 'Wushu Tai Chi Saber', url: '/collections/wushu-tai-chi-saber'},
+        {id: 'fallback-traditional-dao', title: 'Traditional Chinese Saber', url: '/collections/traditional-chinese-saber'},
+        {id: 'fallback-traditional-jian', title: 'Traditional Chinese Sword', url: '/collections/traditional-chinese-sword'},
+        {id: 'fallback-tang-dao', title: 'Tang Dao', url: '/collections/tang-dao'},
+        {id: 'fallback-all', title: 'View All Pieces', url: '/collections/all'},
+      ],
     },
     {
       id: 'gid://shopify/MenuItem/461609533496',
       resourceId: null,
       tags: [],
-      title: 'Blog',
+      title: 'Master Custom',
+      type: 'HTTP',
+      url: '/pages/master-custom',
+      items: [],
+    },
+    {
+      id: 'fallback-craft',
+      resourceId: null,
+      tags: [],
+      title: 'Craft & Heritage',
+      type: 'HTTP',
+      url: '/pages/about-shen-guang-long',
+      items: [
+        {id: 'fallback-story', title: 'Our Story', url: '/pages/about-shen-guang-long'},
+        {id: 'fallback-craftsmanship', title: 'Craftsmanship', url: '/pages/craftsmanship'},
+        {id: 'fallback-credentials', title: 'Credentials & Media', url: '/pages/media-and-credentials'},
+      ],
+      items: [],
+    },
+    {
+      id: 'fallback-guide',
+      resourceId: 'gid://shopify/Page/92591030328',
+      tags: [],
+      title: 'Buying Guide',
+      type: 'PAGE',
+      url: '/pages/before-you-order',
+      items: [
+        {id: 'fallback-before-order', title: 'Before You Order', url: '/pages/before-you-order'},
+        {id: 'fallback-faq', title: 'Frequently Asked Questions', url: '/pages/faq'},
+        {id: 'fallback-care', title: 'Care & Storage', url: '/pages/care-and-storage'},
+      ],
+    },
+    {
+      id: 'fallback-journal',
+      resourceId: null,
+      tags: [],
+      title: 'Journal / Guide',
       type: 'HTTP',
       url: '/blogs/journal',
       items: [],
     },
     {
-      id: 'gid://shopify/MenuItem/461609566264',
+      id: 'fallback-contact',
       resourceId: null,
       tags: [],
-      title: 'Policies',
+      title: 'Contact',
       type: 'HTTP',
-      url: '/policies',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
-      tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
+      url: '/pages/contact',
       items: [],
     },
   ],

@@ -10,6 +10,30 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
       <Await resolve={footerPromise}>
         {(footer) => (
           <footer className="footer">
+            <div className="footer-inner">
+              <div className="footer-brand">
+                <span className="footer-mark">沈廣隆</span>
+                <p>Traditional blades, made with patience.<br />Since 1885 · Longquan, China</p>
+              </div>
+              <FooterColumn title="Product Catalog" links={[
+                ['All Pieces', '/collections/all'],
+                ['Tai Chi Swords', '/collections/wushu-tai-chi-sword'],
+                ['Traditional Blades', '/collections/traditional-chinese-saber'],
+                ['Tang Dao', '/collections/tang-dao'],
+              ]} />
+              <FooterColumn title="About" links={[
+                ['Our Story', '/pages/about-shen-guang-long'],
+                ['Craftsmanship', '/pages/craftsmanship'],
+                ['Credentials & Media', '/pages/media-and-credentials'],
+                ['Journal / Guide', '/blogs/journal'],
+              ]} />
+              <FooterColumn title="Customer Service" links={[
+                ['Contact Us', '/pages/contact'],
+                ['Before You Order', '/pages/before-you-order'],
+                ['FAQ', '/pages/faq'],
+                ['Care & Storage', '/pages/care-and-storage'],
+              ]} />
+            </div>
             {footer?.menu && header.shop.primaryDomain?.url && (
               <FooterMenu
                 menu={footer.menu}
@@ -17,10 +41,20 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                 publicStoreDomain={publicStoreDomain}
               />
             )}
+            <p className="footer-note">© {new Date().getFullYear()} Shen Guang Long. All rights reserved.</p>
           </footer>
         )}
       </Await>
     </Suspense>
+  );
+}
+
+function FooterColumn({title, links}) {
+  return (
+    <div className="footer-column">
+      <h3>{title}</h3>
+      {links.map(([label, url]) => <NavLink key={url} to={url} prefetch="intent">{label}</NavLink>)}
+    </div>
   );
 }
 
