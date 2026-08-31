@@ -1291,7 +1291,7 @@ button.reset:hover:not(:has(> *)) {
 .before-order-intro > p:not(.section-label) { font-size: 1.08rem; margin-bottom: 2rem; max-width: 39rem; }
 .before-order-checklist, .before-order-details, .before-order-final { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
 .before-order-heading { display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
-.before-order-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); max-width: 14em; }
+.before-order-heading h2 { font-size: clamp(1.8rem, 3.1vw, 3.2rem); max-width: 18em; }
 .before-order-check-grid { border-top: 1px solid var(--color-line); display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3rem; }
 .before-order-check-grid article { border-left: 1px solid var(--color-line); min-height: 13rem; padding: 1.2rem 1rem; }
 .before-order-check-grid article:first-child { border-left: 0; padding-left: 0; }
@@ -1326,7 +1326,8 @@ button.reset:hover:not(:has(> *)) {
 .faq-final .text-link { color: var(--color-light); }
 .contact-card { background: #e9e5da; padding: clamp(2rem, 5vw, 4rem); }
 .editorial-section { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
-.editorial-section h2 { font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; letter-spacing: -.05em; line-height: 1; margin: 0 0 1.2rem; max-width: 14em; }
+.editorial-section h2 { font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; letter-spacing: -.05em; line-height: 1; margin: 0 0 1.2rem; max-width: 14em; text-wrap: pretty; }
+.editorial-page-layout h2, .editorial-page-layout h3 { text-wrap: pretty; }
 .editorial-page-contact .editorial-section h2 { font-size: clamp(1.7rem, 7vw, 4rem); max-width: none; white-space: nowrap; }
 .editorial-section > p:not(.section-label) { color: rgba(36,35,30,.68); line-height: 1.8; max-width: 44rem; }
 .editorial-status-card { background: #e9e5da; padding: clamp(2rem, 5vw, 4rem); }
