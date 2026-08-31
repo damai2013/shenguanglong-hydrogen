@@ -1416,7 +1416,7 @@ button.reset:hover:not(:has(> *)) {
 .contact-method strong { font-size: clamp(1rem, 1.7vw, 1.35rem); font-weight: 500; overflow-wrap: anywhere; transition: color .2s ease; }
 .contact-method small, .contact-address p { color: rgba(36,35,30,.58); font-size: .76rem; line-height: 1.55; }
 .contact-method-static { cursor: default; }
-.contact-method-wechat, .contact-method-qr { align-items: center; display: grid; gap: .7rem; grid-template-columns: 5.25rem minmax(0, 1fr); justify-content: start; }
+.contact-method-wechat, .contact-method-qr { align-items: center; display: grid; gap: 1.4rem; grid-template-columns: 5.25rem minmax(0, 1fr); justify-content: start; }
 .contact-method-wechat > div, .contact-method-qr > div { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
 .contact-method-wechat img, .contact-method-qr img { background: #fff; border-radius: 0; display: block; height: 5.25rem; object-fit: contain; padding: .25rem; width: 5.25rem; }
 .contact-address { border-top: 1px solid var(--color-line); display: grid; gap: 2rem; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); margin-top: 2rem; padding-top: 1.5rem; }
