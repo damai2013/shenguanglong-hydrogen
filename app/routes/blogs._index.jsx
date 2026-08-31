@@ -50,7 +50,7 @@ async function loadCriticalData({context, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -62,22 +62,53 @@ export default function Blogs() {
     <div className="blogs editorial-journal">
       <header className="journal-hero"><p className="eyebrow">SHEN GUANG LONG · NOTES FROM THE WORKSHOP</p><h1>Journal <em>&</em><br />guides.</h1><p>Practical knowledge for choosing, practicing with, and caring for traditional blades.</p></header>
       <div className="journal-list">
-        <PaginatedResourceSection connection={blogs}>
-          {({node: blog}) => (
-            <Link
-              className="journal-card"
-              key={blog.handle}
-              prefetch="intent"
-              to={`/blogs/${blog.handle}`}
-            >
-              <span className="journal-card-number">01</span><div><h2>{blog.title}</h2><p>{blog.seo?.description || 'Read our buying guides and workshop notes.'}</p></div><span aria-hidden="true">↗</span>
-            </Link>
-          )}
-        </PaginatedResourceSection>
+        <section className="journal-topics" aria-labelledby="journal-topics-heading">
+          <div className="journal-section-heading">
+            <p className="section-label">START HERE</p>
+            <h2 id="journal-topics-heading">从基础知识开始。</h2>
+            <p>先了解工艺、用途和保存方式，再选择适合自己的作品。</p>
+          </div>
+          <div className="journal-topic-grid">
+            {JOURNAL_TOPICS.map((topic, index) => (
+              <Link className="journal-topic-card" key={topic.href} to={topic.href}>
+                <span className="journal-card-number">{String(index + 1).padStart(2, '0')}</span>
+                <div><h3>{topic.title}</h3><p>{topic.description}</p></div>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+        {blogs?.nodes?.length ? (
+          <section className="journal-published" aria-labelledby="journal-published-heading">
+            <div className="journal-section-heading">
+              <p className="section-label">PUBLISHED NOTES</p>
+              <h2 id="journal-published-heading">工作室文章。</h2>
+            </div>
+            <PaginatedResourceSection connection={blogs}>
+              {({node: blog}) => (
+                <Link
+                  className="journal-card"
+                  key={blog.handle}
+                  prefetch="intent"
+                  to={`/blogs/${blog.handle}`}
+                >
+                  <span className="journal-card-number">01</span><div><h2>{blog.title}</h2><p>{blog.seo?.description || 'Read our buying guides and workshop notes.'}</p></div><span aria-hidden="true">↗</span>
+                </Link>
+              )}
+            </PaginatedResourceSection>
+          </section>
+        ) : null}
       </div>
     </div>
   );
 }
+
+const JOURNAL_TOPICS = [
+  {title: '工艺与传承', description: '从选材、锻造到检查，看懂一件作品如何完成。', href: '/pages/craftsmanship'},
+  {title: '购买前须知', description: '确认用途、规格、配送和目的地要求。', href: '/pages/before-you-order'},
+  {title: '保养与保存', description: '了解传统刀剑和金属作品的基础保存原则。', href: '/pages/care-and-storage'},
+  {title: '常见问题', description: '集中查看商品、定制、配送和购买相关问题。', href: '/pages/faq'},
+];
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog
 const BLOGS_QUERY = `#graphql
