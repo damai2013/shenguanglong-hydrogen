@@ -11,6 +11,19 @@
   --color-line: rgba(36, 35, 30, 0.18);
 }
 
+body {
+  background: #d9d5ca;
+}
+
+.site-shell {
+  background: var(--color-light);
+  box-shadow: 0 0 42px rgba(36, 35, 30, 0.1);
+  margin: 0 auto;
+  max-width: 1440px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 img {
   border-radius: 4px;
 }
