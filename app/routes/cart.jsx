@@ -6,7 +6,7 @@ import {CartMain} from '~/components/CartMain';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Hydrogen | Cart`}];
+  return [{title: `沈廣隆 | 購物車`}];
 };
 
 /**
@@ -113,7 +113,7 @@ export default function Cart() {
 
   return (
     <div className="cart">
-      <h1>Cart</h1>
+        <h1>購物車</h1>
       <CartMain layout="page" cart={cart} />
     </div>
   );

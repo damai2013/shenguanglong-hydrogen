@@ -47,12 +47,12 @@ export function CartMain({layout, cart: originalCart}) {
   return (
     <section
       className={className}
-      aria-label={layout === 'page' ? 'Cart page' : 'Cart drawer'}
+      aria-label={layout === 'page' ? '購物車頁面' : '購物車側欄'}
     >
       <CartEmpty hidden={linesCount} layout={layout} />
       <div className="cart-details">
         <p id="cart-lines" className="sr-only">
-          Line items
+        商品項目
         </p>
         <div>
           <ul aria-labelledby="cart-lines">
@@ -93,12 +93,11 @@ function CartEmpty({hidden = false}) {
     <div hidden={hidden}>
       <br />
       <p>
-        Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
-        started!
+        購物車目前是空的，先去看看我們的作品吧。
       </p>
       <br />
       <Link to="/collections" onClick={close} prefetch="viewport">
-        Continue shopping →
+        繼續購物 →
       </Link>
     </div>
   );

@@ -115,7 +115,7 @@ export default function Product() {
       <div className="product-buy-grid">
         <ProductGallery product={product} selectedVariant={selectedVariant} />
         <div className="product-main">
-        <p className="eyebrow">TRADITIONAL BLADE</p>
+        <p className="eyebrow">傳統刀劍</p>
         <h1>{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
@@ -128,8 +128,8 @@ export default function Product() {
         />
         <br />
         <br />
-        <div className="product-description"><p className="description-label">THE PIECE</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
-        <div className="product-notes"><div><span>Origin</span><strong>Longquan, China</strong></div><div><span>Finishing</span><strong>Hand finished</strong></div><div><span>Dispatch</span><strong>See buying guide</strong></div></div>
+        <div className="product-description"><p className="description-label">作品介紹</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
+        <div className="product-notes"><div><span>產地</span><strong>中國龍泉</strong></div><div><span>工藝</span><strong>手工完成</strong></div><div><span>交付</span><strong>請參閱購買指南</strong></div></div>
         <ProductDetailSections />
         <br />
         </div>
@@ -165,15 +165,15 @@ function ProductRecommendations({products}) {
   if (!products?.length) {
     return (
       <section className="product-recommendations product-recommendations-empty">
-        <div><p className="section-label">CONTINUE EXPLORING</p><h2>从商品目录继续寻找适合你的作品。</h2></div>
-        <Link className="text-link" to="/collections">浏览全部商品 <span aria-hidden="true">↗</span></Link>
+        <div><p className="section-label">繼續探索</p><h2>從商品目錄繼續尋找適合你的作品。</h2></div>
+        <Link className="text-link" to="/collections">瀏覽全部商品 <span aria-hidden="true">↗</span></Link>
       </section>
     );
   }
 
   return (
     <section className="product-recommendations">
-      <div className="product-recommendations-heading"><p className="section-label">CONTINUE EXPLORING</p><h2>你可能也会喜欢。</h2></div>
+      <div className="product-recommendations-heading"><p className="section-label">繼續探索</p><h2>你可能也會喜歡。</h2></div>
       <div className="product-recommendations-grid">
         {products.slice(0, 4).map((recommendedProduct) => <ProductItem key={recommendedProduct.id} product={recommendedProduct} loading="lazy" />)}
       </div>
@@ -185,33 +185,33 @@ function ProductDetailSections() {
   return (
     <div className="product-detail-sections">
       <details open>
-        <summary>规格与购买说明 <span aria-hidden="true">＋</span></summary>
+        <summary>規格與購買說明 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>请以当前商品页显示的尺寸、重量、材料、配件、库存和状态为准。不同商品的用途与手感不同，图片不能代替规格信息。</p>
-          <p>如果当前页面没有列出你需要的规格，请在结账前联系我们确认，不要仅凭图片判断是否适合。</p>
-          <Link className="product-detail-cta" to="/pages/contact">咨询商品规格 <span aria-hidden="true">↗</span></Link>
+          <p>請以當前商品頁顯示的尺寸、重量、材料、配件、庫存和狀態為準。不同商品的用途與手感不同，圖片不能代替規格資訊。</p>
+          <p>如果當前頁面沒有列出你需要的規格，請在結帳前聯絡我們確認，不要僅憑圖片判斷是否適合。</p>
+          <Link className="product-detail-cta" to="/pages/contact">諮詢商品規格 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
       <details>
         <summary>配送、目的地与合规 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>现货、补货和订制作品的交期可能不同。刀剑类商品的运输、进口和持有要求会因目的地而不同。</p>
-          <p>请在付款前确认目的地规则、运输方式和交付条件；需要确认时，请提供国家/地区和商品链接。</p>
-          <Link className="product-detail-cta" to="/pages/before-you-order">查看购买前须知 <span aria-hidden="true">↗</span></Link>
+          <p>現貨、補貨和訂製作品的交期可能不同。刀劍類商品的運輸、進口和持有要求會因目的地而不同。</p>
+          <p>請在付款前確認目的地規則、運輸方式和交付條件；需要確認時，請提供國家／地區和商品連結。</p>
+          <Link className="product-detail-cta" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
       <details>
-        <summary>保养与保存 <span aria-hidden="true">＋</span></summary>
+        <summary>保養與保存 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>请保持干燥，避免碰撞、潮湿和长时间接触腐蚀性物质。天然材料与手工表面需要按照具体商品的说明进行保存。</p>
-          <p>如果你不确定某种护理方式是否适合这件作品，请先提供订单信息和商品照片，再向我们咨询。</p>
+          <p>請保持乾燥，避免碰撞、潮濕和長時間接觸腐蝕性物質。天然材料與手工表面需要按照具體商品的說明進行保存。</p>
+          <p>如果你不確定某種護理方式是否適合這件作品，請先提供訂單資訊和商品照片，再向我們諮詢。</p>
         </div>
       </details>
       <details>
-        <summary>评论与使用反馈 <span aria-hidden="true">＋</span></summary>
+        <summary>評論與使用回饋 <span aria-hidden="true">＋</span></summary>
         <div className="product-review-empty">
           <span className="review-mark">00</span>
-          <div><strong>暂无已发布评论</strong><p>目前不展示未经确认的评分或评论。真实购买反馈接入后，会在这里显示。</p></div>
+          <div><strong>暫無已發布評論</strong><p>目前不展示未經確認的評分或評論。真實購買回饋接入後，會在這裡顯示。</p></div>
         </div>
       </details>
     </div>
@@ -225,7 +225,7 @@ function ProductGallery({product, selectedVariant}) {
 
   return (
     <div className="product-gallery">
-      <p className="eyebrow">SHEN GUANG LONG · LONGQUAN</p>
+      <p className="eyebrow">沈廣隆 · 龍泉</p>
       <div className="gallery-main">
         <ProductImage image={activeImage} />
         {images.length > 1 ? (
@@ -245,7 +245,7 @@ function ProductGallery({product, selectedVariant}) {
           ))}
         </div>
       ) : null}
-      <p className="gallery-caption">Each piece is finished by hand. Variations in grain, patina, and balance are part of its character.</p>
+      <p className="gallery-caption">每件作品均以手工完成。紋理、包漿與平衡感的差異，正是作品獨有的性格。</p>
     </div>
   );
 }

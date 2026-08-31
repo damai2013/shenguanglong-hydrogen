@@ -51,7 +51,7 @@ export function HeaderMenu({
           style={activeLinkStyle}
           to="/"
         >
-          Home
+          首頁
         </NavLink>
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
@@ -132,9 +132,9 @@ function HeaderCtas({isLoggedIn, cart}) {
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+        <Suspense fallback="登入">
+          <Await resolve={isLoggedIn} errorElement="登入">
+            {(isLoggedIn) => (isLoggedIn ? '帳戶' : '登入')}
           </Await>
         </Suspense>
       </NavLink>
@@ -160,7 +160,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      搜尋
     </button>
   );
 }
@@ -186,7 +186,7 @@ function CartBadge({count}) {
         });
       }}
     >
-      Cart <span aria-label={`(items: ${count})`}>{count}</span>
+      購物車 <span aria-label={`（商品數量：${count}）`}>{count}</span>
     </a>
   );
 }
@@ -211,19 +211,17 @@ function CartBanner() {
 }
 
 const CATALOG_SUBMENU = [
-  {id: 'catalog-practice', title: 'Tai Chi & Wushu Practice', url: '/collections/tai-chi-practice'},
-  {id: 'catalog-tai-chi-sword', title: 'Tai Chi Swords', url: '/collections/tai-chi-swords'},
-  {id: 'catalog-tai-chi-saber', title: 'Tai Chi Sabers', url: '/collections/tai-chi-sabers'},
-  {id: 'catalog-tang-sword', title: 'Tang Swords', url: '/collections/tang-jian'},
-  {id: 'catalog-han-sword', title: 'Han Swords', url: '/collections/han-jian'},
-  {id: 'catalog-chinese-sword', title: 'Chinese Swords', url: '/collections/chinese-jian'},
-  {id: 'catalog-chinese-saber', title: 'Chinese Sabers', url: '/collections/chinese-dao'},
-  {id: 'catalog-tang-dao', title: 'Tang Dao', url: '/collections/tang-dao'},
-  {id: 'catalog-yanling-dao', title: 'Yanling Dao', url: '/collections/yanling-dao'},
-  {id: 'catalog-xiuchun-dao', title: 'Xiuchun Dao', url: '/collections/xiuchun-dao'},
-  {id: 'catalog-han-jian', title: 'Han Swords', url: '/collections/han-jian'},
-  {id: 'catalog-tang-jian', title: 'Tang Swords', url: '/collections/tang-jian'},
-  {id: 'catalog-new', title: 'New Arrivals', url: '/collections/new-2025'},
+  {id: 'catalog-practice', title: '太極與練習器械', url: '/collections/tai-chi-practice'},
+  {id: 'catalog-tai-chi-sword', title: '太極劍', url: '/collections/tai-chi-swords'},
+  {id: 'catalog-tai-chi-saber', title: '太極刀', url: '/collections/tai-chi-sabers'},
+  {id: 'catalog-tang-sword', title: '唐劍', url: '/collections/tang-jian'},
+  {id: 'catalog-han-sword', title: '漢劍', url: '/collections/han-jian'},
+  {id: 'catalog-chinese-sword', title: '中國劍', url: '/collections/chinese-jian'},
+  {id: 'catalog-chinese-saber', title: '中國刀', url: '/collections/chinese-dao'},
+  {id: 'catalog-tang-dao', title: '唐刀', url: '/collections/tang-dao'},
+  {id: 'catalog-yanling-dao', title: '雁翎刀', url: '/collections/yanling-dao'},
+  {id: 'catalog-xiuchun-dao', title: '繡春刀', url: '/collections/xiuchun-dao'},
+  {id: 'catalog-new', title: '新品', url: '/collections/new-2025'},
 ];
 
 const FALLBACK_HEADER_MENU = {
@@ -233,19 +231,19 @@ const FALLBACK_HEADER_MENU = {
       id: 'gid://shopify/MenuItem/461609500728',
       resourceId: null,
       tags: [],
-      title: 'Product Catalog',
+      title: '商品目錄',
       type: 'HTTP',
       url: '/collections/all',
       items: [
         ...CATALOG_SUBMENU,
-        {id: 'fallback-all', title: 'View All Pieces', url: '/collections/all'},
+        {id: 'fallback-all', title: '全部作品', url: '/collections/all'},
       ],
     },
     {
       id: 'gid://shopify/MenuItem/461609533496',
       resourceId: null,
       tags: [],
-      title: 'Master Custom',
+      title: '大師訂製',
       type: 'HTTP',
       url: '/pages/master-custom',
       items: [],
@@ -254,33 +252,33 @@ const FALLBACK_HEADER_MENU = {
       id: 'fallback-craft',
       resourceId: null,
       tags: [],
-      title: 'Craft & Heritage',
+      title: '工藝與傳承',
       type: 'HTTP',
       url: '/pages/about-shen-guang-long',
       items: [
-        {id: 'fallback-story', title: 'Our Story', url: '/pages/about-shen-guang-long'},
-        {id: 'fallback-craftsmanship', title: 'Craftsmanship', url: '/pages/craftsmanship'},
-        {id: 'fallback-credentials', title: 'Credentials & Media', url: '/pages/media-and-credentials'},
+        {id: 'fallback-story', title: '品牌故事', url: '/pages/about-shen-guang-long'},
+        {id: 'fallback-craftsmanship', title: '工藝介紹', url: '/pages/craftsmanship'},
+        {id: 'fallback-credentials', title: '資料與媒體', url: '/pages/media-and-credentials'},
       ],
     },
     {
       id: 'fallback-guide',
       resourceId: 'gid://shopify/Page/92591030328',
       tags: [],
-      title: 'Buying Guide',
+      title: '購買指南',
       type: 'PAGE',
       url: '/pages/before-you-order',
       items: [
-        {id: 'fallback-before-order', title: 'Before You Order', url: '/pages/before-you-order'},
-        {id: 'fallback-faq', title: 'Frequently Asked Questions', url: '/pages/faq'},
-        {id: 'fallback-care', title: 'Care & Storage', url: '/pages/care-and-storage'},
+        {id: 'fallback-before-order', title: '購買前須知', url: '/pages/before-you-order'},
+        {id: 'fallback-faq', title: '常見問題', url: '/pages/faq'},
+        {id: 'fallback-care', title: '保養與保存', url: '/pages/care-and-storage'},
       ],
     },
     {
       id: 'fallback-journal',
       resourceId: null,
       tags: [],
-      title: 'Journal / Guide',
+      title: '文章與指南',
       type: 'HTTP',
       url: '/blogs',
       items: [],
@@ -289,7 +287,7 @@ const FALLBACK_HEADER_MENU = {
       id: 'fallback-contact',
       resourceId: null,
       tags: [],
-      title: 'Contact',
+      title: '聯絡諮詢',
       type: 'HTTP',
       url: '/pages/contact',
       items: [],

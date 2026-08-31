@@ -77,8 +77,8 @@ export default function Collection() {
 
   return (
     <div className="collection collection-detail">
-      <div className="collection-detail-intro"><p className="eyebrow">COLLECTION · SHEN GUANG LONG</p><h1>{collection.title}<em>.</em></h1><p className="collection-description">{collection.description || 'A considered selection of traditional blades from our workshop in Longquan.'}</p></div>
-      <div className="listing-bar"><span>Selected works</span><span>Handmade in Longquan ↓</span></div>
+      <div className="collection-detail-intro"><p className="eyebrow">作品分類 · 沈廣隆</p><h1>{collection.title}<em>。</em></h1><p className="collection-description">{collection.description || '來自龍泉工作室的傳統刀劍精選作品。'}</p></div>
+      <div className="listing-bar"><span>精選作品</span><span>龍泉手工製作 ↓</span></div>
       <PaginatedResourceSection
         connection={collection.products}
         resourcesClassName="products-grid"

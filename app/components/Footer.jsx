@@ -13,25 +13,25 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
             <div className="footer-inner">
               <div className="footer-brand">
                 <img className="footer-logo" src="/assets/shenguanglong-logo.png" alt="沈廣隆 SHENGUANGLONG" width="180" height="36" />
-                <p>Traditional blades, made with patience.<br />Since 1885 · Longquan, China</p>
+                <p>以耐心打造傳統刀劍。<br />始於 1885 · 中國龍泉</p>
               </div>
-              <FooterColumn title="Product Catalog" links={[
-                ['All Pieces', '/collections/all'],
-                ['Tai Chi Swords', '/collections/tai-chi-swords'],
-                ['Traditional Blades', '/collections/traditional-chinese-saber'],
-                ['Tang Dao', '/collections/tang-dao'],
+              <FooterColumn title="商品目錄" links={[
+                ['全部作品', '/collections/all'],
+                ['太極劍', '/collections/tai-chi-swords'],
+                ['中國傳統刀劍', '/collections/traditional-chinese-saber'],
+                ['唐刀', '/collections/tang-dao'],
               ]} />
-              <FooterColumn title="About" links={[
-                ['Our Story', '/pages/about-shen-guang-long'],
-                ['Craftsmanship', '/pages/craftsmanship'],
-                ['Credentials & Media', '/pages/media-and-credentials'],
-                ['Journal / Guide', '/blogs'],
+              <FooterColumn title="關於沈廣隆" links={[
+                ['品牌故事', '/pages/about-shen-guang-long'],
+                ['工藝與傳承', '/pages/craftsmanship'],
+                ['資料與媒體', '/pages/media-and-credentials'],
+                ['文章與指南', '/blogs'],
               ]} />
-              <FooterColumn title="Customer Service" links={[
-                ['Contact Us', '/pages/contact'],
-                ['Before You Order', '/pages/before-you-order'],
-                ['FAQ', '/pages/faq'],
-                ['Care & Storage', '/pages/care-and-storage'],
+              <FooterColumn title="客戶服務" links={[
+                ['聯絡諮詢', '/pages/contact'],
+                ['購買前須知', '/pages/before-you-order'],
+                ['常見問題', '/pages/faq'],
+                ['保養與保存', '/pages/care-and-storage'],
               ]} />
             </div>
             {footer?.menu && header.shop.primaryDomain?.url && (

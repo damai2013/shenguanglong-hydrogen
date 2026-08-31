@@ -7,7 +7,7 @@ import {ProductItem} from '~/components/ProductItem';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Shen Guang Long | All Pieces`}];
+  return [{title: `沈廣隆｜全部作品`}];
 };
 
 /**
@@ -59,8 +59,8 @@ export default function Collection() {
 
   return (
     <div className="collection catalog-listing">
-      <div className="listing-intro"><p className="eyebrow">SHEN GUANG LONG · EST. 1885</p><h1>All <em>pieces</em>.</h1><p>Explore the current collection of traditional blades, practice weapons, and objects from the Longquan workshop.</p></div>
-      <div className="listing-bar"><span>Showing the workshop archive</span><span>Scroll to explore ↓</span></div>
+      <div className="listing-intro"><p className="eyebrow">SHEN GUANG LONG · 始於 1885</p><h1>全部<em>作品</em>。</h1><p>探索來自龍泉工作室的傳統刀劍、練習器械與工藝器物。</p></div>
+      <div className="listing-bar"><span>工作室作品檔案</span><span>向下探索 ↓</span></div>
       <PaginatedResourceSection
         connection={products}
         resourcesClassName="products-grid"

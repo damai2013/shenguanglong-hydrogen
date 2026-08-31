@@ -52,13 +52,13 @@ export default function Collections() {
   return (
     <div className="collections catalog-landing">
       <section className="catalog-intro">
-        <p className="eyebrow">THE COLLECTION · LONGQUAN, CHINA</p>
-        <h1>Objects of <em>practice</em><br />and inheritance.</h1>
-        <p className="catalog-lede">Traditional swords, sabers, and training weapons shaped by the hand of the maker—and chosen for the hand of the practitioner.</p>
-        <Link className="button button-dark" to="/collections/all">View all pieces <span aria-hidden="true">↗</span></Link>
+        <p className="eyebrow">作品選集 · 中國龍泉</p>
+        <h1>為練習與<em>傳承</em><br />而作的器物。</h1>
+        <p className="catalog-lede">由匠人親手完成的傳統劍、刀與練習器械，為實際使用者的手感與用途而選。</p>
+        <Link className="button button-dark" to="/collections/all">查看全部作品 <span aria-hidden="true">↗</span></Link>
       </section>
       <section className="catalog-featured" aria-labelledby="catalog-featured-heading">
-        <div className="section-heading"><div><p className="eyebrow">BY DISCIPLINE</p><h2 id="catalog-featured-heading">Find your <em>blade</em>.</h2></div><span className="catalog-count">01 — 06</span></div>
+        <div className="section-heading"><div><p className="eyebrow">依用途選擇</p><h2 id="catalog-featured-heading">找到適合你的<em>刀劍</em>。</h2></div><span className="catalog-count">01 — 06</span></div>
         <div className="catalog-category-grid">
           {FEATURED_CATEGORIES.map((category, index) => (
             <Link className="catalog-category-card" key={category.handle} to={`/collections/${category.handle}`}>
@@ -68,15 +68,15 @@ export default function Collections() {
         </div>
       </section>
       <section className="catalog-paths" aria-labelledby="catalog-paths-heading">
-        <div className="section-heading"><div><p className="eyebrow">CHOOSE YOUR PATH</p><h2 id="catalog-paths-heading">从用途开始选择。</h2></div><span className="catalog-count">02 — 03</span></div>
+        <div className="section-heading"><div><p className="eyebrow">選擇你的路徑</p><h2 id="catalog-paths-heading">從用途開始選擇。</h2></div><span className="catalog-count">02 — 03</span></div>
         <div className="catalog-path-grid">
-          <Link className="catalog-path-card" to="/collections/all"><span>01</span><div><h3>我已经知道要找什么</h3><p>直接浏览全部商品，按实际商品页确认规格与库存。</p></div><b aria-hidden="true">↗</b></Link>
-          <Link className="catalog-path-card" to="/pages/before-you-order"><span>02</span><div><h3>我想先了解购买规则</h3><p>先确认用途、状态、配送和目的地要求。</p></div><b aria-hidden="true">↗</b></Link>
-          <Link className="catalog-path-card" to="/pages/master-custom"><span>03</span><div><h3>我想讨论一件订制作品</h3><p>从用途、尺寸、材料、预算和目的地开始咨询。</p></div><b aria-hidden="true">↗</b></Link>
+          <Link className="catalog-path-card" to="/collections/all"><span>01</span><div><h3>我已經知道要找什麼</h3><p>直接瀏覽全部商品，按實際商品頁確認規格與庫存。</p></div><b aria-hidden="true">↗</b></Link>
+          <Link className="catalog-path-card" to="/pages/before-you-order"><span>02</span><div><h3>我想先了解購買規則</h3><p>先確認用途、狀態、配送和目的地要求。</p></div><b aria-hidden="true">↗</b></Link>
+          <Link className="catalog-path-card" to="/pages/master-custom"><span>03</span><div><h3>我想討論一件訂製作品</h3><p>從用途、尺寸、材料、預算和目的地開始諮詢。</p></div><b aria-hidden="true">↗</b></Link>
         </div>
       </section>
       <section className="catalog-all-collections" aria-labelledby="all-collections-heading">
-        <div className="section-heading"><div><p className="eyebrow">THE FULL ARCHIVE</p><h2 id="all-collections-heading">All collections</h2></div></div>
+        <div className="section-heading"><div><p className="eyebrow">完整作品檔案</p><h2 id="all-collections-heading">全部分類</h2></div></div>
       <PaginatedResourceSection
         connection={collections}
         resourcesClassName="collections-grid"
@@ -95,12 +95,12 @@ export default function Collections() {
 }
 
 const FEATURED_CATEGORIES = [
-  {handle: 'tai-chi-swords', title: 'Tai Chi Swords', subtitle: 'For movement, balance, and daily practice.'},
-  {handle: 'tai-chi-sabers', title: 'Tai Chi Sabers', subtitle: 'A responsive curve for open-hand forms.'},
-  {handle: 'chinese-jian', title: 'Chinese Swords', subtitle: 'A lineage of straight blades.'},
-  {handle: 'chinese-dao', title: 'Chinese Sabers', subtitle: 'Power, structure, and a single edge.'},
-  {handle: 'tang-dao', title: 'Tang Dao', subtitle: 'The long arc of the Tang tradition.'},
-  {handle: 'new-2025', title: 'New Arrivals', subtitle: 'The latest work from the workshop.'},
+  {handle: 'tai-chi-swords', title: '太極劍', subtitle: '適合動作、平衡與日常練習。'},
+  {handle: 'tai-chi-sabers', title: '太極刀', subtitle: '為徒手套路而設的靈活刀形。'},
+  {handle: 'chinese-jian', title: '中國劍', subtitle: '承襲直身劍的形制與脈絡。'},
+  {handle: 'chinese-dao', title: '中國刀', subtitle: '力量、結構與單刃之美。'},
+  {handle: 'tang-dao', title: '唐刀', subtitle: '延續唐代傳統的長弧形制。'},
+  {handle: 'new-2025', title: '新品', subtitle: '工作室近期完成的作品。'},
 ];
 
 /**
