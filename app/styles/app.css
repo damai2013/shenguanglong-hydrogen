@@ -300,6 +300,16 @@ button.reset:hover:not(:has(> *)) {
 .recommended-products-grid .product-item h4, .recommended-products-grid .product-item small { display: block; padding-left: 1rem; padding-right: 1rem; }
 .recommended-products-grid .product-item h4 { font-size: .9rem; font-weight: 500; margin: 1rem 0 .35rem; }
 .recommended-products-grid .product-item small { color: rgba(36,35,30,.62); }
+.home-guides { background: #e9e5da; border-top: 1px solid var(--color-line); display: grid; gap: clamp(2.5rem, 6vw, 6rem); grid-template-columns: minmax(12rem, 1fr) 2fr; margin-top: 2rem; padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 5rem); }
+.home-guides-heading h2 { font-size: clamp(2.3rem, 4.2vw, 4.2rem); font-weight: 400; letter-spacing: -.055em; line-height: .95; margin: 0; max-width: 8ch; }
+.home-guides-heading h2 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; }
+.home-guides-grid { border-top: 1px solid var(--color-line); }
+.home-guide-card { align-items: center; border-bottom: 1px solid var(--color-line); color: var(--color-ink); display: grid; gap: 1rem; grid-template-columns: 2rem 1fr auto; min-height: 6.8rem; padding: .75rem 0; text-decoration: none; transition: background .2s ease, padding .2s ease; }
+.home-guide-card:hover { background: rgba(244,241,233,.65); padding-left: .8rem; padding-right: .8rem; }
+.home-guide-card > span { color: var(--color-gold); font-family: Georgia, serif; font-size: .9rem; }
+.home-guide-card h3 { font-size: 1.1rem; font-weight: 500; margin: 0 0 .3rem; }
+.home-guide-card p { color: rgba(36,35,30,.62); font-size: .82rem; line-height: 1.45; margin: 0; }
+.home-guide-card b { color: var(--color-gold); font-size: 1.2rem; font-weight: 400; }
 .craft-story { background: #24231e; color: var(--color-light); display: grid; gap: 3rem; grid-template-columns: 1fr 2fr; margin-top: 2rem; padding: clamp(4rem, 9vw, 9rem) clamp(1.5rem, 14vw, 14rem); }
 .story-mark { color: var(--color-gold); font-family: serif; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.05; opacity: .9; }
 .craft-story h2 { font-size: clamp(2.4rem, 5vw, 5.2rem); font-weight: 400; letter-spacing: -.055em; line-height: .95; margin: 0 0 2rem; }
@@ -316,6 +326,8 @@ button.reset:hover:not(:has(> *)) {
   .recommended-products-grid { grid-template-columns: repeat(2, 1fr); }
   .craft-story { gap: 2rem; grid-template-columns: 1fr; padding: 4rem 1.5rem 5rem; }
   .story-mark { font-size: 3rem; }
+  .home-guides { display: block; }
+  .home-guides-grid { margin-top: 3rem; }
 }
 
 .header-menu-mobile-toggle {

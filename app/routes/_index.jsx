@@ -77,6 +77,7 @@ export default function Homepage() {
       <Hero collection={data.featuredCollection} />
       <CraftPillars />
       <RecommendedProducts products={data.recommendedProducts} />
+      <HomeGuides />
       <CraftStory />
     </div>
   );
@@ -88,7 +89,7 @@ function Hero({collection}) {
   return (
     <section className="home-hero">
       <div className="hero-copy">
-        <p className="eyebrow">EST. 2013 · SHEN GUANG LONG</p>
+        <p className="eyebrow">SINCE 1885 · SHEN GUANG LONG</p>
         <h1>Blades with<br /><em>a living soul.</em></h1>
         <p className="hero-intro">
           Traditional Chinese blades and objects of quiet strength, shaped by
@@ -191,7 +192,34 @@ function CraftStory() {
         <p className="eyebrow">THE SHEN GUANG LONG WAY</p>
         <h2>Not made for a moment.<br /><em>Made for a lifetime.</em></h2>
         <p>We believe an object becomes meaningful through time: the weight in the hand, the marks of use, the stories it gathers. Our work begins with respect for the old ways and ends with something unmistakably yours.</p>
-        <Link className="text-link" to="/pages/about">Discover our story <span>↗</span></Link>
+        <Link className="text-link" to="/pages/about-shen-guang-long">Discover our story <span>↗</span></Link>
+      </div>
+    </section>
+  );
+}
+
+function HomeGuides() {
+  const guides = [
+    ['01', '品牌故事', '了解家族制剑传承与今天的工作台。', '/pages/about-shen-guang-long'],
+    ['02', '工艺与传承', '从选材到检查，看懂一件作品如何完成。', '/pages/craftsmanship'],
+    ['03', '大师订制', '从用途、规格和目的地开始一次清楚的沟通。', '/pages/master-custom'],
+    ['04', '购买前须知', '先确认用途、规格、配送与目的地要求。', '/pages/before-you-order'],
+  ];
+
+  return (
+    <section className="home-guides" aria-labelledby="home-guides-title">
+      <div className="home-guides-heading">
+        <p className="eyebrow">A CLEAR PATH</p>
+        <h2 id="home-guides-title">从了解开始，<em>再做选择。</em></h2>
+      </div>
+      <div className="home-guides-grid">
+        {guides.map(([number, title, text, url]) => (
+          <Link className="home-guide-card" key={number} to={url}>
+            <span>{number}</span>
+            <div><h3>{title}</h3><p>{text}</p></div>
+            <b aria-hidden="true">↗</b>
+          </Link>
+        ))}
       </div>
     </section>
   );
