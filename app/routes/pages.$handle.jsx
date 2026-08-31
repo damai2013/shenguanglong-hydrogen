@@ -77,6 +77,8 @@ export default function Page() {
         <main className="editorial-page-content">
           {page.handle === 'about-shen-guang-long' ? (
             <BrandStoryContent />
+          ) : page.handle === 'craftsmanship' ? (
+            <CraftsmanshipContent />
           ) : (
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
@@ -172,6 +174,79 @@ function BrandStoryContent() {
         <div className="brand-story-actions">
           <Link className="button button-gold" to="/collections">查看作品 <span aria-hidden="true">↗</span></Link>
           <Link className="text-link" to="/pages/craftsmanship">了解工艺 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CraftsmanshipContent() {
+  const steps = [
+    ['01', '选材', '先确认材料、尺寸与用途，再决定一件作品应该从哪里开始。'],
+    ['02', '锻造', '通过反复锻打让材料逐渐形成需要的形态，也让匠人认识它的状态。'],
+    ['03', '整形', '校正比例、线条与重心，让作品从“成形”走向可使用的结构。'],
+    ['04', '热处理', '根据实际材料和工艺要求完成热处理，并检查形态与状态。'],
+    ['05', '打磨', '逐步处理表面、刃线与细节，使手感、光泽和轮廓保持统一。'],
+    ['06', '刻饰', '装饰服务于整体气质与识别，不用装饰掩盖材料或工艺本身。'],
+    ['07', '装配', '将剑身、装具、剑鞘及相关部件组合，重新检查比例和配合。'],
+    ['08', '检查', '在交付前核对外观、结构、规格和随件说明，确认它与商品页一致。'],
+  ];
+
+  return (
+    <div className="craftsmanship-content">
+      <section className="craftsmanship-intro">
+        <p className="section-label">FROM MATERIAL TO OBJECT</p>
+        <h2>工艺的价值，<em>藏在每一次判断里。</em></h2>
+        <p>传统工艺不是一句“手工制作”就能说明白。对一件刀剑作品来说，材料、比例、热处理、表面处理与装配，每一步都会影响最后的手感、外观与保存方式。</p>
+      </section>
+
+      <section className="craftsmanship-flow">
+        <div className="craftsmanship-section-heading">
+          <p className="section-label">THE WORKFLOW</p>
+          <h2>从工作台开始，直到交付。</h2>
+        </div>
+        <div className="craft-step-grid">
+          {steps.map(([number, title, text]) => (
+            <article className="craft-step" key={number}>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="craftsmanship-inspection">
+        <div className="inspection-mark">手<br />作</div>
+        <div>
+          <p className="section-label">WHAT THE MAKER LOOKS FOR</p>
+          <h2>不是把每件作品做得一模一样，而是让它符合自己的用途。</h2>
+          <div className="inspection-points">
+            <p><strong>比例</strong><br />尺寸、线条与装具之间应当形成完整关系。</p>
+            <p><strong>平衡</strong><br />不同用途对应不同的重量与握持感，具体以商品规格为准。</p>
+            <p><strong>细节</strong><br />手工作品会有纹理、色泽与细部差异，这些差异需要被如实说明。</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="craftsmanship-boundary">
+        <div className="craftsmanship-section-heading">
+          <p className="section-label">A CLEAR BOUNDARY</p>
+          <h2>历史作品与当代商品，各自有自己的位置。</h2>
+        </div>
+        <div className="boundary-copy">
+          <p>历史订制、收藏、礼仪或展览作品，用来展示品牌经历和工艺方向，不代表当前有库存，也不自动代表可以复制。</p>
+          <p>当前可售商品以 Shopify 商品目录为准。商品页会逐项说明图片、规格、状态、交期和适用的购买前须知；不确定时，请先联系我们。</p>
+          <Link className="text-link" to="/pages/before-you-order">查看购买前须知 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+
+      <section className="craftsmanship-next">
+        <p className="section-label">CONTINUE EXPLORING</p>
+        <h2>看见工艺之后，再选择适合你的作品。</h2>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/collections">浏览作品 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" to="/pages/master-custom">大师订制 <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
     </div>

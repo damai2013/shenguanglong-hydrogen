@@ -848,6 +848,40 @@ button.reset:hover:not(:has(> *)) {
   .principle-list { margin-top: 3rem; }
   .timeline-item { gap: 1rem; grid-template-columns: 4rem 1fr; }
 }
+.craftsmanship-content { display: grid; gap: clamp(4rem, 9vw, 8rem); }
+.craftsmanship-intro { border-bottom: 1px solid var(--color-line); padding-bottom: clamp(3rem, 7vw, 7rem); }
+.craftsmanship-intro h2 { max-width: 11ch; }
+.craftsmanship-intro > p:last-child { font-size: 1.08rem; max-width: 38rem; }
+.craftsmanship-flow, .craftsmanship-boundary { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.craftsmanship-section-heading { display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.craftsmanship-section-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); max-width: 14ch; }
+.craft-step-grid { border-top: 1px solid var(--color-line); display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 3rem; }
+.craft-step { border-bottom: 1px solid var(--color-line); border-left: 1px solid var(--color-line); min-height: 13rem; padding: 1.2rem 1rem; }
+.craft-step:nth-child(4n + 1) { border-left: 0; padding-left: 0; }
+.craft-step span { color: var(--color-gold); font-family: Georgia, serif; font-size: .9rem; }
+.craft-step h3 { font-size: 1.4rem; font-weight: 500; margin: 2.5rem 0 .5rem; }
+.craft-step p { font-size: .88rem; line-height: 1.6; margin: 0; }
+.craftsmanship-inspection { background: #e9e5da; display: grid; gap: 3rem; grid-template-columns: minmax(7rem, 1fr) minmax(0, 2.4fr); margin: 0 calc(clamp(1.5rem, 5vw, 5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem); }
+.inspection-mark { color: var(--color-gold); font-family: serif; font-size: clamp(4rem, 8vw, 8rem); line-height: .82; }
+.craftsmanship-inspection h2 { max-width: 13ch; }
+.inspection-points { border-top: 1px solid var(--color-line); display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; padding-top: 1.2rem; }
+.inspection-points p { font-size: .9rem; margin: 0; }
+.inspection-points strong { color: var(--color-ink); font-size: 1rem; font-weight: 500; }
+.boundary-copy { margin-left: calc((100% - 2.4fr - 2rem) / 3.4); max-width: 38rem; }
+.boundary-copy .text-link { color: var(--color-ink); display: inline-flex; margin-top: 1rem; }
+.craftsmanship-next { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.craftsmanship-next h2 { max-width: 12ch; }
+@media (max-width: 45em) {
+  .craftsmanship-section-heading { display: block; }
+  .craftsmanship-section-heading h2 { max-width: none; }
+  .craft-step-grid { grid-template-columns: repeat(2, 1fr); }
+  .craft-step:nth-child(4n + 1), .craft-step:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+  .craft-step h3 { margin-top: 1.5rem; }
+  .craftsmanship-inspection { display: block; margin-left: -1.5rem; margin-right: -1.5rem; }
+  .inspection-mark { margin-bottom: 2.5rem; }
+  .inspection-points { grid-template-columns: 1fr; }
+  .boundary-copy { margin-left: 0; }
+}
 .journal-hero, .journal-archive-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 9vw, 9rem); }
 .journal-hero h1, .journal-archive-hero h1 { font-size: clamp(4rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.07em; line-height: .82; margin: 0; }
 .journal-hero h1 em, .journal-archive-hero h1 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; }
