@@ -273,7 +273,7 @@ function CredentialsMediaContent() {
         title="從節目畫面，回到工藝本身。"
         intro="節目與專題提供品牌文化的公開背景；商品規格、證書與當前可售狀態，請回到對應商品頁查看。"
       />
-      <section className="brand-story-today"><p className="section-label">SOURCES</p><h2>從品牌故事，繼續了解作品。</h2><p>想了解品牌資質、人物履歷與傳承細節，可以繼續閱讀下方公開資料；現售作品則請回到商品頁查看圖片、規格、庫存與交付資訊。</p><div className="brand-story-actions"><a className="button button-gold" href="https://shenguanglong1885.com/pages/media-and-credentials" target="_blank" rel="noreferrer">品牌資質與媒體報導 ↗</a><a className="text-link" href="https://shenguanglong1885.com/blogs/news-and-guides/shenguanglong-six-generation-history" target="_blank" rel="noreferrer">傳承文章 ↗</a></div></section>
+      <section className="brand-story-today"><p className="section-label">SOURCES</p><h2>從品牌故事，繼續了解作品。</h2><p>想了解品牌資質、人物履歷與傳承細節，可以繼續閱讀下方公開資料；現售作品則請回到商品頁查看圖片、規格、庫存與交付資訊。</p><div className="brand-story-actions"><a className="button button-gold" href="https://shen1885.com/pages/media-and-credentials" target="_blank" rel="noreferrer">品牌資質與媒體報導 ↗</a><a className="text-link" href="https://shen1885.com/blogs/news-and-guides/shenguanglong-six-generation-history" target="_blank" rel="noreferrer">傳承文章 ↗</a></div></section>
     </div>
   );
 }
@@ -329,7 +329,7 @@ function OfficialVerificationContent() {
         <div className="verification-fact-list">
           <div><span>品牌中文名</span><strong>沈廣隆劍鋪</strong><p>中文資料中也會使用「沈廣隆」或簡體字「沈广隆」作為品牌簡稱。</p></div>
           <div><span>英文名稱</span><strong>Shen Guanglong</strong><p>英文名稱依品牌對外使用的拼寫呈現；不同平台可能採用不同格式。</p></div>
-          <div><span>品牌網站</span><a href="https://shenguanglong1885.com/" target="_blank" rel="noreferrer">shenguanglong1885.com ↗</a><p>品牌網站用於發布品牌、人物與作品資料；商品頁另列每件作品的規格、庫存與交付資訊。</p></div>
+          <div><span>品牌網站</span><a href="https://shen1885.com/" target="_blank" rel="noreferrer">shen1885.com ↗</a><p>品牌網站用於發布品牌、人物與作品資料；商品頁另列每件作品的規格、庫存與交付資訊。</p></div>
           <div><span>核驗聯絡</span><a href="mailto:service@shenguanglong1885.com">service@shenguanglong1885.com</a><p>如需核對名稱、年份、作品或合作資料，請附上具體頁面與問題。</p></div>
         </div>
       </section>
@@ -483,7 +483,7 @@ const MASTER_PERSON_PROFILES = {
     intro: '沈新培自幼隨父輩學習龍泉寶劍鍛製技藝，經歷合作社時期與祖業延續，長期參與鍛打、成形、研磨、裝配與作品檢查。',
     collectionKey: 'xinpei',
     collectionHandle: 'shen-xinpei-master-custom',
-    referenceUrl: 'https://shenguanglong1885.com/zh-hans/pages/shen-xinpei',
+    referenceUrl: 'https://shen1885.com/pages/shen-xinpei',
     timeline: [
       ['少年時期', '隨父學習鑄劍', '沈新培自幼隨父親沈煥周學習龍泉寶劍鍛製技藝，從工作台開始累積對材料與火候的理解。'],
       ['1972', '鑄製國禮龍泉劍', '沈新培為美國總統尼克森鑄製龍泉劍，作為國禮。'],
@@ -509,7 +509,7 @@ const MASTER_PERSON_PROFILES = {
     intro: '沈州出生於龍泉製劍世家，1993 年開始跟隨父親沈新培學習龍泉劍鍛製技藝，1999 年承接沈廣隆劍鋪第五代工作與傳承。',
     collectionKey: 'zhou',
     collectionHandle: 'shen-zhou-master-custom',
-    referenceUrl: 'https://shenguanglong1885.com/zh-hans/pages/shen-zhou',
+    referenceUrl: 'https://shen1885.com/pages/shen-zhou',
     timeline: [
       ['1977', '出生於龍泉製劍世家', '沈州於 1977 年 12 月出生於龍泉沈廣隆製劍世家。'],
       ['1993', '開始專業學藝', '沈州 17 歲起跟隨父親沈新培，系統學習龍泉寶劍鍛製技藝。'],

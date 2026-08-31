@@ -112,7 +112,7 @@ export default function MediaAndCredentials() {
             <p className="section-label">SOURCES</p>
             <h2>查看原始資料，再回到商品本身。</h2>
             <p>想進一步了解品牌沿革、人物履歷與公開資質，可從下方入口查看原始資料；商品資訊請直接回到對應商品頁。</p>
-            <div className="brand-story-actions"><a className="button button-gold" href="https://shenguanglong1885.com/pages/media-and-credentials" target="_blank" rel="noreferrer">品牌資質與媒體報導 ↗</a><Link className="text-link" to="/pages/about-shen-guang-long">返回品牌故事 <span aria-hidden="true">↗</span></Link></div>
+            <div className="brand-story-actions"><a className="button button-gold" href="https://shen1885.com/pages/media-and-credentials" target="_blank" rel="noreferrer">品牌資質與媒體報導 ↗</a><Link className="text-link" to="/pages/about-shen-guang-long">返回品牌故事 <span aria-hidden="true">↗</span></Link></div>
           </section>
         </main>
       </div>
