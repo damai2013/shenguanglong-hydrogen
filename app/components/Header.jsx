@@ -7,7 +7,7 @@ import {useAside} from '~/components/Aside';
  * @param {HeaderProps}
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
-  const {shop, menu} = header;
+  const {menu} = header;
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
@@ -254,7 +254,6 @@ const FALLBACK_HEADER_MENU = {
         {id: 'fallback-craftsmanship', title: 'Craftsmanship', url: '/pages/craftsmanship'},
         {id: 'fallback-credentials', title: 'Credentials & Media', url: '/pages/media-and-credentials'},
       ],
-      items: [],
     },
     {
       id: 'fallback-guide',
