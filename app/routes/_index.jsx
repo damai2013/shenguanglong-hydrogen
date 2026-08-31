@@ -86,7 +86,7 @@ export default function Homepage() {
         label="MOVING IMAGE · WORKSHOP"
         title="看見一件作品，如何回到手上。"
         intro="工作室影像記錄火、手與材料在工作台上的節奏。"
-        poster="/assets/reference/home-workshop-02.png"
+        poster="/assets/reference/workshop-03.jpg"
       />
       <WorkshopMedia
         kind="home"
@@ -249,7 +249,7 @@ function CommissionPaths() {
       eyebrow: 'TEAM COMMISSIONS · 團隊訂製',
       title: '團隊訂製',
       text: '為武術館、學校、社團與活動整理數量、規格、預算、交期與配送條件。',
-      image: '/assets/reference/home-workshop-01.jpg',
+      image: '/assets/reference/workshop-02.jpg',
       bullets: ['統一用途與規格', '按數量整理報價', '確認交期與目的地'],
       cta: '團隊訂製諮詢',
       href: '/pages/group-orders',
@@ -259,7 +259,7 @@ function CommissionPaths() {
       eyebrow: 'PRIVATE MASTER COMMISSION · 私人大師訂製',
       title: '私人大師訂製',
       text: '由沈新培與沈洲的人物與作品方向進入討論，再確認尺寸、材料、裝具、刻飾與預算。',
-      image: '/assets/reference/home-master-shen-zhou.png',
+      image: '/assets/reference/master-shen-xinpei.jpg',
       bullets: ['指定大師方向', '討論尺寸與材料', '先確認可行性與交期'],
       cta: '私人大師訂製',
       href: '/pages/master-custom',
