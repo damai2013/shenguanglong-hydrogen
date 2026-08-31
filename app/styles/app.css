@@ -315,8 +315,8 @@ button.reset:hover:not(:has(> *)) {
 * -------------------------------------------------- */
 .home-page { background: var(--color-light); color: var(--color-ink); overflow: hidden; }
 .home-page a { color: inherit; }
-.home-hero { min-height: min(760px, calc(100vh - var(--header-height))); display: grid; grid-template-columns: 0.9fr 1.1fr; background: #1d1d19; color: var(--color-light); }
-.hero-copy { align-self: center; padding: clamp(3rem, 8vw, 8rem) clamp(1.5rem, 7vw, 7rem); position: relative; z-index: 1; }
+.home-hero { min-height: min(760px, calc(100vh - var(--header-height))); background: #1d1d19; color: var(--color-light); position: relative; }
+.hero-copy { align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; min-height: min(760px, calc(100vh - var(--header-height))); max-width: 45rem; padding: clamp(3rem, 8vw, 8rem) clamp(1.5rem, 7vw, 7rem); position: relative; z-index: 1; }
 .eyebrow { color: var(--color-gold); font-size: .68rem; letter-spacing: .2em; line-height: 1.4; margin: 0 0 1.5rem; text-transform: uppercase; }
 .hero-copy h1 { font-size: clamp(3.3rem, 6vw, 6.8rem); font-weight: 400; letter-spacing: -.055em; line-height: .9; margin: 0; }
 .hero-heading-line { display: inline-block; white-space: nowrap; }
@@ -332,7 +332,7 @@ button.reset:hover:not(:has(> *)) {
 .button-gold.button-submit { justify-content: space-between; width: 100%; }
 .text-link { background: transparent; border: 0; border-bottom: 1px solid currentColor; color: inherit; cursor: pointer; display: inline-flex; font: inherit; gap: .65rem; padding: 0 0 .25rem; text-align: left; text-decoration: none; font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; }
 .text-link span { color: var(--color-gold); font-size: 1rem; line-height: .7; }
-.hero-art { min-height: 560px; overflow: hidden; position: relative; }
+.hero-art { inset: 0; min-height: 100%; overflow: hidden; position: absolute; }
 .hero-art:after { background: linear-gradient(90deg, rgba(29,29,25,.72) 0%, rgba(29,29,25,.3) 24%, transparent 42%), linear-gradient(0deg, rgba(0,0,0,.38), transparent 40%); content: ''; inset: 0; pointer-events: none; position: absolute; }
 .hero-art img { border-radius: 0; height: 100%; object-fit: cover; opacity: .82; width: 100%; }
 .hero-art .page-banner-media { z-index: 0; }
@@ -410,9 +410,9 @@ button.reset:hover:not(:has(> *)) {
 .craft-story > div:last-child > p:not(.eyebrow) { color: rgba(244,241,233,.65); line-height: 1.8; max-width: 37rem; }
 .craft-story .text-link { margin-top: 1.5rem; }
 @media (max-width: 45em) {
-  .home-hero { display: flex; flex-direction: column; }
-  .hero-copy { order: 2; padding: 3rem 1.5rem 4rem; }
-  .hero-art { min-height: 58vh; order: 1; }
+  .home-hero { min-height: calc(100vh - var(--header-height)); }
+  .hero-copy { min-height: calc(100vh - var(--header-height)); padding: 3rem 1.5rem 4rem; }
+  .hero-art { min-height: 100%; }
   .hero-art .page-banner-media-home { inset: 0; }
   .hero-art-placeholder { min-height: 58vh; }
   .craft-pillars { gap: 1.5rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; padding-top: 2.5rem; }
@@ -430,9 +430,6 @@ button.reset:hover:not(:has(> *)) {
   .commission-paths-heading > p { margin-top: 1rem; }
   .commission-path-grid { grid-template-columns: 1fr; }
   .commission-path-body h3 { max-width: none; }
-}
-@media (min-width: 45.01em) {
-  .home-hero .hero-art { margin-left: -5rem; width: calc(100% + 5rem); }
 }
 
 .header-menu-mobile-toggle {
