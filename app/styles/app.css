@@ -774,6 +774,28 @@ button.reset:hover:not(:has(> *)) {
 .product-notes div { display: flex; justify-content: space-between; gap: 1rem; }
 .product-notes span { color: rgba(36,35,30,.55); }
 .product-notes strong { font-weight: 400; }
+.editorial-page-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 9vw, 9rem); position: relative; }
+.editorial-page-hero:after { border: 1px solid rgba(180,138,69,.35); color: rgba(180,138,69,.28); content: '傳'; font-family: Georgia, serif; font-size: clamp(12rem, 27vw, 24rem); line-height: .8; position: absolute; right: 10vw; top: 17%; transform: rotate(12deg); }
+.editorial-page-hero > * { position: relative; z-index: 1; }
+.editorial-page-hero h1 { font-size: clamp(3.2rem, 7vw, 7.5rem); font-weight: 400; letter-spacing: -.065em; line-height: .9; margin: 0; max-width: 10ch; }
+.editorial-page-hero h1 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
+.editorial-page-lede { color: rgba(244,241,233,.7); font-size: 1.05rem; line-height: 1.7; margin: 2rem 0 0; max-width: 34rem; }
+.editorial-page-layout { display: grid; gap: clamp(3rem, 8vw, 9rem); grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr); margin: 0 auto; max-width: 88rem; padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 5rem); }
+.editorial-page-content { min-width: 0; }
+.shopify-page-body { font-size: 1.05rem; line-height: 1.8; }
+.shopify-page-body h2 { font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; letter-spacing: -.05em; line-height: 1; margin: 0 0 1rem; }
+.shopify-page-body h3 { border-top: 1px solid var(--color-line); font-size: 1.35rem; font-weight: 500; margin: 3rem 0 0; padding-top: 1rem; }
+.shopify-page-body p { color: rgba(36,35,30,.68); max-width: 46rem; }
+.shopify-page-body a { color: var(--color-ink); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.editorial-page-aside { align-self: start; border-top: 1px solid var(--color-line); padding-top: 1rem; position: sticky; top: 6rem; }
+.aside-index { color: var(--color-gold); font-size: .68rem; letter-spacing: .16em; }
+.editorial-page-aside p { color: rgba(36,35,30,.6); font-family: Georgia, serif; font-size: 1.15rem; font-style: italic; line-height: 1.45; margin: 1.2rem 0 2rem; }
+.editorial-page-aside .text-link { color: var(--color-ink); }
+@media (max-width: 45em) {
+  .editorial-page-hero:after { right: -1rem; top: 36%; }
+  .editorial-page-layout { display: block; }
+  .editorial-page-aside { margin-top: 3rem; position: static; }
+}
 @media (max-width: 45em) {
   .catalog-intro { min-height: 35rem; }
   .catalog-intro:after { right: -1rem; top: 35%; }
