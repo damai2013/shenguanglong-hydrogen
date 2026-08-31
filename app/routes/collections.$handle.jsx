@@ -76,9 +76,9 @@ export default function Collection() {
   const {collection} = useLoaderData();
 
   return (
-    <div className="collection">
-      <h1>{collection.title}</h1>
-      <p className="collection-description">{collection.description}</p>
+    <div className="collection collection-detail">
+      <div className="collection-detail-intro"><p className="eyebrow">COLLECTION · SHEN GUANG LONG</p><h1>{collection.title}<em>.</em></h1><p className="collection-description">{collection.description || 'A considered selection of traditional blades from our workshop in Longquan.'}</p></div>
+      <div className="listing-bar"><span>Selected works</span><span>Handmade in Longquan ↓</span></div>
       <PaginatedResourceSection
         connection={collection.products}
         resourcesClassName="products-grid"

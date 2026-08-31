@@ -106,9 +106,10 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
+    <div className="product product-detail-page">
+      <div className="product-gallery"><p className="eyebrow">SHEN GUANG LONG · LONGQUAN</p><ProductImage image={selectedVariant?.image} /><p className="gallery-caption">Each piece is finished by hand. Variations in grain, patina, and balance are part of its character.</p></div>
       <div className="product-main">
+        <p className="eyebrow">TRADITIONAL BLADE</p>
         <h1>{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
@@ -121,11 +122,8 @@ export default function Product() {
         />
         <br />
         <br />
-        <p>
-          <strong>Description</strong>
-        </p>
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+        <div className="product-description"><p className="description-label">THE PIECE</p><div dangerouslySetInnerHTML={{__html: descriptionHtml}} /></div>
+        <div className="product-notes"><div><span>Origin</span><strong>Longquan, China</strong></div><div><span>Finishing</span><strong>Hand finished</strong></div><div><span>Dispatch</span><strong>See buying guide</strong></div></div>
         <br />
       </div>
       <Analytics.ProductView

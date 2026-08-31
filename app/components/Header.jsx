@@ -67,7 +67,11 @@ export function HeaderMenu({
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
-        const children = item.items ?? [];
+        const isCatalog =
+          item.title.toLowerCase().includes('catalog') ||
+          item.title.includes('商品目录') ||
+          url.endsWith('/collections/all');
+        const children = item.items?.length ? item.items : isCatalog ? CATALOG_SUBMENU : [];
         return children.length ? (
           <div className="header-menu-group" key={item.id}>
             <NavLink
@@ -201,6 +205,22 @@ function CartBanner() {
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
+const CATALOG_SUBMENU = [
+  {id: 'catalog-practice', title: 'Tai Chi & Wushu Practice', url: '/collections/tai-chi-practice'},
+  {id: 'catalog-tai-chi-sword', title: 'Tai Chi Swords', url: '/collections/tai-chi-swords'},
+  {id: 'catalog-tai-chi-saber', title: 'Tai Chi Sabers', url: '/collections/tai-chi-sabers'},
+  {id: 'catalog-tang-sword', title: 'Tang Swords', url: '/collections/tang-jian'},
+  {id: 'catalog-han-sword', title: 'Han Swords', url: '/collections/han-jian'},
+  {id: 'catalog-chinese-sword', title: 'Chinese Swords', url: '/collections/chinese-jian'},
+  {id: 'catalog-chinese-saber', title: 'Chinese Sabers', url: '/collections/chinese-dao'},
+  {id: 'catalog-tang-dao', title: 'Tang Dao', url: '/collections/tang-dao'},
+  {id: 'catalog-yanling-dao', title: 'Yanling Dao', url: '/collections/yanling-dao'},
+  {id: 'catalog-xiuchun-dao', title: 'Xiuchun Dao', url: '/collections/xiuchun-dao'},
+  {id: 'catalog-han-jian', title: 'Han Swords', url: '/collections/han-jian'},
+  {id: 'catalog-tang-jian', title: 'Tang Swords', url: '/collections/tang-jian'},
+  {id: 'catalog-new', title: 'New Arrivals', url: '/collections/new-2025'},
+];
+
 const FALLBACK_HEADER_MENU = {
   id: 'gid://shopify/Menu/199655587896',
   items: [
@@ -210,13 +230,9 @@ const FALLBACK_HEADER_MENU = {
       tags: [],
       title: 'Product Catalog',
       type: 'HTTP',
-      url: '/collections',
+      url: '/collections/all',
       items: [
-        {id: 'fallback-wushu-jian', title: 'Wushu Tai Chi Sword', url: '/collections/wushu-tai-chi-sword'},
-        {id: 'fallback-wushu-dao', title: 'Wushu Tai Chi Saber', url: '/collections/wushu-tai-chi-saber'},
-        {id: 'fallback-traditional-dao', title: 'Traditional Chinese Saber', url: '/collections/traditional-chinese-saber'},
-        {id: 'fallback-traditional-jian', title: 'Traditional Chinese Sword', url: '/collections/traditional-chinese-sword'},
-        {id: 'fallback-tang-dao', title: 'Tang Dao', url: '/collections/tang-dao'},
+        ...CATALOG_SUBMENU,
         {id: 'fallback-all', title: 'View All Pieces', url: '/collections/all'},
       ],
     },

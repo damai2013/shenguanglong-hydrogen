@@ -17,7 +17,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
               </div>
               <FooterColumn title="Product Catalog" links={[
                 ['All Pieces', '/collections/all'],
-                ['Tai Chi Swords', '/collections/wushu-tai-chi-sword'],
+                ['Tai Chi Swords', '/collections/tai-chi-swords'],
                 ['Traditional Blades', '/collections/traditional-chinese-saber'],
                 ['Tang Dao', '/collections/tang-dao'],
               ]} />

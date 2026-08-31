@@ -7,7 +7,7 @@ import {ProductItem} from '~/components/ProductItem';
  * @type {Route.MetaFunction}
  */
 export const meta = () => {
-  return [{title: `Hydrogen | Products`}];
+  return [{title: `Shen Guang Long | All Pieces`}];
 };
 
 /**
@@ -58,8 +58,9 @@ export default function Collection() {
   const {products} = useLoaderData();
 
   return (
-    <div className="collection">
-      <h1>Products</h1>
+    <div className="collection catalog-listing">
+      <div className="listing-intro"><p className="eyebrow">SHEN GUANG LONG · EST. 1885</p><h1>All <em>pieces</em>.</h1><p>Explore the current collection of traditional blades, practice weapons, and objects from the Longquan workshop.</p></div>
+      <div className="listing-bar"><span>Showing the workshop archive</span><span>Scroll to explore ↓</span></div>
       <PaginatedResourceSection
         connection={products}
         resourcesClassName="products-grid"

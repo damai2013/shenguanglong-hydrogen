@@ -50,8 +50,25 @@ export default function Collections() {
   const {collections} = useLoaderData();
 
   return (
-    <div className="collections">
-      <h1>Collections</h1>
+    <div className="collections catalog-landing">
+      <section className="catalog-intro">
+        <p className="eyebrow">THE COLLECTION · LONGQUAN, CHINA</p>
+        <h1>Objects of <em>practice</em><br />and inheritance.</h1>
+        <p className="catalog-lede">Traditional swords, sabers, and training weapons shaped by the hand of the maker—and chosen for the hand of the practitioner.</p>
+        <Link className="button button-dark" to="/collections/all">View all pieces <span aria-hidden="true">↗</span></Link>
+      </section>
+      <section className="catalog-featured" aria-labelledby="catalog-featured-heading">
+        <div className="section-heading"><div><p className="eyebrow">BY DISCIPLINE</p><h2 id="catalog-featured-heading">Find your <em>blade</em>.</h2></div><span className="catalog-count">01 — 06</span></div>
+        <div className="catalog-category-grid">
+          {FEATURED_CATEGORIES.map((category, index) => (
+            <Link className="catalog-category-card" key={category.handle} to={`/collections/${category.handle}`}>
+              <span className="catalog-category-number">0{index + 1}</span><div><h3>{category.title}</h3><p>{category.subtitle}</p></div><span className="catalog-arrow" aria-hidden="true">↗</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="catalog-all-collections" aria-labelledby="all-collections-heading">
+        <div className="section-heading"><div><p className="eyebrow">THE FULL ARCHIVE</p><h2 id="all-collections-heading">All collections</h2></div></div>
       <PaginatedResourceSection
         connection={collections}
         resourcesClassName="collections-grid"
@@ -64,9 +81,19 @@ export default function Collections() {
           />
         )}
       </PaginatedResourceSection>
+      </section>
     </div>
   );
 }
+
+const FEATURED_CATEGORIES = [
+  {handle: 'tai-chi-swords', title: 'Tai Chi Swords', subtitle: 'For movement, balance, and daily practice.'},
+  {handle: 'tai-chi-sabers', title: 'Tai Chi Sabers', subtitle: 'A responsive curve for open-hand forms.'},
+  {handle: 'chinese-jian', title: 'Chinese Swords', subtitle: 'A lineage of straight blades.'},
+  {handle: 'chinese-dao', title: 'Chinese Sabers', subtitle: 'Power, structure, and a single edge.'},
+  {handle: 'tang-dao', title: 'Tang Dao', subtitle: 'The long arc of the Tang tradition.'},
+  {handle: 'new-2025', title: 'New Arrivals', subtitle: 'The latest work from the workshop.'},
+];
 
 /**
  * @param {{
