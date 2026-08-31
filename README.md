@@ -1,11 +1,13 @@
-# Hydrogen template: Skeleton
+# Shen Guang Long Hydrogen Storefront
+
+Shopify Hydrogen storefront for Shen Guang Long.
+
+## Included
 
 Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [React Router](https://reactrouter.com/), the modern multi-strategy router for React. This template contains a **minimal setup** of components, queries and tooling to get started with Hydrogen.
 
 [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
 [Get familiar with React Router](https://reactrouter.com/start/framework/routing)
-
-## What's included
 
 - React Router
 - Hydrogen
