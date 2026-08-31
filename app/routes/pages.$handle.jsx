@@ -31,6 +31,21 @@ async function loadCriticalData({context, request, params}) {
     throw new Error('Missing page handle');
   }
 
+  // Editorial pages are owned by the Hydrogen storefront. They should still
+  // render when the matching Shopify Page is only a placeholder or is absent.
+  const builtInTitle = BUILT_IN_PAGE_TITLES[params.handle];
+  if (builtInTitle) {
+    const page = {
+      handle: params.handle,
+      id: `built-in:${params.handle}`,
+      title: builtInTitle,
+      body: '',
+      seo: null,
+    };
+    redirectIfHandleIsLocalized(request, {handle: params.handle, data: page});
+    return {page};
+  }
+
   const [{page}] = await Promise.all([
     context.storefront.query(PAGE_QUERY, {
       variables: {
@@ -57,7 +72,7 @@ async function loadCriticalData({context, request, params}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
@@ -548,6 +563,14 @@ const PAGE_INTROS = {
     ctaLabel: 'Contact us',
     ctaUrl: '/pages/contact',
   },
+};
+
+const BUILT_IN_PAGE_TITLES = {
+  'about-shen-guang-long': '品牌故事',
+  craftsmanship: '工藝與傳承',
+  'master-custom': '大師訂製',
+  'before-you-order': '購買前須知',
+  faq: '常見問題',
 };
 
 const PAGE_QUERY = `#graphql

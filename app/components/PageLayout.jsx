@@ -9,6 +9,7 @@ import {
   SearchFormPredictive,
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
+import {ConsultationFloat} from '~/components/ConsultationFloat';
 
 /**
  * @param {PageLayoutProps}
@@ -26,6 +27,7 @@ export function PageLayout({
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
+      <ConsultationFloat />
       <div className="site-shell">
         {header && (
           <Header
@@ -51,8 +53,8 @@ export function PageLayout({
  */
 function CartAside({cart}) {
   return (
-    <Aside type="cart" heading="CART">
-      <Suspense fallback={<p>Loading cart ...</p>}>
+    <Aside type="cart" heading="購物車">
+      <Suspense fallback={<p>載入購物車⋯</p>}>
         <Await resolve={cart}>
           {(cart) => {
             return <CartMain cart={cart} layout="aside" />;
@@ -66,7 +68,7 @@ function CartAside({cart}) {
 function SearchAside() {
   const queriesDatalistId = useId();
   return (
-    <Aside type="search" heading="SEARCH">
+    <Aside type="search" heading="搜尋">
       <div className="predictive-search">
         <br />
         <SearchFormPredictive>
@@ -76,13 +78,13 @@ function SearchAside() {
                 name="q"
                 onChange={fetchResults}
                 onFocus={fetchResults}
-                placeholder="Search"
+                placeholder="搜尋商品或文章"
                 ref={inputRef}
                 type="search"
                 list={queriesDatalistId}
               />
               &nbsp;
-              <button onClick={goToSearch}>Search</button>
+              <button onClick={goToSearch}>搜尋</button>
             </>
           )}
         </SearchFormPredictive>
@@ -92,7 +94,7 @@ function SearchAside() {
             const {articles, collections, pages, products, queries} = items;
 
             if (state === 'loading' && term.current) {
-              return <div>Loading...</div>;
+              return <div>載入中⋯</div>;
             }
 
             if (!total) {
@@ -131,7 +133,7 @@ function SearchAside() {
                     to={`${SEARCH_ENDPOINT}?q=${term.current}`}
                   >
                     <p>
-                      View all results for <q>{term.current}</q>
+                      查看「<q>{term.current}</q>」的全部結果
                       &nbsp; →
                     </p>
                   </Link>
@@ -155,7 +157,7 @@ function MobileMenuAside({header, publicStoreDomain}) {
   return (
     header.menu &&
     header.shop.primaryDomain?.url && (
-      <Aside type="mobile" heading="MENU">
+      <Aside type="mobile" heading="選單">
         <HeaderMenu
           menu={header.menu}
           viewport="mobile"

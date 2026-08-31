@@ -997,6 +997,17 @@ button.reset:hover:not(:has(> *)) {
 .contact-brief-list li { border-bottom: 1px solid var(--color-line); padding: .9rem 0 .9rem 1.8rem; position: relative; }
 .contact-brief-list li::before { color: var(--color-gold); content: '✦'; left: 0; position: absolute; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
+.consultation-float { bottom: 1.25rem; position: fixed; right: 1.25rem; z-index: 30; }
+.consultation-float-trigger { background: var(--color-dark); border: 1px solid var(--color-dark); border-radius: 999px; box-shadow: 0 12px 30px rgba(0,0,0,.16); color: var(--color-light); cursor: pointer; font: inherit; padding: .8rem 1.15rem; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.consultation-float-trigger:hover, .consultation-float-trigger:focus-visible { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-dark); transform: translateY(-2px); }
+.consultation-float-panel { background: var(--color-light); border: 1px solid var(--color-line); box-shadow: 0 18px 50px rgba(0,0,0,.18); margin-bottom: .75rem; padding: 1.25rem; width: min(21rem, calc(100vw - 2.5rem)); }
+.consultation-float-panel-heading { align-items: flex-start; display: flex; gap: 1rem; justify-content: space-between; }
+.consultation-float-panel h2 { font-size: 1.35rem; margin: .35rem 0 0; }
+.consultation-float-panel > p { color: rgba(36,35,30,.72); font-size: .9rem; line-height: 1.65; margin: 1rem 0; }
+.consultation-float-close { color: var(--color-ink); cursor: pointer; font-size: 1.5rem; line-height: 1; }
+.consultation-float-actions { border-top: 1px solid var(--color-line); display: grid; gap: .65rem; padding-top: .9rem; }
+.consultation-float-actions a { color: var(--color-ink); font-size: .9rem; text-decoration: none; }
+.consultation-float-actions a:hover, .consultation-float-actions a:focus-visible { color: var(--color-gold); }
 @media (max-width: 45em) {
   .before-order-heading { display: block; }
   .before-order-heading h2 { max-width: none; }
@@ -1012,6 +1023,7 @@ button.reset:hover:not(:has(> *)) {
   .faq-final { margin-left: -1.5rem; margin-right: -1.5rem; }
   .contact-methods { grid-template-columns: 1fr; }
   .contact-links { align-items: flex-start; flex-direction: column; gap: .8rem; }
+  .consultation-float { bottom: .8rem; right: .8rem; }
 }
 @media (max-width: 45em) {
   .craftsmanship-section-heading { display: block; }
