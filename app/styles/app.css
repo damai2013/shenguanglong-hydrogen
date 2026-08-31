@@ -1115,9 +1115,9 @@ button.reset:hover:not(:has(> *)) {
 .editorial-page-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) var(--content-inline); }
 .editorial-page-hero:after { border: 1px solid rgba(180,138,69,.35); color: rgba(180,138,69,.28); content: '傳'; font-family: Georgia, serif; font-size: clamp(12rem, 27vw, 24rem); line-height: .8; position: absolute; right: 10vw; top: 17%; transform: rotate(12deg); }
 .editorial-page-hero > *:not(.page-banner-media) { position: relative; z-index: 2; }
-.editorial-page-hero h1 { font-size: clamp(3.2rem, 7vw, 7.5rem); font-weight: 400; letter-spacing: -.065em; line-height: .9; margin: 0; max-width: 10em; overflow-wrap: normal; text-wrap: balance; word-break: keep-all; }
+.editorial-page-hero h1 { font-size: clamp(2.8rem, 5.7vw, 6.25rem); font-weight: 400; letter-spacing: -.06em; line-height: .94; margin: 0; max-width: 14em; overflow-wrap: normal; text-wrap: balance; word-break: keep-all; }
 .editorial-page-hero h1 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
-.editorial-page-lede { color: rgba(244,241,233,.7); font-size: 1.05rem; line-height: 1.7; margin: 2rem 0 0; max-width: 34rem; }
+.editorial-page-lede { color: rgba(244,241,233,.7); font-size: .95rem; line-height: 1.7; margin: 1.5rem 0 0; max-width: 34rem; }
 .editorial-page-layout { margin: 0 auto; max-width: var(--content-max); padding: clamp(4rem, 8vw, 8rem) var(--content-gutter); }
 .editorial-page-content { min-width: 0; }
 .pagination-resource-section { box-sizing: border-box; margin-left: auto; margin-right: auto; max-width: var(--content-max); padding: clamp(2rem, 5vw, 5rem) var(--content-gutter) clamp(4rem, 8vw, 8rem); }
@@ -1542,6 +1542,8 @@ button.reset:hover:not(:has(> *)) {
 .journal-article > .article { font-size: 1.05rem; line-height: 1.8; padding: 3rem clamp(1.5rem, 8vw, 8rem); }
 @media (max-width: 45em) {
   .editorial-page-hero:after { right: -1rem; top: 36%; }
+  .editorial-page-hero h1 { font-size: clamp(2.5rem, 11vw, 4.5rem); line-height: .96; }
+  .editorial-page-lede { font-size: .9rem; margin-top: 1.25rem; }
   .editorial-page-layout { display: block; }
   .workshop-media-heading { display: block; }
   .workshop-media-heading h2 { max-width: none; }
