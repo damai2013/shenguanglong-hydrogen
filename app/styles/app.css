@@ -985,6 +985,16 @@ button.reset:hover:not(:has(> *)) {
 .faq-final { background: var(--color-dark); color: var(--color-light); margin: 0 calc(clamp(1.5rem, 5vw, 5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem); }
 .faq-final h2 { max-width: 14ch; }
 .faq-final .text-link { color: var(--color-light); }
+.contact-card { background: #e9e5da; padding: clamp(2rem, 5vw, 4rem); }
+.contact-methods { border-top: 1px solid var(--color-line); display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 2rem; }
+.contact-method { border-bottom: 1px solid var(--color-line); color: var(--color-ink); display: flex; flex-direction: column; gap: .45rem; padding: 1.2rem 0; text-decoration: none; }
+.contact-method:hover strong, .contact-method:focus-visible strong { color: var(--color-gold); }
+.contact-method-label { color: var(--color-gold); font-size: .68rem; letter-spacing: .12em; }
+.contact-method strong { font-size: clamp(1rem, 1.7vw, 1.35rem); font-weight: 500; overflow-wrap: anywhere; transition: color .2s ease; }
+.contact-brief-list { display: grid; gap: .8rem; list-style: none; margin: 1.5rem 0 1.5rem; padding: 0; }
+.contact-brief-list li { border-bottom: 1px solid var(--color-line); padding: .9rem 0 .9rem 1.8rem; position: relative; }
+.contact-brief-list li::before { color: var(--color-gold); content: '✦'; left: 0; position: absolute; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
 @media (max-width: 45em) {
   .before-order-heading { display: block; }
   .before-order-heading h2 { max-width: none; }
@@ -998,6 +1008,8 @@ button.reset:hover:not(:has(> *)) {
   .faq-list summary { font-size: 1rem; }
   .faq-list details p { margin-right: 0; }
   .faq-final { margin-left: -1.5rem; margin-right: -1.5rem; }
+  .contact-methods { grid-template-columns: 1fr; }
+  .contact-links { align-items: flex-start; flex-direction: column; gap: .8rem; }
 }
 @media (max-width: 45em) {
   .craftsmanship-section-heading { display: block; }
