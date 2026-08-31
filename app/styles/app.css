@@ -805,6 +805,49 @@ button.reset:hover:not(:has(> *)) {
 .aside-index { color: var(--color-gold); font-size: .68rem; letter-spacing: .16em; }
 .editorial-page-aside p { color: rgba(36,35,30,.6); font-family: Georgia, serif; font-size: 1.15rem; font-style: italic; line-height: 1.45; margin: 1.2rem 0 2rem; }
 .editorial-page-aside .text-link { color: var(--color-ink); }
+.brand-story-content { display: grid; gap: clamp(4rem, 9vw, 8rem); }
+.brand-story-opening { align-items: start; display: grid; gap: clamp(2rem, 7vw, 7rem); grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.brand-story-number { color: var(--color-gold); font-family: Georgia, serif; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.08em; line-height: .8; }
+.section-label { color: var(--color-gold); font-size: .68rem; letter-spacing: .18em; line-height: 1.4; margin: 0 0 1.2rem; text-transform: uppercase; }
+.brand-story-content h2 { font-size: clamp(2.2rem, 4.6vw, 4.6rem); font-weight: 400; letter-spacing: -.06em; line-height: .96; margin: 0 0 1.6rem; }
+.brand-story-content h2 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
+.brand-story-content p { color: rgba(36,35,30,.68); line-height: 1.8; max-width: 45rem; }
+.brand-story-opening p:not(.section-label) + p { margin-top: 1rem; }
+.brand-story-timeline, .brand-story-lineage { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.brand-story-section-heading { display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.brand-story-section-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); max-width: 14ch; }
+.timeline-list { border-top: 1px solid var(--color-line); margin-top: 3rem; }
+.timeline-item { align-items: start; border-bottom: 1px solid var(--color-line); display: grid; gap: 2rem; grid-template-columns: 8rem 1fr; padding: 1.4rem 0; }
+.timeline-item > span { color: var(--color-gold); font-family: Georgia, serif; font-size: 1.15rem; }
+.timeline-item h3, .generation-card h3, .principle-list h3 { font-size: 1.25rem; font-weight: 500; margin: 0 0 .35rem; }
+.timeline-item p, .generation-card p, .principle-list p { font-size: .9rem; margin: 0; }
+.generation-grid { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 3rem; }
+.generation-card { border-left: 1px solid var(--color-line); min-height: 12rem; padding: 0 1rem; }
+.generation-card:first-child { border-left: 0; padding-left: 0; }
+.generation-card > span, .principle-list span { color: var(--color-gold); font-family: Georgia, serif; font-size: .9rem; }
+.generation-card h3 { margin-top: 2rem; }
+.brand-story-principles { background: var(--color-dark); color: var(--color-light); display: grid; gap: 3rem; grid-template-columns: 1fr 1.4fr; margin: 0 calc(clamp(1.5rem, 5vw, 5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem); }
+.brand-story-principles h2 { max-width: 8ch; }
+.principle-list { border-top: 1px solid rgba(244,241,233,.25); }
+.principle-list > div { border-bottom: 1px solid rgba(244,241,233,.25); display: grid; gap: 1rem; grid-template-columns: 2rem 1fr; padding: 1.2rem 0; }
+.principle-list h3 { grid-column: 2; grid-row: 1; }
+.principle-list p { color: rgba(244,241,233,.65); grid-column: 2; grid-row: 2; }
+.brand-story-today { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.brand-story-today h2 { max-width: 12ch; }
+.brand-story-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.brand-story-actions .text-link { color: var(--color-ink); }
+@media (max-width: 45em) {
+  .brand-story-opening, .brand-story-section-heading { display: block; }
+  .brand-story-number { margin-bottom: 2.5rem; }
+  .brand-story-section-heading h2 { max-width: none; }
+  .generation-grid { grid-template-columns: 1fr; }
+  .generation-card, .generation-card:first-child { border-left: 0; border-top: 1px solid var(--color-line); min-height: auto; padding: 1.2rem 0; }
+  .generation-card h3 { margin-top: 1rem; }
+  .brand-story-principles { display: block; margin-left: -1.5rem; margin-right: -1.5rem; }
+  .brand-story-principles h2 { max-width: none; }
+  .principle-list { margin-top: 3rem; }
+  .timeline-item { gap: 1rem; grid-template-columns: 4rem 1fr; }
+}
 .journal-hero, .journal-archive-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 9vw, 9rem); }
 .journal-hero h1, .journal-archive-hero h1 { font-size: clamp(4rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.07em; line-height: .82; margin: 0; }
 .journal-hero h1 em, .journal-archive-hero h1 em { color: var(--color-gold); font-family: Georgia, serif; font-style: italic; }

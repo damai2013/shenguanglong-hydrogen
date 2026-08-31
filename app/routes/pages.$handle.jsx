@@ -75,7 +75,11 @@ export default function Page() {
       </header>
       <div className="editorial-page-layout">
         <main className="editorial-page-content">
-          <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
+          {page.handle === 'about-shen-guang-long' ? (
+            <BrandStoryContent />
+          ) : (
+            <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
+          )}
         </main>
         <aside className="editorial-page-aside">
           <span className="aside-index">SHEN GUANG LONG</span>
@@ -83,6 +87,93 @@ export default function Page() {
           <Link className="text-link" to={intro.ctaUrl}>{intro.ctaLabel} <span aria-hidden="true">↗</span></Link>
         </aside>
       </div>
+    </div>
+  );
+}
+
+function BrandStoryContent() {
+  const generations = [
+    {number: '01', title: '沈朝庆', text: '家族制剑传承的起点。' },
+    {number: '02', title: '沈庭璋', text: '沈广隆剑铺早期历史中的重要传承人。' },
+    {number: '03', title: '沈焕周 · 沈焕文 · 沈焕武', text: '第三代多位传承人共同延续家族技艺。' },
+    {number: '04', title: '沈新培', text: '将传统工艺继续带入当代工作室。' },
+    {number: '05', title: '沈州', text: '现阶段公开介绍的传承人，负责今天的制作与传承。' },
+  ];
+
+  return (
+    <div className="brand-story-content">
+      <section className="brand-story-opening">
+        <div className="brand-story-number">1885</div>
+        <div>
+          <p className="section-label">A FAMILY LINEAGE IN STEEL</p>
+          <h2>一件作品，<em>先要经得起时间。</em></h2>
+          <p>
+            沈广隆的故事，从龙泉的炉火与一代代制剑人的手上开始。我们尊重传统，也让每一件当代作品回到清楚的用途、真实的材料和经得起使用的尺度。
+          </p>
+          <p>
+            “六代传承”是品牌对这条家族脉络的整体概括。当前公开人物介绍以已经参与传承与当代经营的几代人为主，下一代仍在成长。
+          </p>
+        </div>
+      </section>
+
+      <section className="brand-story-timeline">
+        <div className="brand-story-section-heading">
+          <p className="section-label">A SHORT TIMELINE</p>
+          <h2>从家族技艺，到今天的工作台。</h2>
+        </div>
+        <div className="timeline-list">
+          <div className="timeline-item">
+            <span>1885</span>
+            <div><h3>家族制剑传承起点</h3><p>以龙泉为背景，家族制剑技艺开始延续。</p></div>
+          </div>
+          <div className="timeline-item">
+            <span>1894</span>
+            <div><h3>沈广隆剑铺形成</h3><p>品牌历史进入“沈广隆剑铺”这一明确称谓。</p></div>
+          </div>
+          <div className="timeline-item">
+            <span>至今</span>
+            <div><h3>六代传承，仍在继续</h3><p>公开介绍聚焦已经参与传承的几代人，以及今天仍在发生的制作、定制与咨询。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="brand-story-lineage">
+        <div className="brand-story-section-heading">
+          <p className="section-label">THE LINEAGE</p>
+          <h2>公开人物，先从已经留下作品与职责的人写起。</h2>
+        </div>
+        <div className="generation-grid">
+          {generations.map((generation) => (
+            <article className="generation-card" key={generation.number}>
+              <span>{generation.number}</span>
+              <h3>{generation.title}</h3>
+              <p>{generation.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="brand-story-principles">
+        <div>
+          <p className="section-label">OUR PRINCIPLES</p>
+          <h2>传承不是口号，<em>是每天重复做好。</em></h2>
+        </div>
+        <div className="principle-list">
+          <div><span>01</span><h3>对材料诚实</h3><p>清楚说明材质、规格、状态与手工差异。</p></div>
+          <div><span>02</span><h3>对工艺耐心</h3><p>让选材、整形、热处理、打磨和装配各自发挥作用。</p></div>
+          <div><span>03</span><h3>对每件作品负责</h3><p>从购买前咨询到交付后的保养，都给出实际而具体的说明。</p></div>
+        </div>
+      </section>
+
+      <section className="brand-story-today">
+        <p className="section-label">SHEN GUANG LONG TODAY</p>
+        <h2>今天，我们把传统带到清楚的使用场景里。</h2>
+        <p>目录商品、练习与使用场景、收藏与展示作品，以及大师订制，拥有不同的边界与说明。请以商品页的实际规格和咨询确认结果为准。</p>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/collections">查看作品 <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" to="/pages/craftsmanship">了解工艺 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
     </div>
   );
 }
