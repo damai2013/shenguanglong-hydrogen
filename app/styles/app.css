@@ -428,6 +428,28 @@ button.reset:hover:not(:has(> *)) {
   grid-gap: 1rem;
 }
 
+/* Touch devices need the full submenu visible; hover is not reliable on mobile. */
+.header-menu-mobile .header-menu-group { align-items: stretch; display: block; height: auto; }
+.header-menu-mobile .header-menu-item { min-height: 2.75rem; width: 100%; }
+.header-menu-mobile .header-submenu,
+.header-menu-mobile .header-submenu-group > .header-submenu {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: flex;
+  gap: .2rem;
+  left: auto;
+  min-width: 0;
+  padding: 0 0 0 1rem;
+  position: static;
+  top: auto;
+}
+.header-menu-mobile .header-submenu a { color: var(--color-light) !important; min-height: 2.5rem; white-space: normal; }
+.header-menu-mobile .header-submenu a:hover,
+.header-menu-mobile .header-submenu a:focus-visible { background: transparent; color: var(--color-gold) !important; padding-left: 0; padding-right: 0; }
+.header-menu-mobile .header-submenu-group::after { display: none; }
+.header-menu-mobile .header-submenu-link { color: var(--color-gold) !important; }
+
 .header-menu-desktop {
   align-items: center;
   display: none;

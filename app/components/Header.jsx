@@ -52,7 +52,7 @@ export function HeaderMenu({
   const {close} = useAside();
 
   return (
-    <nav className={className} role="navigation">
+    <nav className={className} aria-label={viewport === 'mobile' ? '行動版主選單' : '主選單'} role="navigation">
       {viewport === 'mobile' && (
         <NavLink
           end
@@ -277,6 +277,7 @@ function HeaderMenuMobileToggle() {
   const {open} = useAside();
   return (
     <button
+      aria-label="開啟選單"
       className="header-menu-mobile-toggle reset"
       onClick={() => open('mobile')}
     >
