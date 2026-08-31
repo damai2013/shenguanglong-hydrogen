@@ -871,6 +871,31 @@ button.reset:hover:not(:has(> *)) {
 .boundary-copy .text-link { color: var(--color-ink); display: inline-flex; margin-top: 1rem; }
 .craftsmanship-next { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
 .craftsmanship-next h2 { max-width: 12ch; }
+.master-custom-content { display: grid; gap: clamp(4rem, 9vw, 8rem); }
+.custom-intro { border-bottom: 1px solid var(--color-line); padding-bottom: clamp(3rem, 7vw, 7rem); }
+.custom-intro h2 { max-width: 13ch; }
+.custom-intro > p:not(.section-label) { font-size: 1.08rem; margin-bottom: 2rem; max-width: 39rem; }
+.custom-scope, .custom-process, .custom-notes { border-top: 1px solid var(--color-line); padding-top: 1.2rem; }
+.custom-section-heading { display: grid; gap: 2rem; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2.4fr); }
+.custom-section-heading h2 { font-size: clamp(2rem, 3.7vw, 3.8rem); max-width: 14ch; }
+.custom-scope-grid { border-top: 1px solid var(--color-line); display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 3rem; }
+.custom-scope-grid article { border-bottom: 1px solid var(--color-line); border-left: 1px solid var(--color-line); min-height: 12rem; padding: 1.2rem 1.5rem; }
+.custom-scope-grid article:nth-child(odd) { border-left: 0; padding-left: 0; }
+.custom-scope-grid span, .custom-process-list span { color: var(--color-gold); font-family: Georgia, serif; font-size: .9rem; }
+.custom-scope-grid h3 { font-size: 1.4rem; font-weight: 500; margin: 2.5rem 0 .5rem; }
+.custom-scope-grid p, .custom-process-list p, .custom-note-list p { font-size: .9rem; line-height: 1.65; margin: 0; }
+.custom-process-list { border-top: 1px solid var(--color-line); margin-top: 3rem; }
+.custom-process-list article { align-items: start; border-bottom: 1px solid var(--color-line); display: grid; gap: 2rem; grid-template-columns: 8rem 1fr; padding: 1.4rem 0; }
+.custom-process-list h3 { font-size: 1.3rem; font-weight: 500; margin: 0 0 .35rem; }
+.custom-brief { background: var(--color-dark); color: var(--color-light); display: grid; gap: 3rem; grid-template-columns: minmax(7rem, 1fr) minmax(0, 2.4fr); margin: 0 calc(clamp(1.5rem, 5vw, 5rem) * -1); padding: clamp(3rem, 7vw, 7rem) clamp(1.5rem, 5vw, 5rem); }
+.brief-mark { color: var(--color-gold); font-family: serif; font-size: clamp(4rem, 8vw, 8rem); line-height: .82; }
+.custom-brief h2 { max-width: 12ch; }
+.custom-brief ol { border-top: 1px solid rgba(244,241,233,.25); display: grid; gap: 0 2rem; grid-template-columns: repeat(2, 1fr); margin: 3rem 0 0; padding: 1rem 0 0 1.2rem; }
+.custom-brief li { border-bottom: 1px solid rgba(244,241,233,.25); color: rgba(244,241,233,.76); font-size: .92rem; padding: .8rem 0; }
+.custom-note-list { border-top: 1px solid var(--color-line); margin: 3rem 0 0; }
+.custom-note-list p { border-bottom: 1px solid var(--color-line); padding: 1rem 0; }
+.custom-note-list strong { color: var(--color-ink); display: inline-block; font-size: 1rem; font-weight: 500; margin-right: .6rem; }
+.custom-notes > .text-link { color: var(--color-ink); display: inline-flex; margin-top: 1rem; }
 @media (max-width: 45em) {
   .craftsmanship-section-heading { display: block; }
   .craftsmanship-section-heading h2 { max-width: none; }
@@ -881,6 +906,15 @@ button.reset:hover:not(:has(> *)) {
   .inspection-mark { margin-bottom: 2.5rem; }
   .inspection-points { grid-template-columns: 1fr; }
   .boundary-copy { margin-left: 0; }
+  .custom-section-heading { display: block; }
+  .custom-section-heading h2 { max-width: none; }
+  .custom-scope-grid { grid-template-columns: 1fr; }
+  .custom-scope-grid article, .custom-scope-grid article:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .custom-scope-grid h3 { margin-top: 1.5rem; }
+  .custom-process-list article { gap: 1rem; grid-template-columns: 4rem 1fr; }
+  .custom-brief { display: block; margin-left: -1.5rem; margin-right: -1.5rem; }
+  .brief-mark { margin-bottom: 2.5rem; }
+  .custom-brief ol { grid-template-columns: 1fr; }
 }
 .journal-hero, .journal-archive-hero { background: var(--color-dark); color: var(--color-light); padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 9vw, 9rem); }
 .journal-hero h1, .journal-archive-hero h1 { font-size: clamp(4rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.07em; line-height: .82; margin: 0; }

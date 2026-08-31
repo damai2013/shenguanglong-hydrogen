@@ -79,6 +79,8 @@ export default function Page() {
             <BrandStoryContent />
           ) : page.handle === 'craftsmanship' ? (
             <CraftsmanshipContent />
+          ) : page.handle === 'master-custom' ? (
+            <MasterCustomContent />
           ) : (
             <div className="shopify-page-body" dangerouslySetInnerHTML={{__html: page.body}} />
           )}
@@ -248,6 +250,83 @@ function CraftsmanshipContent() {
           <Link className="button button-gold" to="/collections">浏览作品 <span aria-hidden="true">↗</span></Link>
           <Link className="text-link" to="/pages/master-custom">大师订制 <span aria-hidden="true">↗</span></Link>
         </div>
+      </section>
+    </div>
+  );
+}
+
+function MasterCustomContent() {
+  const process = [
+    ['01', '先说用途', '告诉我们作品的使用或展示场景、目的地，以及你最在意的部分。'],
+    ['02', '确认方向', '围绕器型、尺寸、材料、装具、刻饰和预算范围，整理可行方向。'],
+    ['03', '确认规格', '在报价前明确规格、交期、付款节点、配送方式及购买前须知。'],
+    ['04', '制作与交付', '确认方案后进入制作，完成检查并按约定方式交付。'],
+  ];
+
+  return (
+    <div className="master-custom-content">
+      <section className="custom-intro">
+        <p className="section-label">A CONVERSATION BEFORE A COMMISSION</p>
+        <h2>订制不是从一张图片开始，<em>而是从一次清楚的沟通开始。</em></h2>
+        <p>每一件订制作品都需要先了解用途、尺寸、材料、装具、预算和目的地。我们会先判断需求是否适合，再讨论可以实现的方向。</p>
+        <Link className="button button-gold" to="/pages/contact">开始咨询 <span aria-hidden="true">↗</span></Link>
+      </section>
+
+      <section className="custom-scope">
+        <div className="custom-section-heading">
+          <p className="section-label">WHAT WE CAN DISCUSS</p>
+          <h2>先把范围讲清楚，方案才有意义。</h2>
+        </div>
+        <div className="custom-scope-grid">
+          <article><span>01</span><h3>器型与尺寸</h3><p>讨论整体比例、长度、重量和握持方式，具体以最终规格确认单为准。</p></article>
+          <article><span>02</span><h3>材料与装具</h3><p>根据用途与风格讨论剑身、刀身、剑鞘和装具等组成部分。</p></article>
+          <article><span>03</span><h3>刻饰与细节</h3><p>讨论纹样、文字和装饰位置；是否能够制作，需要结合工艺与授权判断。</p></article>
+          <article><span>04</span><h3>收藏与展示</h3><p>历史作品和展示方向可以作为参考，但不代表当前一定有库存或可以直接复制。</p></article>
+        </div>
+      </section>
+
+      <section className="custom-process">
+        <div className="custom-section-heading">
+          <p className="section-label">THE PROCESS</p>
+          <h2>四个阶段，把想法变成可确认的方案。</h2>
+        </div>
+        <div className="custom-process-list">
+          {process.map(([number, title, text]) => (
+            <article key={number}>
+              <span>{number}</span>
+              <div><h3>{title}</h3><p>{text}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="custom-brief">
+        <div className="brief-mark">定<br />制</div>
+        <div>
+          <p className="section-label">YOUR FIRST MESSAGE</p>
+          <h2>咨询时，准备这六项信息就够了。</h2>
+          <ol>
+            <li>希望制作或了解的作品类型</li>
+            <li>使用、练习、收藏或展示场景</li>
+            <li>期望尺寸、风格与材料方向</li>
+            <li>是否需要刻饰或个性化细节</li>
+            <li>预算范围与希望完成时间</li>
+            <li>收货国家或地区</li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="custom-notes">
+        <div className="custom-section-heading">
+          <p className="section-label">IMPORTANT NOTES</p>
+          <h2>订制作品，需要比普通商品更多的确认。</h2>
+        </div>
+        <div className="custom-note-list">
+          <p><strong>价格与交期</strong>需要在规格确认后单独报价，不能用目录商品价格或历史作品价格直接推断。</p>
+          <p><strong>可行性</strong>不是所有图片、纹样、尺寸或历史作品都能照做，最终以工作室确认结果为准。</p>
+          <p><strong>配送与法规</strong>目的地、承运商、税费和当地法规可能影响交付，咨询阶段需要提前说明。</p>
+        </div>
+        <Link className="text-link" to="/pages/before-you-order">先阅读购买前须知 <span aria-hidden="true">↗</span></Link>
       </section>
     </div>
   );
