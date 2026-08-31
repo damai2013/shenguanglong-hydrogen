@@ -78,6 +78,7 @@ export default function Homepage() {
       {data.isShopLinked ? null : <MockShopNotice />}
       <Hero collection={data.featuredCollection} />
       <CraftPillars />
+      <HomeCategoryPaths />
       <RecommendedProducts products={data.recommendedProducts} />
       <HomeGuides />
       <CommissionPaths />
@@ -103,9 +104,9 @@ function Hero({collection}) {
     <section className="home-hero">
       <div className="hero-copy">
         <p className="eyebrow">SINCE 1885 · SHEN GUANG LONG</p>
-        <h1><span className="hero-heading-line">刀劍有魂，</span><br /><em><span className="hero-heading-line">歲月有痕。</span></em></h1>
+        <h1><span className="hero-heading-line">五代製劍傳承，</span><br /><em><span className="hero-heading-line">為今天而作。</span></em></h1>
         <p className="hero-intro">
-          來自龍泉的傳統刀劍與器物，以手工完成，為長久保存與使用而作。
+          始於 1885 年的龍泉沈廣隆，提供傳統刀劍、練習器械與私人訂製作品。
         </p>
         <div className="hero-actions">
           <Link className="button button-gold" to={collection ? `/collections/${collection.handle}` : '/collections'}>
@@ -121,7 +122,7 @@ function Hero({collection}) {
           <PageBannerMedia variant="home" />
         )}
         <div className="hero-stamp">沈<br />廣<br />隆</div>
-        <p className="hero-caption">鋼鐵與靜謐<br />的注解</p>
+        <p className="hero-caption">五代製劍傳承<br />為今天而作</p>
       </div>
     </section>
   );
@@ -133,6 +134,35 @@ function CraftPillars() {
       <div><span>01</span><strong>百年傳承</strong><small>始於 1885 年，五代延續龍泉製劍家學。</small></div>
       <div><span>02</span><strong>五代經營</strong><small>從家族製劍到今日工坊，工藝與劍鋪經營持續至今。</small></div>
       <div><span>03</span><strong>中華老字號</strong><small>2010 年獲認定，品牌歷史與傳承節點有公開資料可核對。</small></div>
+    </section>
+  );
+}
+
+function HomeCategoryPaths() {
+  const categories = [
+    ['01', '中國刀', '唐刀、雁翎刀、苗刀等傳統刀制作品。', '/collections/chinese-dao'],
+    ['02', '中國劍', '漢劍、唐劍、清劍與環首劍等形制作品。', '/collections/chinese-jian'],
+    ['03', '練習器械', '面向日常練習、教學、展示與武術使用。', '/collections/tai-chi-practice'],
+    ['04', '訂製作品', '按用途、尺寸、材料、裝具與目的地單獨確認。', '/pages/master-custom'],
+  ];
+
+  return (
+    <section className="home-category-paths" aria-labelledby="home-category-title">
+      <div className="home-category-heading">
+        <p className="eyebrow">FIND YOUR DIRECTION · 作品分類</p>
+        <h2 id="home-category-title">先說明用途，<em>再選擇作品。</em></h2>
+        <p>不同形制與配置，對應不同的收藏、展示、練習與訂製需求。</p>
+      </div>
+      <div className="home-category-grid">
+        {categories.map(([number, title, text, url]) => (
+          <Link className="home-category-card" key={number} to={url}>
+            <span>{number}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <b aria-hidden="true">↗</b>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }
@@ -149,7 +179,7 @@ function RecommendedProducts({products}) {
       aria-labelledby="recommended-products"
     >
       <div className="section-heading">
-        <div><p className="eyebrow">作品選集</p><h2 id="recommended-products">精選作品</h2></div>
+        <div><p className="eyebrow">SELECTED WORKS · 精選作品</p><h2 id="recommended-products">從幾件作品開始了解。</h2></div>
         <Link className="text-link" to="/collections/all">查看全部 <span>↗</span></Link>
       </div>
       <Suspense fallback={<div>載入中⋯</div>}>
@@ -175,9 +205,9 @@ function CraftStory() {
       <div className="story-mark">形<br />神<br />兼<br />备</div>
       <div>
         <p className="eyebrow">沈廣隆之道</p>
-        <h2>不為一時而作。<br /><em>為歲月而作。</em></h2>
-        <p>一件器物的意義，來自時間留下的重量、使用痕跡與故事。我們尊重古法，也讓每件當代作品回到清楚的用途與真實的材料。</p>
-        <Link className="text-link" to="/pages/about-shen-guang-long">了解品牌故事 <span>↗</span></Link>
+        <h2>買得明白，<br /><em>才能保存得久。</em></h2>
+        <p>從品牌傳承、作品規格到配送與保存，我們把下單前需要知道的資訊逐項列清楚。先了解，再選擇適合自己的作品。</p>
+        <div className="hero-actions"><Link className="button button-gold" to="/pages/before-you-order">查看購買指南 <span>↗</span></Link><Link className="text-link" to="/pages/contact">聯絡諮詢</Link></div>
       </div>
     </section>
   );
@@ -185,10 +215,10 @@ function CraftStory() {
 
 function HomeGuides() {
   const guides = [
-    ['01', '品牌故事', '了解家族製劍傳承與今天的工作台。', '/pages/about-shen-guang-long'],
-    ['02', '工藝與傳承', '從選材到檢查，看懂一件作品如何完成。', '/pages/craftsmanship'],
-    ['03', '大師訂製', '從用途、規格和目的地開始一次清楚的溝通。', '/pages/master-custom'],
-    ['04', '購買前須知', '先確認用途、規格、配送與目的地要求。', '/pages/before-you-order'],
+    ['01', '看懂工藝', '從材料、形制到檢查，了解一件作品如何完成。', '/pages/craftsmanship'],
+    ['02', '認識品牌', '從 1885 年起點到五代傳承，查看公開品牌資料。', '/pages/about-shen-guang-long'],
+    ['03', '購買指南', '確認用途、規格、配送、付款與保存方式。', '/pages/before-you-order'],
+    ['04', '博客文章', '閱讀作品選擇、工藝與保存相關的工作室文章。', '/blogs'],
   ];
 
   return (
@@ -239,9 +269,9 @@ function CommissionPaths() {
       <div className="commission-paths-heading">
         <div>
           <p className="eyebrow">MADE TO ORDER · 訂製入口</p>
-          <h2 id="commission-paths-title">不同需求，<em>從不同的對話開始。</em></h2>
+          <h2 id="commission-paths-title">需要訂製，<em>先把需求說清楚。</em></h2>
         </div>
-        <p>不論是團隊採購或私人訂製，先把用途、規格、目的地與時間說清楚，再進入報價與製作。</p>
+        <p>團隊採購和私人訂製的確認方式不同；我們會先了解用途、規格、目的地與時間，再進入報價與製作。</p>
       </div>
       <div className="commission-path-grid">
         {paths.map((path) => (
