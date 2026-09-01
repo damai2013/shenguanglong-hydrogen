@@ -25,12 +25,12 @@ const MEDIA = {
     {
       src: '/assets/reference/workshop-03.jpg',
       alt: '沈廣隆工作室或工藝展示空間',
-      caption: '工作台之外，還有作品的生活背景',
+      caption: '品牌認定 · 中華老字號',
     },
     {
       src: '/assets/reference/workshop-04.png',
       alt: '龍泉寶劍鍛製技藝展示相關影像',
-      caption: '工作台與工藝展示場景',
+      caption: '公開記錄 · 非物質文化遺產技藝',
     },
   ],
   credentials: [

@@ -117,7 +117,7 @@ export default function Page() {
           {page.handle === 'about-shen-guang-long' ? (
             <BrandStoryContent />
           ) : page.handle === 'craftsmanship' ? (
-            <CraftsmanshipContent />
+            <CombinedCraftsmanshipContent />
           ) : page.handle === 'master-custom' ? (
             <MasterCustomContent collections={masterCollections} products={masterProducts} />
           ) : page.handle === 'shen-xinpei' || page.handle === 'shen-zhou' ? (
@@ -201,6 +201,72 @@ function LongquanSwordmakingContent() {
         <div className="brand-story-actions">
           <Link className="button button-gold" to="/collections">瀏覽作品 <span aria-hidden="true">↗</span></Link>
           <Link className="text-link" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CombinedCraftsmanshipContent() {
+  const steps = [
+    ['01', '材料判斷', '先按照用途、尺寸與結構選擇材料，讓作品方向在製作前就清楚。'],
+    ['02', '鍛打成形', '透過反覆鍛打、整形與校正，逐步建立刀劍穩定的比例與線條。'],
+    ['03', '熱處理與研磨', '熱處理影響作品狀態，研磨則整理表面、刃線與細節，兩者都需要逐步檢查。'],
+    ['04', '木作與鞘具', '木材、包覆與鞘具需要配合刀劍本體，也需要避免潮濕、碰撞和長時間日曬。'],
+    ['05', '裝具與握持', '護手、柄、鐔與其他裝具共同影響比例和握持感，具體配置以商品頁為準。'],
+    ['06', '裝配與交付', '刀身、劍身、裝具與鞘具完成配合後，再核對外觀、規格與隨件說明。'],
+  ];
+
+  return (
+    <div className="craftsmanship-content">
+      <section className="craftsmanship-intro">
+        <p className="section-label">THE HAND &amp; THE BLADE · 工藝與材質</p>
+        <h2>一把刀劍，<em>要經過哪些工序才完成？</em></h2>
+        <p>沈廣隆的製劍工作，從材料與用途判斷開始，經過鍛打成形、熱處理、研磨、裝具與鞘具製作，最後再完成裝配與檢查。</p>
+        <p>下面用流程、現場影像與公開資料，把每一個環節說清楚。現售作品的尺寸、重量、材料與隨件內容，仍以對應商品頁為準。</p>
+      </section>
+      <section className="craftsmanship-flow">
+        <div className="craftsmanship-section-heading">
+          <p className="section-label">FROM MATERIAL TO FINISH</p>
+          <h2>一件作品如何逐步完成。</h2>
+        </div>
+        <div className="craft-step-grid">
+          {steps.map(([number, title, text]) => (
+            <article className="craft-step" key={number}>
+              <span>{number}</span><h3>{title}</h3><p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <WorkshopVideo
+        label="WORKSHOP IN MOTION"
+        title="從火候、形制到表面，工藝在現場完成。"
+        intro="影片呈現沈廣隆工作室的真實製作影像；實際工序會因作品形制、用途與配置而不同。"
+        poster="/assets/reference/workshop-04.png"
+      />
+      <WorkshopMedia
+        kind="workshop"
+        label="PLACE · PEOPLE · RECORDS"
+        title="工藝不是抽象概念，而是被留下的現場。"
+        intro="工作室、傳承人與公開記錄共同構成理解作品的背景；材料與規格仍需回到具體商品核對。"
+      />
+      <section className="craftsmanship-inspection">
+        <div className="inspection-mark">龍<br />泉</div>
+        <div>
+          <p className="section-label">HOW TO READ A PIECE</p>
+          <h2>理解工藝，最後要回到作品本身。</h2>
+          <div className="inspection-points">
+            <p><strong>形制</strong><br />先確認作品是為收藏、展示、練習還是禮贈而作。</p>
+            <p><strong>材料</strong><br />天然材料與手工表面可能出現紋理、色澤和細部差異。</p>
+            <p><strong>規格</strong><br />尺寸、重量、配件與交期請以商品頁和最終確認為準。</p>
+          </div>
+        </div>
+      </section>
+      <section className="craftsmanship-next">
+        <p className="section-label">CONTINUE EXPLORING</p>
+        <h2>先理解工藝，再選擇適合的作品。</h2>
+        <div className="brand-story-actions">
+          <Link className="button button-gold" to="/collections">瀏覽作品 <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
     </div>
@@ -662,6 +728,8 @@ function BrandStoryContent() {
   );
 }
 
+// Kept as a reference for the previous standalone page while the public route uses the merged content above.
+// eslint-disable-next-line no-unused-vars
 function CraftsmanshipContent() {
   const steps = [
     ['01', '選材', '先確認材料、尺寸與用途，再決定一件作品應該從哪裡開始。'],
