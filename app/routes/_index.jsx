@@ -78,8 +78,8 @@ export default function Homepage() {
       {data.isShopLinked ? null : <MockShopNotice />}
       <Hero collection={data.featuredCollection} />
       <CraftPillars />
-      <HomeCategoryPaths />
       <RecommendedProducts products={data.recommendedProducts} />
+      <HomeCategoryPaths />
       <HomeGuides />
       <CommissionPaths />
       <WorkshopVideo
@@ -94,7 +94,7 @@ export default function Homepage() {
         title="從工作台、火花與人物，看見作品的來處。"
         intro="三組不同角度的影像，分別呈現製作現場、鍛打工序與當代傳承人物。"
       />
-      <CraftStory />
+      <HomeContact />
     </div>
   );
 }
@@ -201,15 +201,24 @@ function RecommendedProducts({products}) {
   );
 }
 
-function CraftStory() {
+function HomeContact() {
   return (
-    <section className="craft-story">
-      <div className="story-mark">先<br />看<br />清<br />楚</div>
-      <div>
-        <p className="eyebrow">購買前須知</p>
-        <h2>先確認用途與條件，<br /><em>再選適合的作品。</em></h2>
-        <p>不同作品的形制、尺寸、材料、開刃狀態、庫存與配送要求各不相同。購買前請先查看商品頁與購買指南；若仍不確定，請把商品連結和收貨地區發給我們。</p>
-        <div className="hero-actions"><Link className="button button-gold" to="/pages/before-you-order">查看購買指南 <span>↗</span></Link><Link className="text-link" to="/pages/contact">提交商品諮詢</Link></div>
+    <section className="home-contact" aria-labelledby="home-contact-title">
+      <div className="home-contact-heading">
+        <p className="eyebrow">DIRECT CONTACT · 聯絡諮詢</p>
+        <h2 id="home-contact-title">有問題，<em>直接聯絡我們。</em></h2>
+        <p>無論是商品規格、訂製方向、配送或目的地要求，都可以直接掃描 QR Code，或寄信與我們確認。</p>
+      </div>
+      <div className="home-contact-methods">
+        <div className="home-contact-qr-grid">
+          <a href="https://wa.me/8613372508696" rel="noreferrer" target="_blank"><img src="/assets/reference/whatsapp-qr.png" alt="WhatsApp 聯絡 QR Code" loading="lazy" /><span>WhatsApp</span></a>
+          <a href="https://line.me/ti/p/~shenguanglong1885" rel="noreferrer" target="_blank"><img src="/assets/reference/line-qr.png" alt="LINE 聯絡 QR Code" loading="lazy" /><span>LINE</span></a>
+          <div><img src="/assets/reference/wechat-qr.jpg" alt="微信聯絡 QR Code" loading="lazy" /><span>微信</span></div>
+        </div>
+        <div className="home-contact-emails">
+          <a href="mailto:sales@shen1885.com"><span>商品諮詢</span>sales@shen1885.com</a>
+          <a href="mailto:service@shen1885.com"><span>客服服務</span>service@shen1885.com</a>
+        </div>
       </div>
     </section>
   );
