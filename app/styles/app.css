@@ -1082,12 +1082,34 @@ button.reset:hover:not(:has(> *)) {
 .product-detail-page .product-price-on-sale s { font-size: .62em; }
 .product-detail-page .product-form form button[type='submit'] { font-size: .95rem; min-height: 3.75rem; }
 .product-detail-page .product-form form button[type='submit']:disabled { cursor: not-allowed; opacity: .48; }
+.product-payment-methods { border-top: 1px solid var(--color-line); margin: 1.25rem 0 1rem; padding-top: .9rem; }
+.product-payment-heading { align-items: center; display: flex; gap: .7rem; }
+.product-payment-label { color: var(--color-gold); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+.product-payment-rule { background: var(--color-gold); display: block; height: 1px; opacity: .6; width: 2rem; }
+.product-payment-icons { align-items: center; display: flex; gap: .7rem; margin-top: .85rem; }
+.product-payment-icon { align-items: center; border: 1px solid rgba(36,35,30,.18); display: inline-flex; gap: .45rem; padding: .38rem .55rem; }
+.product-payment-icon svg { fill: none; height: 1.05rem; stroke: var(--color-ink); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; width: 1.05rem; }
+.product-payment-icon small { color: rgba(36,35,30,.7); font-size: .66rem; white-space: nowrap; }
+.product-payment-methods p { color: rgba(36,35,30,.68); font-size: .78rem; line-height: 1.55; margin: .5rem 0 .15rem; }
+.product-payment-methods small { color: rgba(36,35,30,.48); display: block; font-size: .68rem; line-height: 1.5; }
+.product-purchase-note { border-left: 2px solid var(--color-gold); margin: 1.5rem 0 2.25rem; padding: .15rem 0 .15rem 1rem; }
+.product-purchase-note-label { color: var(--color-gold); display: block; font-size: .68rem; letter-spacing: .18em; margin-bottom: .45rem; text-transform: uppercase; }
+.product-purchase-note p { color: rgba(36,35,30,.68); font-size: .83rem; line-height: 1.6; margin: 0 0 .55rem; max-width: 32rem; }
+.product-purchase-note .text-link { color: var(--color-ink); font-size: .78rem; }
 .product-description { border-bottom: 1px solid var(--color-line); border-top: 1px solid var(--color-line); line-height: 1.7; margin: 2.25rem 0; padding: 1.25rem 0; }
 .description-label { color: var(--color-gold); font-size: .68rem; letter-spacing: .18em; margin: 0 0 .8rem; text-transform: uppercase; }
 .product-notes { border-top: 1px solid var(--color-line); display: grid; gap: .75rem; padding-top: 1.25rem; }
 .product-notes div { display: flex; justify-content: space-between; gap: 1rem; }
 .product-notes span { color: rgba(36,35,30,.55); }
 .product-notes strong { font-weight: 400; }
+.product-highlights { border-top: 1px solid var(--color-line); margin-top: 2.25rem; padding-top: 1.5rem; }
+.product-highlights h2 { font-size: clamp(1.55rem, 2.4vw, 2.35rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.05; margin: 0 0 1.25rem; text-wrap: balance; }
+.product-highlights-grid { border-bottom: 1px solid var(--color-line); border-top: 1px solid var(--color-line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.product-highlights-grid article { min-width: 0; padding: 1rem .85rem 1.1rem 0; }
+.product-highlights-grid article + article { border-left: 1px solid var(--color-line); padding-left: .85rem; }
+.product-highlights-grid span { color: var(--color-gold); font-family: Georgia, serif; font-size: .75rem; }
+.product-highlights-grid h3 { font-size: .95rem; font-weight: 500; margin: .65rem 0 .45rem; }
+.product-highlights-grid p { color: rgba(36,35,30,.62); font-size: .78rem; line-height: 1.6; margin: 0; }
 .product-detail-sections { border-top: 1px solid var(--color-line); margin-top: 2.5rem; }
 .product-detail-sections details { border-bottom: 1px solid var(--color-line); }
 .product-detail-sections summary { align-items: center; cursor: pointer; display: flex; font-size: .92rem; justify-content: space-between; list-style: none; padding: 1.1rem 0; }
@@ -1639,6 +1661,9 @@ button.reset:hover:not(:has(> *)) {
   .product-gallery .gallery-main { margin-left: auto; margin-right: auto; }
   .gallery-thumbnails { flex-direction: row; max-height: none; overflow-x: auto; overflow-y: hidden; padding-right: 0; }
   .product-detail-page .product-main { position: static; }
+  .product-highlights-grid { display: block; }
+  .product-highlights-grid article { padding: 1rem 0; }
+  .product-highlights-grid article + article { border-left: 0; border-top: 1px solid var(--color-line); padding-left: 0; }
   .product-recommendations-heading { align-items: start; display: block; }
   .product-recommendations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .product-reviews-heading { align-items: start; display: block; }

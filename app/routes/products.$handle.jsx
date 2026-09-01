@@ -125,8 +125,19 @@ export default function Product() {
           productOptions={productOptions}
           selectedVariant={selectedVariant}
         />
+        <div className="product-purchase-note">
+          <span className="product-purchase-note-label">購買前確認</span>
+          <p>如果你對用途、規格、配件或收貨地區有疑問，請在付款前先聯絡我們確認。</p>
+          <Link className="text-link" to="/pages/contact">聯絡我們確認 <span aria-hidden="true">↗</span></Link>
+        </div>
         <div className="product-description"><p className="description-label">作品介紹</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
-        <div className="product-notes"><div><span>產地</span><strong>中國龍泉</strong></div><div><span>工藝</span><strong>手工完成</strong></div><div><span>交付</span><strong>請參閱購買指南</strong></div></div>
+        <div className="product-notes">
+          <div><span>商品狀態</span><strong>{selectedVariant?.availableForSale ? '可加入購物車' : '目前不可購買'}</strong></div>
+          <div><span>產地</span><strong>中國龍泉</strong></div>
+          <div><span>工藝</span><strong>手工完成</strong></div>
+          <div><span>交付</span><strong>需按目的地確認</strong></div>
+        </div>
+        <ProductHighlights />
         <ProductDetailSections />
         </div>
       </div>
@@ -147,6 +158,32 @@ export default function Product() {
         }}
       />
     </div>
+  );
+}
+
+function ProductHighlights() {
+  return (
+    <section className="product-highlights" aria-labelledby="product-highlights-title">
+      <p className="description-label">購買前，先確認三件事</p>
+      <h2 id="product-highlights-title">先確認用途，再選擇作品。</h2>
+      <div className="product-highlights-grid">
+        <article>
+          <span>01</span>
+          <h3>用途</h3>
+          <p>收藏、展示與練習對規格要求不同，請先確認作品是否適合你的使用目的。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>內容</h3>
+          <p>請以本商品頁列出的尺寸、材料、配件、圖片與庫存狀態作為購買依據。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>配送</h3>
+          <p>刀劍類商品的運輸、進口與持有要求會因國家或地區而不同，付款前需先確認。</p>
+        </article>
+      </div>
+    </section>
   );
 }
 
@@ -183,8 +220,8 @@ function ProductDetailSections() {
       <details open>
         <summary>規格與購買說明 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>請以當前商品頁顯示的尺寸、重量、材料、配件、庫存和狀態為準。不同商品的用途與手感不同，圖片不能代替規格資訊。</p>
-          <p>如果當前頁面沒有列出你需要的規格，請在結帳前聯絡我們確認，不要僅憑圖片判斷是否適合。</p>
+          <p>請以當前商品頁顯示的尺寸、重量、材料、配件、庫存和狀態為準。不同作品的用途與手感不同，圖片不能代替規格資訊。</p>
+          <p>如果頁面沒有列出你需要的資料，請在結帳前聯絡我們確認，不要僅憑圖片判斷是否適合。</p>
           <Link className="text-link product-detail-cta" to="/pages/contact">諮詢商品規格 <span aria-hidden="true">↗</span></Link>
         </div>
       </details>
@@ -201,13 +238,6 @@ function ProductDetailSections() {
         <div className="product-detail-copy">
           <p>請保持乾燥，避免碰撞、潮濕和長時間接觸腐蝕性物質。天然材料與手工表面需要按照具體商品的說明進行保存。</p>
           <p>如果你不確定某種護理方式是否適合這件作品，請先提供訂單資訊和商品照片，再向我們諮詢。</p>
-        </div>
-      </details>
-      <details>
-        <summary>評論與使用回饋 <span aria-hidden="true">＋</span></summary>
-        <div className="product-review-empty">
-          <span className="review-mark">↗</span>
-          <div><strong>評論已展示於商品圖片下方</strong><p>有已發布的 Judge.me 評論時，這裡會優先顯示；尚未取得評論時，先以清楚標示的測試內容展示版面。</p></div>
         </div>
       </details>
     </div>

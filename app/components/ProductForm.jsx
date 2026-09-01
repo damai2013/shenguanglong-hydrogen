@@ -93,6 +93,28 @@ export function ProductForm({productOptions, selectedVariant}) {
           </div>
         );
       })}
+      <div className="product-payment-methods" aria-label="付款方式說明">
+        <div className="product-payment-heading">
+          <span className="product-payment-label">支援的付款方式</span>
+          <span className="product-payment-rule" aria-hidden="true" />
+        </div>
+        <div className="product-payment-icons" aria-label="付款方式圖示">
+          <span className="product-payment-icon" title="信用卡與借記卡">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.5h19M6 14h4"/></svg>
+            <small>信用卡</small>
+          </span>
+          <span className="product-payment-icon" title="其他可用付款方式">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8M9 18h6"/></svg>
+            <small>其他方式</small>
+          </span>
+          <span className="product-payment-icon" title="Shopify Checkout">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="m4 8 2-3 12-1 2 4-1 12H5L4 8Z"/><path d="M9 9h6M8 13h8"/></svg>
+            <small>安全結帳</small>
+          </span>
+        </div>
+        <p>結帳時將依店鋪設定與收貨地區顯示可用的信用卡、借記卡及其他付款方式。</p>
+        <small>實際可選項目以 Shopify Checkout 顯示為準。</small>
+      </div>
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
