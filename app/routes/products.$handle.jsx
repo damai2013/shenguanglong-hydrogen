@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useLoaderData} from 'react-router';
 import {
   getSelectedProductOptions,
@@ -116,11 +116,20 @@ export default function Product() {
         <ProductGallery product={product} selectedVariant={selectedVariant} />
         <div className="product-main">
         <p className="eyebrow">傳統刀劍</p>
+        <ProductRating product={product} />
         <h1>{title}</h1>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
+        <div className="product-included-set">
+          <div className="product-included-heading">
+            <span className="product-included-label">購買即包含</span>
+            <span className="product-included-rule" aria-hidden="true" />
+          </div>
+          <strong>精美禮盒・刀劍架・收藏證書</strong>
+          <p>完整包裝，適合收藏、陳列，也適合作為禮品贈送。</p>
+        </div>
         <ProductForm
           productOptions={productOptions}
           selectedVariant={selectedVariant}
@@ -128,19 +137,20 @@ export default function Product() {
         <div className="product-purchase-note">
           <span className="product-purchase-note-label">購買前確認</span>
           <p>如果你對用途、規格、配件或收貨地區有疑問，請在付款前先聯絡我們確認。</p>
-          <Link className="text-link" to="/pages/contact">聯絡我們確認 <span aria-hidden="true">↗</span></Link>
+          <span className="product-purchase-note-contact">商品頁下方提供直接聯絡方式。</span>
         </div>
         <div className="product-description"><p className="description-label">作品介紹</p><div dangerouslySetInnerHTML={{__html: customerDescriptionHtml}} /></div>
         <div className="product-notes">
           <div><span>商品狀態</span><strong>{selectedVariant?.availableForSale ? '可加入購物車' : '目前不可購買'}</strong></div>
           <div><span>產地</span><strong>中國龍泉</strong></div>
           <div><span>工藝</span><strong>手工完成</strong></div>
+          <div><span>隨附內容</span><strong>禮盒・刀劍架・證書</strong></div>
           <div><span>交付</span><strong>需按目的地確認</strong></div>
         </div>
-        <ProductHighlights />
         <ProductDetailSections />
         </div>
       </div>
+      <ProductReviews product={product} />
       <ProductRecommendations products={recommendations} />
       <Analytics.ProductView
         data={{
@@ -161,29 +171,15 @@ export default function Product() {
   );
 }
 
-function ProductHighlights() {
+function ProductRating({product}) {
+  const reviews = getDemoReviews(product);
+
   return (
-    <section className="product-highlights" aria-labelledby="product-highlights-title">
-      <p className="description-label">購買前，先確認三件事</p>
-      <h2 id="product-highlights-title">先確認用途，再選擇作品。</h2>
-      <div className="product-highlights-grid">
-        <article>
-          <span>01</span>
-          <h3>用途</h3>
-          <p>收藏、展示與練習對規格要求不同，請先確認作品是否適合你的使用目的。</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>內容</h3>
-          <p>請以本商品頁列出的尺寸、材料、配件、圖片與庫存狀態作為購買依據。</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>配送</h3>
-          <p>刀劍類商品的運輸、進口與持有要求會因國家或地區而不同，付款前需先確認。</p>
-        </article>
-      </div>
-    </section>
+    <div className="product-rating" aria-label={`商品評分 5 分，共 ${reviews.length} 則評論`}>
+      <span className="product-rating-stars" aria-hidden="true">★★★★★</span>
+      <strong>5.0</strong>
+      <span>{reviews.length} 則評論</span>
+    </div>
   );
 }
 
@@ -220,24 +216,19 @@ function ProductDetailSections() {
       <details open>
         <summary>規格與購買說明 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>請以當前商品頁顯示的尺寸、重量、材料、配件、庫存和狀態為準。不同作品的用途與手感不同，圖片不能代替規格資訊。</p>
-          <p>如果頁面沒有列出你需要的資料，請在結帳前聯絡我們確認，不要僅憑圖片判斷是否適合。</p>
-          <Link className="text-link product-detail-cta" to="/pages/contact">諮詢商品規格 <span aria-hidden="true">↗</span></Link>
+          <p>請以本頁列出的尺寸、重量、材料、配件與庫存為準；未列出的資料，請在付款前聯絡我們確認。</p>
         </div>
       </details>
       <details>
         <summary>配送、目的地與合規 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>現貨、補貨和訂製作品的交期可能不同。刀劍類商品的運輸、進口和持有要求會因目的地而不同。</p>
-          <p>請在付款前確認目的地規則、運輸方式和交付條件；需要確認時，請提供國家／地區和商品連結。</p>
-          <Link className="text-link product-detail-cta" to="/pages/before-you-order">查看購買前須知 <span aria-hidden="true">↗</span></Link>
+          <p>交期與配送方式依現貨、補貨或訂製狀態而定；刀劍類商品的進口、運輸與持有要求因地區不同，付款前請先確認。</p>
         </div>
       </details>
       <details>
         <summary>保養與保存 <span aria-hidden="true">＋</span></summary>
         <div className="product-detail-copy">
-          <p>請保持乾燥，避免碰撞、潮濕和長時間接觸腐蝕性物質。天然材料與手工表面需要按照具體商品的說明進行保存。</p>
-          <p>如果你不確定某種護理方式是否適合這件作品，請先提供訂單資訊和商品照片，再向我們諮詢。</p>
+          <p>請保持乾燥，避免碰撞、潮濕與腐蝕性物質；如不確定保養方式，請先提供商品照片與訂單資訊。</p>
         </div>
       </details>
     </div>
@@ -247,13 +238,30 @@ function ProductDetailSections() {
 function ProductGallery({product, selectedVariant}) {
   const images = [selectedVariant?.image, ...(product.images?.nodes || [])].filter(Boolean).filter((image, index, allImages) => allImages.findIndex((item) => item.id === image.id) === index);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const activeImage = images[activeIndex] || selectedVariant?.image;
+
+  useEffect(() => {
+    if (!isLightboxOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsLightboxOpen(false);
+      if (event.key === 'ArrowLeft' && images.length > 1) setActiveIndex((index) => (index - 1 + images.length) % images.length);
+      if (event.key === 'ArrowRight' && images.length > 1) setActiveIndex((index) => (index + 1) % images.length);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [images.length, isLightboxOpen]);
 
   return (
     <div className="product-gallery">
       <p className="eyebrow">沈廣隆 · 龍泉</p>
       <div className="gallery-main">
-        <ProductImage image={activeImage} />
+        <button className="gallery-zoom-trigger" type="button" onClick={() => setIsLightboxOpen(true)} aria-label="放大查看商品圖片">
+          <ProductImage image={activeImage} />
+          <span className="gallery-zoom-hint" aria-hidden="true">⌕ 放大</span>
+        </button>
         {images.length > 1 ? (
           <div className="gallery-controls">
             <button type="button" onClick={() => setActiveIndex((activeIndex - 1 + images.length) % images.length)} aria-label="上一張商品圖片">←</button>
@@ -272,8 +280,52 @@ function ProductGallery({product, selectedVariant}) {
         </div>
       ) : null}
       <p className="gallery-caption">每件作品均以手工完成。紋理、包漿與平衡感的差異，正是作品獨有的性格。</p>
-      <ProductReviews product={product} />
+      <ProductContact />
+      {isLightboxOpen && activeImage ? (
+        <div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label="商品圖片放大查看">
+          <div className="gallery-lightbox-panel">
+            <button className="gallery-lightbox-close" type="button" onClick={() => setIsLightboxOpen(false)} aria-label="關閉圖片放大查看">×</button>
+            <img className="gallery-lightbox-image" src={activeImage.url} alt={activeImage.altText || '商品放大圖片'} />
+            {images.length > 1 ? (
+              <div className="gallery-lightbox-controls">
+                <button type="button" onClick={() => setActiveIndex((index) => (index - 1 + images.length) % images.length)} aria-label="上一張放大圖片">←</button>
+                <span>{String(activeIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
+                <button type="button" onClick={() => setActiveIndex((index) => (index + 1) % images.length)} aria-label="下一張放大圖片">→</button>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </div>
+  );
+}
+
+function ProductContact() {
+  return (
+    <section className="product-contact" aria-labelledby="product-contact-title">
+      <div className="product-contact-heading">
+        <div>
+          <p className="section-label">DIRECT CONTACT</p>
+          <h2 id="product-contact-title">購買前有疑問，直接聯絡。</h2>
+        </div>
+        <p>如需確認規格、用途或配送地區，請在付款前與我們確認。</p>
+      </div>
+      <div className="product-contact-methods">
+        <a href="https://wa.me/8613372508696" rel="noreferrer" target="_blank">
+          <img src="/assets/reference/whatsapp-qr.png" alt="WhatsApp 聯絡 QR Code" loading="lazy" />
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://line.me/ti/p/~shenguanglong1885" rel="noreferrer" target="_blank">
+          <img src="/assets/reference/line-qr.png" alt="LINE 聯絡 QR Code" loading="lazy" />
+          <span>LINE</span>
+        </a>
+        <div>
+          <img src="/assets/reference/wechat-qr.jpg" alt="微信聯絡 QR Code" loading="lazy" />
+          <span>微信</span>
+        </div>
+        <a className="product-contact-email" href="mailto:sales@shen1885.com">sales@shen1885.com</a>
+      </div>
+    </section>
   );
 }
 
